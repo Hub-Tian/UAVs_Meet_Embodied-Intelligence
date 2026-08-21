@@ -192,14 +192,14 @@
     "excel_row": 19
   },
   {
-    "title": "Airv2x: Unified air-ground vehicle-to-everything collaboration",
+    "title": "AirV2X: Unified Air-Ground Vehicle-to-Everything Collaboration",
     "method_name": "AIRV2X",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent",
     "task_tags": "具身协同",
     "year": 2025,
     "publication": "ICLR 2025",
-    "paper_url": null,
+    "paper_url": "https://arxiv.org/abs/2506.19283",
     "code_url": "https://github.com/taco-group/AirV2X-Perception",
     "excel_row": 3
   },
@@ -211,19 +211,19 @@
     "task_tags": "具身协同",
     "year": 2025,
     "publication": "ACMMM 2025",
-    "paper_url": "https://arxiv.org/abs/6027.37544",
+    "paper_url": "https://arxiv.org/abs/2508.15232",
     "code_url": "https://github.com/ruipuwu/AeroDuo",
     "excel_row": 4
   },
   {
-    "title": "Aircopbench: A benchmark for multi-drone collaborative embodied perception and reasoning",
+    "title": "AirCopBench: A Benchmark for Multi-drone Collaborative Embodied Perception and Reasoning",
     "method_name": "AirCopBench",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent",
     "task_tags": "具身协同",
-    "year": 2025,
-    "publication": "AAAI 2025",
-    "paper_url": null,
+    "year": 2026,
+    "publication": "AAAI 2026",
+    "paper_url": "https://arxiv.org/abs/2511.11025",
     "code_url": "https://github.com/zhajirong/AirCopBench",
     "excel_row": 5
   },
@@ -252,13 +252,13 @@
     "excel_row": 7
   },
   {
-    "title": "Coherent: Collaboration of heterogeneous multi-robot system with large language models",
+    "title": "COHERENT: Collaboration of Heterogeneous Multi-Robot System with Large Language Models",
     "method_name": "COHERENT",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent+LLM",
     "task_tags": "具身协同",
-    "year": 2024,
-    "publication": "ICRA 2024",
+    "year": 2025,
+    "publication": "ICRA 2025",
     "paper_url": "https://arxiv.org/abs/2409.15146",
     "code_url": "https://github.com/MrKeee/COHERENT",
     "excel_row": 8
@@ -276,14 +276,14 @@
     "excel_row": 12
   },
   {
-    "title": "Collaboration helps camera overtake lidar in 3d detection",
+    "title": "Collaboration Helps Camera Overtake LiDAR in 3D Detection",
     "method_name": "CoPerception-UAVs+ (CoCa3D)",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent",
     "task_tags": "具身协同",
     "year": 2023,
     "publication": "CVPR 2023",
-    "paper_url": null,
+    "paper_url": "https://arxiv.org/abs/2303.13560",
     "code_url": "https://github.com/MediaBrain-SJTU/CoCa3D",
     "excel_row": 13
   },
@@ -312,19 +312,19 @@
     "excel_row": 17
   },
   {
-    "title": "Emos: Embodiment-aware heterogeneous multi-robot operating system with llm agents",
+    "title": "EMOS: Embodiment-aware Heterogeneous Multi-robot Operating System with LLM Agents",
     "method_name": "EMOS",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent+LLM",
     "task_tags": "具身协同",
     "year": 2025,
     "publication": "ICLR 2025",
-    "paper_url": null,
+    "paper_url": "https://arxiv.org/abs/2410.22662",
     "code_url": "https://github.com/SgtVincent/EMOS",
     "excel_row": 19
   },
   {
-    "title": "FlockGPT: Guiding UAV flocking with linguistic orchestration",
+    "title": "FlockGPT: Guiding UAV Flocking with Linguistic Orchestration",
     "method_name": "FlockGPT",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent",
@@ -343,12 +343,12 @@
     "task_tags": "具身协同",
     "year": 2026,
     "publication": "RA-L 2026",
-    "paper_url": null,
+    "paper_url": "https://ieeexplore.ieee.org/document/11393907",
     "code_url": null,
     "excel_row": 24
   },
   {
-    "title": "Scalable UAV multi-hop networking via multi-agent reinforcement learning with large language models",
+    "title": "Scalable UAV Multi-Hop Networking via Multi-Agent Reinforcement Learning with Large Language Models",
     "method_name": "MRLMN",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent+LLM",
@@ -360,14 +360,14 @@
     "excel_row": 30
   },
   {
-    "title": "OpenCOOD-air: prompting heterogeneous ground-air collaborative perception with spatial conversion and offset prediction",
+    "title": "OpenCOOD-Air: Prompting Heterogeneous Ground-Air Collaborative Perception with Spatial Conversion and Offset Prediction",
     "method_name": "OpenCOOD-air",
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent",
     "task_tags": "具身协同",
     "year": 2026,
     "publication": "arXiv 2026",
-    "paper_url": null,
+    "paper_url": "https://arxiv.org/abs/2603.13919",
     "code_url": null,
     "excel_row": 31
   },
@@ -391,7 +391,7 @@
     "task_tags": "具身协同",
     "year": 2025,
     "publication": "RA-L 2025",
-    "paper_url": null,
+    "paper_url": "https://arxiv.org/abs/2412.08428",
     "code_url": "https://github.com/learnsyslab/swarmGPT",
     "excel_row": 40
   },
@@ -401,9 +401,9 @@
     "survey_category": "Embodied Collaboration",
     "method_tags": "Multi-Agent",
     "task_tags": "具身协同",
-    "year": 2025,
-    "publication": "AAAI 2025",
-    "paper_url": null,
+    "year": 2026,
+    "publication": "AAAI 2026",
+    "paper_url": "https://arxiv.org/abs/2509.00055",
     "code_url": "https://github.com/fengtt42/U2UData-2",
     "excel_row": 43
   },
@@ -415,7 +415,7 @@
     "task_tags": "具身协同",
     "year": 2026,
     "publication": "CVPR 2026",
-    "paper_url": null,
+    "paper_url": "https://arxiv.org/abs/2603.25275",
     "code_url": "https://github.com/VjiaLi/V2U4Real",
     "excel_row": 44
   },
