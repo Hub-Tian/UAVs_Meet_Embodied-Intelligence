@@ -200,7 +200,7 @@
     "year": 2025,
     "publication": "ICLR 2025",
     "paper_url": null,
-    "code_url": null,
+    "code_url": "https://github.com/taco-group/AirV2X-Perception",
     "excel_row": 3
   },
   {
@@ -212,7 +212,7 @@
     "year": 2025,
     "publication": "ACMMM 2025",
     "paper_url": "https://arxiv.org/abs/6027.37544",
-    "code_url": null,
+    "code_url": "https://github.com/ruipuwu/AeroDuo",
     "excel_row": 4
   },
   {
@@ -224,7 +224,7 @@
     "year": 2025,
     "publication": "AAAI 2025",
     "paper_url": null,
-    "code_url": null,
+    "code_url": "https://github.com/zhajirong/AirCopBench",
     "excel_row": 5
   },
   {
@@ -236,7 +236,7 @@
     "year": 2026,
     "publication": "arXiv 2026",
     "paper_url": "https://arxiv.org/abs/2603.23079",
-    "code_url": null,
+    "code_url": "https://github.com/BIULab-BUAA/AirSimAG",
     "excel_row": 6
   },
   {
@@ -248,7 +248,7 @@
     "year": 2026,
     "publication": "arXiv 2026",
     "paper_url": "https://arxiv.org/abs/2603.28032",
-    "code_url": null,
+    "code_url": "https://github.com/louiszengCN/CarlaAir",
     "excel_row": 7
   },
   {
@@ -260,7 +260,7 @@
     "year": 2024,
     "publication": "ICRA 2024",
     "paper_url": "https://arxiv.org/abs/2409.15146",
-    "code_url": null,
+    "code_url": "https://github.com/MrKeee/COHERENT",
     "excel_row": 8
   },
   {
@@ -272,7 +272,7 @@
     "year": 2026,
     "publication": "arXiv 2026",
     "paper_url": "https://arxiv.org/abs/2608.01802",
-    "code_url": null,
+    "code_url": "https://github.com/WoodySJR/CoNav-UAV",
     "excel_row": 12
   },
   {
@@ -284,7 +284,7 @@
     "year": 2023,
     "publication": "CVPR 2023",
     "paper_url": null,
-    "code_url": null,
+    "code_url": "https://github.com/MediaBrain-SJTU/CoCa3D",
     "excel_row": 13
   },
   {
@@ -308,7 +308,7 @@
     "year": 2026,
     "publication": "RA-L 2026",
     "paper_url": "https://doi.org/10.1109/LRA.2026.3715346",
-    "code_url": null,
+    "code_url": "https://github.com/MIT-REALM/dgppo",
     "excel_row": 17
   },
   {
@@ -320,7 +320,7 @@
     "year": 2025,
     "publication": "ICLR 2025",
     "paper_url": null,
-    "code_url": null,
+    "code_url": "https://github.com/SgtVincent/EMOS",
     "excel_row": 19
   },
   {
@@ -332,7 +332,7 @@
     "year": 2024,
     "publication": "ISMAR-Adjunct 2024",
     "paper_url": "https://arxiv.org/abs/2405.05872",
-    "code_url": null,
+    "code_url": "https://github.com/Taintedy/flock_gpt",
     "excel_row": 20
   },
   {
@@ -380,7 +380,7 @@
     "year": 2023,
     "publication": "NeurIPS Workshop (Robot Learning) 2023",
     "paper_url": "https://arxiv.org/abs/2312.01059",
-    "code_url": null,
+    "code_url": "https://github.com/learnsyslab/swarmGPT",
     "excel_row": 37
   },
   {
@@ -392,7 +392,7 @@
     "year": 2025,
     "publication": "RA-L 2025",
     "paper_url": null,
-    "code_url": null,
+    "code_url": "https://github.com/learnsyslab/swarmGPT",
     "excel_row": 40
   },
   {
@@ -404,7 +404,7 @@
     "year": 2025,
     "publication": "AAAI 2025",
     "paper_url": null,
-    "code_url": null,
+    "code_url": "https://github.com/fengtt42/U2UData-2",
     "excel_row": 43
   },
   {
@@ -416,7 +416,7 @@
     "year": 2026,
     "publication": "CVPR 2026",
     "paper_url": null,
-    "code_url": null,
+    "code_url": "https://github.com/VjiaLi/V2U4Real",
     "excel_row": 44
   },
   {
@@ -428,7 +428,7 @@
     "year": 2026,
     "publication": "arXiv 2026",
     "paper_url": "https://arxiv.org/abs/2605.04574",
-    "code_url": null,
+    "code_url": "https://github.com/xuboyue1999/VL-UniTrack",
     "excel_row": 45
   }
 ]
