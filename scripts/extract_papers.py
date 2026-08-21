@@ -3,8 +3,8 @@
 """
 extract_papers.py
 
-Extracts Embodied Perception papers from the Excel spreadsheet into a structured JSON file: data/papers.json.
-Stores survey_category, method_tags, publication, and link info.
+Extracts Embodied Intelligence papers from cleaned Excel spreadsheets into a structured JSON file: data/papers.json.
+Supports multiple survey categories (Embodied Perception, Embodied Collaboration) via centralized source configurations.
 """
 
 import json
@@ -17,18 +17,24 @@ import pandas as pd
 # Default paths
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
-DEFAULT_EXCEL_PATH = REPO_ROOT.parent / "具身无人机综述撰写 副本 (1)_整理版.xlsx"
 OUTPUT_JSON_PATH = REPO_ROOT / "data" / "papers.json"
+
+# Centralized data sources
+SOURCES = [
+    {
+        "path": REPO_ROOT.parent / "具身感知文献汇总表_cleaned.xlsx",
+        "sheet": "具身感知文献汇总表",
+        "survey_category": "Embodied Perception",
+    },
+    {
+        "path": REPO_ROOT.parent / "具身协同文献汇总表_cleaned.xlsx",
+        "sheet": "具身协同文献汇总表",
+        "survey_category": "Embodied Collaboration",
+    },
+]
 
 # Affirmative values for inclusion
 POSITIVE_INCLUSION_VALUES = {"是", "yes", "√", "1", "纳入", "true"}
-
-SHEET_TO_CATEGORY = {
-    "具身感知文献汇总表": "Embodied Perception",
-    "具身协同文献汇总表": "Embodied Collaboration",
-    "具身导航文献汇总表": "Embodied Navigation",
-    "具身抓取文献汇总表": "Embodied Manipulation",
-}
 
 
 def clean_str(val: Any) -> Optional[str]:
@@ -46,7 +52,11 @@ def is_included(val: Any) -> bool:
     if val is None or pd.isna(val):
         return False
     s = str(val).strip().lower()
-    return s in POSITIVE_INCLUSION_VALUES
+    if s in POSITIVE_INCLUSION_VALUES:
+        return True
+    if s.startswith("是") or s.startswith("yes") or s.startswith("纳入"):
+        return True
+    return False
 
 
 def extract_year(pub_str: Optional[str], date_str: Optional[str]) -> Optional[int]:
@@ -80,7 +90,6 @@ def clean_method_tags(tag_str: Optional[str]) -> Optional[str]:
     """Clean method tags: normalize delimiters, trim whitespace."""
     if not tag_str:
         return None
-    # Replace Chinese commas/delimiters with comma
     cleaned = tag_str.replace("，", ", ").replace("、", ", ").replace(";", ", ").replace("；", ", ")
     tokens = [t.strip() for t in cleaned.split(",") if t.strip()]
     if not tokens or all(t.lower() in {"nan", "none", "无", "-"} for t in tokens):
@@ -88,21 +97,20 @@ def clean_method_tags(tag_str: Optional[str]) -> Optional[str]:
     return ", ".join(tokens)
 
 
-def extract_papers_from_excel(
-    excel_path: Path,
-    sheet_name: str = "具身感知文献汇总表"
-) -> List[Dict[str, Any]]:
-    """Extract and validate paper records from the specified Excel sheet."""
+def extract_papers_from_source(source_config: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Extract and validate paper records from a single Excel source."""
+    excel_path = Path(source_config["path"])
+    sheet_name = source_config["sheet"]
+    survey_category = source_config["survey_category"]
+
     if not excel_path.exists():
         raise FileNotFoundError(f"Excel file not found at: {excel_path}")
-
-    survey_category = SHEET_TO_CATEGORY.get(sheet_name, "Embodied Perception")
 
     df = pd.read_excel(excel_path, sheet_name=sheet_name)
     papers = []
     issues = []
 
-    print(f"Reading sheet: '{sheet_name}' from {excel_path.name}...")
+    print(f"\nReading sheet: '{sheet_name}' from {excel_path.name}...")
     print(f"Survey category: '{survey_category}'")
     print(f"Total rows in sheet: {len(df)}")
 
@@ -124,7 +132,7 @@ def extract_papers_from_excel(
             continue
 
         # 3. Tags & Date & URLs
-        method_tags = clean_method_tags(clean_str(row.get("方法标签")))
+        raw_method_tags = clean_str(row.get("方法标签"))
         raw_task_tags = clean_str(row.get("任务标签"))
 
         raw_date = clean_str(row.get("日期"))
@@ -149,7 +157,7 @@ def extract_papers_from_excel(
             "title": raw_title,
             "method_name": raw_method,
             "survey_category": survey_category,
-            "method_tags": method_tags if method_tags else "",
+            "method_tags": raw_method_tags if raw_method_tags else "",
             "task_tags": raw_task_tags if raw_task_tags else "",
             "year": year,
             "publication": pub_formatted,
@@ -164,31 +172,53 @@ def extract_papers_from_excel(
         norm_title = re.sub(r"\s+", " ", p["title"].strip().lower())
         if norm_title in seen_titles:
             issues.append(
-                f"Duplicate title found: '{p['title']}' (Rows {seen_titles[norm_title]} and {p['excel_row']})"
+                f"Duplicate title found within '{survey_category}': '{p['title']}' (Rows {seen_titles[norm_title]} and {p['excel_row']})"
             )
         else:
             seen_titles[norm_title] = p["excel_row"]
 
-    print(f"Extracted {len(papers)} papers successfully.")
+    print(f"Extracted {len(papers)} papers for '{survey_category}' successfully.")
     if issues:
-        print("\n--- Data Quality Check Issues ---")
+        print("--- Data Quality Check Issues ---")
         for iss in issues:
             print("  - " + iss)
-        print("---------------------------------\n")
+        print("---------------------------------")
 
     return papers
 
 
 def main():
-    excel_path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_EXCEL_PATH
     output_path = OUTPUT_JSON_PATH
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    papers = extract_papers_from_excel(excel_path)
+    all_papers = []
+    for src in SOURCES:
+        papers = extract_papers_from_source(src)
+        all_papers.extend(papers)
+
+    # Global cross-category duplicate check
+    global_seen = {}
+    cross_issues = []
+    for p in all_papers:
+        norm_title = re.sub(r"[^\w\s]", "", p["title"].strip().lower())
+        cat = p["survey_category"]
+        if norm_title in global_seen:
+            cross_issues.append(
+                f"Cross-category paper check: '{p['title']}' in '{cat}' and '{global_seen[norm_title]}'"
+            )
+        else:
+            global_seen[norm_title] = cat
+
+    if cross_issues:
+        print("\n--- Cross-Category Duplicate Notice ---")
+        for c in cross_issues:
+            print("  * " + c)
+        print("---------------------------------------\n")
 
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(papers, f, ensure_ascii=False, indent=2)
+        json.dump(all_papers, f, ensure_ascii=False, indent=2)
 
+    print(f"\nTotal extracted papers across all categories: {len(all_papers)}")
     print(f"Saved papers data to {output_path}")
 
 

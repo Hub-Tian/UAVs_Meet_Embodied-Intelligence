@@ -53,6 +53,31 @@ If you find this repository useful, please consider starring ⭐ this repo!
 | Ad-AOT (Anti-distractor active object tracking in 3D environments) | RL | [ _TCSVT 2021_ ](https://ieeexplore.ieee.org/document/9521193) | - |
 | Semantic-aware active perception for uavs using deep reinforcement learning | RL | [ _IROS 2021_ ](https://ieeexplore.ieee.org/document/9635893) | - |
 
+### Embodied Collaboration
+
+| Title | Type | Publication | Code |
+|---|---|---|---|
+| AirSimAG (AirSimAG: A High-Fidelity Simulation Platform for Air-Ground Collaborative Robotics) | Multi-Agent | [ _arXiv 2026_ ](https://arxiv.org/abs/2603.23079) | - |
+| CARLA-Air (CARLA-Air: Fly Drones Inside a CARLA World -- A Unified Infrastructure for Air-Ground Embodied Intelligence) | Multi-Agent | [ _arXiv 2026_ ](https://arxiv.org/abs/2603.28032) | - |
+| CoNav-UAV (CoNav-UAV: Cooperative Dual-Altitude Aerial Navigation via Stackelberg Learning) | Multi-Agent | [ _arXiv 2026_ ](https://arxiv.org/abs/2608.01802) | - |
+| D-VLC (D-VLC: Decentralized Vision-Language Collaboration for Heterogeneous Embodied Multi-Robot Systems in Unknown Environments) | Multi-Agent+LLM | [ _arXiv 2026_ ](https://arxiv.org/abs/2607.29009) | - |
+| DGPPO (Safe and Scalable Multi-Drone Payload Transport via CBF-Based Reinforcement Learning With Zero-Shot Sim-to-Real Transfer) | Multi-Agent | [ _RA-L 2026_ ](https://doi.org/10.1109/LRA.2026.3715346) | - |
+| LAGCN (LAGCN: Low-Cost Aerial-Ground Collaborative Navigation in Unknown Environments) | Multi-Agent | RA-L 2026 | - |
+| MRLMN (Scalable UAV multi-hop networking via multi-agent reinforcement learning with large language models) | Multi-Agent+LLM | [ _TMC 2026_ ](https://arxiv.org/abs/2505.08448) | - |
+| OpenCOOD-air (OpenCOOD-air: prompting heterogeneous ground-air collaborative perception with spatial conversion and offset prediction) | Multi-Agent | arXiv 2026 | - |
+| V2U4Real (V2U4Real: A Real-world Large-scale Dataset for Vehicle-to-UAV Cooperative Perception) | Multi-Agent | CVPR 2026 | - |
+| VL-UniTrack (VL-UniTrack: A Unified Framework with Visual-Language Prompts for UAV-Ground Visual Tracking) | Multi-Agent+Collaborative Perception | [ _arXiv 2026_ ](https://arxiv.org/abs/2605.04574) | - |
+| AIRV2X (Airv2x: Unified air-ground vehicle-to-everything collaboration) | Multi-Agent | ICLR 2025 | - |
+| AeroDuo (AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation) | Multi-Agent+LLM | [ _ACMMM 2025_ ](https://arxiv.org/abs/6027.37544) | - |
+| AirCopBench (Aircopbench: A benchmark for multi-drone collaborative embodied perception and reasoning) | Multi-Agent | AAAI 2025 | - |
+| EMOS (Emos: Embodiment-aware heterogeneous multi-robot operating system with llm agents) | Multi-Agent+LLM | ICLR 2025 | - |
+| SwarmGPT (SwarmGPT: Combining Large Language Models with Safe Motion Planning for Drone Swarm Choreography) | Multi-Agent | RA-L 2025 | - |
+| U2UData+ (U2UData+: A Scalable Swarm UAVs Autonomous Flight Dataset for Embodied Long-horizon Tasks) | Multi-Agent | AAAI 2025 | - |
+| COHERENT (Coherent: Collaboration of heterogeneous multi-robot system with large language models) | Multi-Agent+LLM | [ _ICRA 2024_ ](https://arxiv.org/abs/2409.15146) | - |
+| FlockGPT (FlockGPT: Guiding UAV flocking with linguistic orchestration) | Multi-Agent | [ _ISMAR-Adjunct 2024_ ](https://arxiv.org/abs/2405.05872) | - |
+| CoPerception-UAVs+ (CoCa3D) (Collaboration helps camera overtake lidar in 3d detection) | Multi-Agent | CVPR 2023 | - |
+| Swarm-GPT (Swarm-GPT: Combining large language models with safe motion planning for robot choreography design) | Multi-Agent | [ _NeurIPS Workshop (Robot Learning) 2023_ ](https://arxiv.org/abs/2312.01059) | - |
+
 <!-- PAPERS_END -->
 
 ---

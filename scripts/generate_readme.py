@@ -8,6 +8,10 @@ Generates and updates README.md paper tables strictly following the UAVs_Meet_LL
 ### Embodied Perception
 | Title | Type | Publication | Code |
 |---|---|---|---|
+
+### Embodied Collaboration
+| Title | Type | Publication | Code |
+|---|---|---|---|
 """
 
 import json
@@ -21,6 +25,13 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
 PAPERS_JSON_PATH = REPO_ROOT / "data" / "papers.json"
 README_PATH = REPO_ROOT / "README.md"
+
+CATEGORY_ORDER = [
+    "Embodied Perception",
+    "Embodied Collaboration",
+    "Embodied Navigation",
+    "Embodied Manipulation",
+]
 
 
 def escape_md(text: Optional[str]) -> str:
@@ -54,7 +65,6 @@ def is_abnormal_method_name(method_name: Optional[str], title: str) -> bool:
     ]
     if any(k in m for k in noise_keywords):
         return True
-    # Chinese characters check
     if re.search(r"[\u4e00-\u9fa5]", m):
         return True
     return False
@@ -121,7 +131,7 @@ def build_paper_row(paper: Dict[str, Any]) -> str:
 
 def generate_papers_markdown(papers: List[Dict[str, Any]]) -> str:
     """Group papers by survey_category, sort by year descending, and render Markdown tables."""
-    categories = {}
+    categories: Dict[str, List[Dict[str, Any]]] = {}
     for p in papers:
         cat = p.get("survey_category", "Embodied Perception")
         if cat not in categories:
@@ -132,7 +142,13 @@ def generate_papers_markdown(papers: List[Dict[str, Any]]) -> str:
     md_lines.append("## Advances of Embodied Intelligence based UAV Systems")
     md_lines.append("")
 
-    for cat_name, cat_papers in categories.items():
+    # Render according to CATEGORY_ORDER first, then any other categories
+    sorted_cats = [c for c in CATEGORY_ORDER if c in categories] + [
+        c for c in categories if c not in CATEGORY_ORDER
+    ]
+
+    for cat_name in sorted_cats:
+        cat_papers = categories[cat_name]
         # Sort papers: 1) Year descending (None at end), 2) Original Excel row ascending
         def sort_key(p):
             year = p.get("year")
@@ -219,7 +235,6 @@ def update_readme(papers_json_path: Path, readme_path: Path):
     start_marker = "<!-- PAPERS_START -->"
     end_marker = "<!-- PAPERS_END -->"
 
-    # Clean replacement
     pattern = re.compile(
         rf"({re.escape(start_marker)})(.*?)({re.escape(end_marker)})",
         re.DOTALL
