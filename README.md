@@ -78,6 +78,31 @@ If you find this repository useful, please consider starring ⭐ this repo!
 | CoPerception-UAVs+ (CoCa3D) (Collaboration Helps Camera Overtake LiDAR in 3D Detection) | Multi-Agent | [ _CVPR 2023_ ](https://arxiv.org/abs/2303.13560) | [ _GitHub_ ](https://github.com/MediaBrain-SJTU/CoCa3D) |
 | Swarm-GPT (Swarm-GPT: Combining large language models with safe motion planning for robot choreography design) | Multi-Agent | [ _NeurIPS Workshop (Robot Learning) 2023_ ](https://arxiv.org/abs/2312.01059) | [ _GitHub_ ](https://github.com/learnsyslab/swarmGPT) |
 
+### Embodied Navigation
+
+| Title | Type | Publication | Code |
+|---|---|---|---|
+| OpenFly (OpenFly: A Comprehensive Platform for Aerial Vision-Language Navigation) | Benchmark | [ _ICLR 2026_ ](https://arxiv.org/abs/2502.18041) | [ _GitHub_ ](https://github.com/SHAILAB-IPEC/OpenFly-Platform) |
+| AutoFly (AutoFly: Vision-Language-Action Model for UAV Autonomous Navigation in the Wild) | VLA | [ _ICLR 2026_ ](https://arxiv.org/abs/2602.09657) | - |
+| CARLA-Air (CARLA-Air: Fly Drones Inside a CARLA World - A Unified Infrastructure for Air-Ground Embodied Intelligence) | Simulator | [ _arXiv 2026_ ](https://arxiv.org/abs/2603.28032) | [ _GitHub_ ](https://github.com/louiszengCN/CarlaAir) |
+| APEX (APEX: A Decoupled Memory-based Explorer for Asynchronous Aerial Object Goal Navigation) | VLM+RL | [ _CVPR 2026_ ](https://arxiv.org/abs/2602.00551) | [ _GitHub_ ](https://github.com/4amGodvzx/apex) |
+| LookasideVLN (LookasideVLN: Direction-Aware Aerial Vision-and-Language Navigation) | MLLM | [ _CVPR 2026_ ](https://arxiv.org/abs/2604.17190) | - |
+| PSC-AVDN (Parse, Search, and Confirmation: Training-Free Aerial Vision-and-Dialog Navigation with Chain-of-Thought Reasoning and Structured Spatial Memory) | Training-Free+LLM | [ _CVPR 2026_ ](https://arxiv.org/abs/2607.11529) | [ _GitHub_ ](https://github.com/QY6616/PSC-AVDN) |
+| OctMem-Agent (Memory-Augmented Scene Understanding and Exploration for Open-World Aerial Object-Goal Navigation) | Memory-Augmented | [ _CVPR 2026_ ](https://cvpr.thecvf.com/virtual/2026/poster/38218) | - |
+| TravelUAV (Towards Realistic UAV Vision-Language Navigation: Platform, Benchmark, and Methodology) | Benchmark | [ _ICLR 2025_ ](https://arxiv.org/abs/2410.07087) | [ _GitHub_ ](https://github.com/buaa-colalab/TravelUAV) |
+| UAV-VLA (UAV-VLA: Vision-Language-Action System for Large Scale Aerial Mission Generation) | VLA+Planning | [ _HRI 2025_ ](https://arxiv.org/abs/2501.05014) | [ _GitHub_ ](https://github.com/sautenich/uav-vla) |
+| CityNav (CityNav: A Large-Scale Dataset for Real-World Aerial Navigation) | Dataset | [ _ICCV 2025_ ](https://arxiv.org/abs/2406.14240) | [ _GitHub_ ](https://github.com/water-cookie/citynav) |
+| CityNavAgent (CityNavAgent: Aerial Vision-and-Language Navigation with Hierarchical Semantic Planning and Global Memory) | LLM+Planning | [ _ACL 2025_ ](https://arxiv.org/abs/2505.05622) | [ _GitHub_ ](https://github.com/EmbodiedCity/CityNavAgent.code) |
+| UrbanVideo-Bench (UrbanVideo-Bench: Benchmarking Vision-Language Models on Embodied Intelligence with Video Data in Urban Spaces) | Benchmark | [ _ACL 2025_ ](https://arxiv.org/abs/2503.06157) | [ _GitHub_ ](https://github.com/EmbodiedCity/UrbanVideo-Bench.code) |
+| UAV-ON (UAV-ON: A Benchmark for Open-World Object Goal Navigation with Aerial Agents) | Benchmark | [ _ACM MM 2025_ ](https://arxiv.org/abs/2508.00288) | [ _GitHub_ ](https://github.com/Kyaren/UAV_ON) |
+| UAV-Flow (UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-Word UAV Imitation Learning) | IL+Benchmark | [ _NeurIPS 2025_ ](https://arxiv.org/abs/2505.15725) | [ _GitHub_ ](https://github.com/buaa-colalab/UAV-Flow) |
+| UnrealZoo (UnrealZoo: Enriching Photo-Realistic Virtual Worlds for Embodied AI) | Simulator | [ _ICCV 2025_ ](https://arxiv.org/abs/2412.20977) | [ _GitHub_ ](https://github.com/UnrealZoo/unrealzoo-gym) |
+| See-Point-Fly (See, Point, Fly: A Learning-Free VLM Framework for Universal Unmanned Aerial Navigation) | Training-Free+VLM | [ _CoRL 2025_ ](https://arxiv.org/abs/2509.22653) | [ _GitHub_ ](https://github.com/Hu-chih-yao/see-point-fly) |
+| SkyVLN (SkyVLN: Vision-and-Language Navigation and NMPC Control for UAVs in Urban Environments) | LLM+Planning | [ _IROS 2025_ ](https://arxiv.org/abs/2507.06564) | - |
+| FELA (Learning Fine-Grained Alignment for Aerial Vision-Dialog Navigation) | Cross-Modal Alignment | [ _AAAI 2025_ ](https://doi.org/10.1609/aaai.v39i7.32757) | [ _GitHub_ ](https://github.com/yifeisu/FELA) |
+| AerialVLN (AerialVLN: Vision-and-Language Navigation for UAVs) | CMA | [ _ICCV 2023_ ](https://arxiv.org/abs/2308.06735) | [ _GitHub_ ](https://github.com/AirVLN/AirVLN) |
+| AVDN (Aerial Vision-and-Dialog Navigation) | Transformer | [ _Findings of ACL 2023_ ](https://arxiv.org/abs/2205.12219) | [ _GitHub_ ](https://github.com/UCSB-AI/Aerial-Vision-and-Dialog-Navigation) |
+
 ### Embodied Manipulation
 
 | Title | Type | Publication | Code |
