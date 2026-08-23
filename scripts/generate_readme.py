@@ -240,7 +240,7 @@ def update_readme(papers_json_path: Path, readme_path: Path):
         re.DOTALL
     )
     new_content = pattern.sub(
-        rf"\1\n\n{generated_md}\n\3",
+        lambda m: f"{m.group(1)}\n\n{generated_md}\n{m.group(3)}",
         base_template
     )
 

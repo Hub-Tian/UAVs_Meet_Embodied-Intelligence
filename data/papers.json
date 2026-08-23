@@ -430,5 +430,89 @@
     "paper_url": "https://arxiv.org/abs/2605.04574",
     "code_url": "https://github.com/xuboyue1999/VL-UniTrack",
     "excel_row": 45
+  },
+  {
+    "title": "$\\pi$, But Make It Fly: Physics-Guided Transfer of VLA Models to Aerial Manipulation",
+    "method_name": "AirVLA",
+    "survey_category": "Embodied Manipulation",
+    "method_tags": "VLA",
+    "task_tags": "具身抓取",
+    "year": 2026,
+    "publication": "arXiv 2026",
+    "paper_url": "https://arxiv.org/abs/2603.25038",
+    "code_url": null,
+    "excel_row": 2
+  },
+  {
+    "title": "Whole-Body Integrated Motion Planning for Aerial Manipulators",
+    "method_name": "Whole-Body Integrated Motion Planning framework",
+    "survey_category": "Embodied Manipulation",
+    "method_tags": "IL",
+    "task_tags": "具身抓取",
+    "year": 2025,
+    "publication": "T-RO 2025",
+    "paper_url": "https://arxiv.org/abs/2501.06493",
+    "code_url": "https://github.com/SYSU-HILAB/am-planner",
+    "excel_row": 3
+  },
+  {
+    "title": "Flying Hand: End-Effector-Centric Framework for Versatile Aerial Manipulation Teleoperation and Policy Learning",
+    "method_name": "Flying Hand",
+    "survey_category": "Embodied Manipulation",
+    "method_tags": "IL",
+    "task_tags": "具身抓取",
+    "year": 2025,
+    "publication": "RSS 2025",
+    "paper_url": "https://arxiv.org/abs/2504.10334",
+    "code_url": "https://github.com/LeCAR-Lab/flying_hand",
+    "excel_row": 4
+  },
+  {
+    "title": "DDPG-Based Adaptive Robust Tracking Control for Aerial Manipulators With Decoupling Approach",
+    "method_name": "DDPG-based adaptive robust tracking control for aerial manipulators with decoupling approach",
+    "survey_category": "Embodied Manipulation",
+    "method_tags": "RL",
+    "task_tags": "具身抓取",
+    "year": 2022,
+    "publication": "TCYB 2022",
+    "paper_url": "https://doi.org/10.1109/TCYB.2021.3049555",
+    "code_url": null,
+    "excel_row": 5
+  },
+  {
+    "title": "Learning to Throw: Agile and Accurate Cable-Suspended Payload Delivery with a Quadrotor",
+    "method_name": "Learning to Throw: Agile and Accurate Cable-Suspended Payload Delivery with a Quadrotor",
+    "survey_category": "Embodied Manipulation",
+    "method_tags": "RL",
+    "task_tags": "具身抓取",
+    "year": 2026,
+    "publication": "arXiv 2026",
+    "paper_url": "https://arxiv.org/abs/2606.27603",
+    "code_url": null,
+    "excel_row": 6
+  },
+  {
+    "title": "Autonomous Aerial Manipulation via Contextual Contrastive Meta Reinforcement Learning",
+    "method_name": "Aco2",
+    "survey_category": "Embodied Manipulation",
+    "method_tags": "RL",
+    "task_tags": "具身抓取",
+    "year": 2026,
+    "publication": "arXiv 2026",
+    "paper_url": "https://arxiv.org/abs/2606.08533",
+    "code_url": null,
+    "excel_row": 7
+  },
+  {
+    "title": "Swooper: Learning High-Speed Aerial Grasping With a Simple Gripper",
+    "method_name": "Swooper",
+    "survey_category": "Embodied Manipulation",
+    "method_tags": "RL",
+    "task_tags": "具身抓取",
+    "year": 2026,
+    "publication": "RA-L 2026",
+    "paper_url": "https://doi.org/10.1109/LRA.2025.3643298",
+    "code_url": null,
+    "excel_row": 8
   }
 ]

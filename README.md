@@ -78,6 +78,18 @@ If you find this repository useful, please consider starring ⭐ this repo!
 | CoPerception-UAVs+ (CoCa3D) (Collaboration Helps Camera Overtake LiDAR in 3D Detection) | Multi-Agent | [ _CVPR 2023_ ](https://arxiv.org/abs/2303.13560) | [ _GitHub_ ](https://github.com/MediaBrain-SJTU/CoCa3D) |
 | Swarm-GPT (Swarm-GPT: Combining large language models with safe motion planning for robot choreography design) | Multi-Agent | [ _NeurIPS Workshop (Robot Learning) 2023_ ](https://arxiv.org/abs/2312.01059) | [ _GitHub_ ](https://github.com/learnsyslab/swarmGPT) |
 
+### Embodied Manipulation
+
+| Title | Type | Publication | Code |
+|---|---|---|---|
+| AirVLA ($\pi$, But Make It Fly: Physics-Guided Transfer of VLA Models to Aerial Manipulation) | VLA | [ _arXiv 2026_ ](https://arxiv.org/abs/2603.25038) | - |
+| Learning to Throw: Agile and Accurate Cable-Suspended Payload Delivery with a Quadrotor | RL | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.27603) | - |
+| Aco2 (Autonomous Aerial Manipulation via Contextual Contrastive Meta Reinforcement Learning) | RL | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.08533) | - |
+| Swooper (Swooper: Learning High-Speed Aerial Grasping With a Simple Gripper) | RL | [ _RA-L 2026_ ](https://doi.org/10.1109/LRA.2025.3643298) | - |
+| Whole-Body Integrated Motion Planning for Aerial Manipulators | IL | [ _T-RO 2025_ ](https://arxiv.org/abs/2501.06493) | [ _GitHub_ ](https://github.com/SYSU-HILAB/am-planner) |
+| Flying Hand (Flying Hand: End-Effector-Centric Framework for Versatile Aerial Manipulation Teleoperation and Policy Learning) | IL | [ _RSS 2025_ ](https://arxiv.org/abs/2504.10334) | [ _GitHub_ ](https://github.com/LeCAR-Lab/flying_hand) |
+| DDPG-Based Adaptive Robust Tracking Control for Aerial Manipulators With Decoupling Approach | RL | [ _TCYB 2022_ ](https://doi.org/10.1109/TCYB.2021.3049555) | - |
+
 <!-- PAPERS_END -->
 
 ---

@@ -31,6 +31,11 @@ SOURCES = [
         "sheet": "具身协同文献汇总表",
         "survey_category": "Embodied Collaboration",
     },
+    {
+        "path": REPO_ROOT.parent / "具身抓取" / "具身抓取文献汇总表_cleaned.xlsx",
+        "sheet": "具身抓取文献汇总表",
+        "survey_category": "Embodied Manipulation",
+    },
 ]
 
 # Affirmative values for inclusion
