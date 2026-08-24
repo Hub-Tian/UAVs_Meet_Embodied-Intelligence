@@ -1,0 +1,508 @@
+[
+  {
+    "id": "ad-aot",
+    "category": "embodied-perception",
+    "title": "Anti-distractor active object tracking in 3D environments",
+    "methodName": "Ad-AOT",
+    "authors": [
+      "Mao Xi",
+      "Yun Zhou",
+      "Zheng Chen",
+      "Wengang Zhou",
+      "Houqiang Li"
+    ],
+    "taskTags": [
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "RL"
+    ],
+    "datasets": [
+      "自建数据集",
+      "仿真场景"
+    ],
+    "venue": "TCSVT",
+    "year": "2021",
+    "summary": "Develops a reinforcement learning tracking framework that explicitly models 3D distractor dynamics to sustain active target tracking in complex airspace.",
+    "theFirst": "首次尝试在 3D 干扰环境中探索抗干扰主动目标跟踪",
+    "image": "assets/papers/perception/ad-aot.png",
+    "paperUrl": "https://ieeexplore.ieee.org/document/9521193",
+    "codeUrl": ""
+  },
+  {
+    "id": "semantic-aware-path-planning",
+    "category": "embodied-perception",
+    "title": "Semantic-aware active perception for uavs using deep reinforcement learning",
+    "methodName": "Proposed semantic-aware path-planning pipeline",
+    "authors": [
+      "Luca Bartolomei",
+      "Lucas Teixeira",
+      "Margarita Chli"
+    ],
+    "taskTags": [
+      "主动感知",
+      "具身导航"
+    ],
+    "methodTags": [
+      "RL"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景"
+    ],
+    "venue": "IROS",
+    "year": "2021",
+    "summary": "Presents a deep reinforcement learning path-planning pipeline integrating semantic spatial understanding for robust active aerial perception.",
+    "theFirst": "",
+    "image": "assets/papers/perception/semantic-aware-path-planning.png",
+    "paperUrl": "https://ieeexplore.ieee.org/document/9635893",
+    "codeUrl": ""
+  },
+  {
+    "id": "adaptive-informative-path-planning",
+    "category": "embodied-perception",
+    "title": "Adaptive informative path planning using deep reinforcement learning for uav-based active sensing",
+    "methodName": "Adaptive Informative Path Planning Using Deep Reinforcement Learning for UAV-based Active Sensing",
+    "authors": [
+      "Julius Ruckin",
+      "Liren Jin",
+      "Popovic"
+    ],
+    "taskTags": [
+      "主动感知"
+    ],
+    "methodTags": [
+      "Planning+RL"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景"
+    ],
+    "venue": "ICRA",
+    "year": "2022",
+    "summary": "Proposes an adaptive informative path planning formulation using deep reinforcement learning for active sensing across complex terrain.",
+    "theFirst": "首个在具有空间相关性的地形、大动作空间场景下，实现无人机在线自适应信息路径规划的强化学习方法 。",
+    "image": "assets/papers/perception/adaptive-informative-path-planning.png",
+    "paperUrl": "https://ieeexplore.ieee.org/document/9812025/",
+    "codeUrl": ""
+  },
+  {
+    "id": "gomaa-geo",
+    "category": "embodied-perception",
+    "title": "Gomaa-geo: Goal modality agnostic active geo-localization",
+    "methodName": "GOMAA-Geo",
+    "authors": [
+      "Anindya Sarkar",
+      "Srikumar Sastry",
+      "Aleksis Pirinen",
+      "Chongjie Zhang",
+      "Nathan Jacobs",
+      "Yevgeniy Vorobeychik"
+    ],
+    "taskTags": [
+      "主动感知",
+      "具身搜索"
+    ],
+    "methodTags": [
+      "Active Perception"
+    ],
+    "datasets": [
+      "真实场景",
+      "自建数据集"
+    ],
+    "venue": "NeurIPS",
+    "year": "2024",
+    "summary": "Introduces a goal-modality agnostic framework enabling active visual geo-localization for UAVs across diverse observation and imagery conditions.",
+    "theFirst": "未提及",
+    "image": "assets/papers/perception/gomaa-geo.png",
+    "paperUrl": "https://arxiv.org/abs/2406.01917",
+    "codeUrl": ""
+  },
+  {
+    "id": "d-vat",
+    "category": "embodied-perception",
+    "title": "D-VAT: End-to-end visual active tracking for micro aerial vehicles",
+    "methodName": "D-VAT",
+    "authors": [
+      "Alberto Dionigi",
+      "Simone Felicioni",
+      "Mirko Leomanni",
+      "Gabriele Costante"
+    ],
+    "taskTags": [
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "RL"
+    ],
+    "datasets": [
+      "真实场景",
+      "仿真场景",
+      "自建数据集"
+    ],
+    "venue": "RA-L",
+    "year": "2024",
+    "summary": "Proposes an end-to-end deep reinforcement learning visual active tracking framework for micro aerial vehicles directly mapping monocular images to flight control commands.",
+    "theFirst": "首个在不严苛约束目标或追踪器运动的前提下，解决 MAV 视觉主动追踪（VAT）问题的端到端方法 。",
+    "image": "assets/papers/perception/d-vat.png",
+    "paperUrl": "https://arxiv.org/abs/2308.16874",
+    "codeUrl": "https://github.com/isarlab-department-engineering/d-vat"
+  },
+  {
+    "id": "gc-vat",
+    "category": "embodied-perception",
+    "title": "Open-World Drone Active Tracking with Goal-Centered Rewards",
+    "methodName": "GC-VAT",
+    "authors": [],
+    "taskTags": [
+      "benchmark",
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "Active Tracking"
+    ],
+    "datasets": [
+      "仿真场景"
+    ],
+    "venue": "NeurIPS",
+    "year": "2024",
+    "summary": "Establishes a goal-centered reinforcement learning formulation and benchmark for open-world drone active air-to-ground tracking.",
+    "theFirst": "论文自述首个开放世界无人机空对地主动跟踪基准（the first open-world drone active air-to-ground tracking benchmark）。其 Table 1 与既有方法所在环境对比自证四项独占：AD-VAT+ 环境 8 场景/1 目标/地面跟踪器/无动力学/人工建场景，D-VAT 4 场景/1 目标/简化动力学/规则目标，AOT 2 场景/1 目标/地面/规则目标；DAT 为 24 场景/24 异构目标/地面+无人机双跟踪器/全物理动力学/类人目标行为/数字孪生自动建场景。在本表三个闭环跟踪基准中的独特生态位：唯一带飞行动力学的（Gym-UnrealCV 地面第一人称、EVT-Bench 室内地面口径）。\n外部复用（单列依据）：OA-VAT（CVPR 2026, 2C）在 DAT 白天条件全部六场景做零样本评测（其训练从未见过 DAT 的车辆目标），CR 平均 242→321（+32.6%）、TSR 0.72→0.86 且方差远低——与 EVT-Bench 被 TrackVLA++/CoMaTrack/USS 复用同构。\n版本注意（检索+GitHub 仓库 SHWplus/DAT_Benchmark 确认）：arXiv v1（2412.00744，2024/12/01）题为《A Cross-Scene Benchmark for Open-World Drone Active Tracking》、方法名 R-VAT；NeurIPS 2025 定稿改现题、方法改名 GC-VAT——R-VAT 与 GC-VAT 为同一方法前后名，检索时防混淆。日期栏按 arXiv v1 优先规则取 2024/12/01（GC-VAT 行原记 2025/12/10 需同步修正）。 | DAT（Drone Active Tracking benchmark；随 GC-VAT 论文《Open-World Drone Active Tracking with Goal-Centered Rewards》发布，无独立论文）",
+    "image": "assets/papers/perception/gc-vat.png",
+    "paperUrl": "https://arxiv.org/abs/2412.00744",
+    "codeUrl": ""
+  },
+  {
+    "id": "cel",
+    "category": "embodied-perception",
+    "title": "Cognitive embodied learning for anomaly active target tracking",
+    "methodName": "CEL",
+    "authors": [
+      "Qihui Wu",
+      "Jiahao Li",
+      "Fuhui Zhou",
+      "Jiahuan Ji",
+      "Haoyang Wang",
+      "Hongtao Liang",
+      "Kai-Kuang Ma"
+    ],
+    "taskTags": [
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "RL"
+    ],
+    "datasets": [
+      "仿真场景",
+      "真实场景"
+    ],
+    "venue": "Communications Engineering",
+    "year": "2025",
+    "summary": "Introduces a cognitive embodied learning paradigm for UAVs to perform robust active tracking under anomalous target behaviors and dynamic environmental disturbances.",
+    "theFirst": "",
+    "image": "assets/papers/perception/cel.png",
+    "paperUrl": "https://www.nature.com/articles/s44172-025-00556-6",
+    "codeUrl": ""
+  },
+  {
+    "id": "uav-track-vla",
+    "category": "embodied-perception",
+    "title": "UAV-Track VLA: Embodied Aerial Tracking via Vision-Language-Action Models",
+    "methodName": "UAV-Track VLA",
+    "authors": [
+      "Qiyao Zhang",
+      "Shuhua Zheng",
+      "Jianli Sun",
+      "Chengxiang Li",
+      "Xianke Wu",
+      "Zihan Song",
+      "Zhiyong Cui",
+      "Yisheng Lv",
+      "Yonglin Tian"
+    ],
+    "taskTags": [
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "VLA"
+    ],
+    "datasets": [
+      "自建数据集",
+      "仿真场景"
+    ],
+    "venue": "arXiv",
+    "year": "2026",
+    "summary": "Presents a specialized vision-language-action foundation model for embodied UAV tracking supporting 4-DoF natural language flight control and zero-shot open-world transfer.",
+    "theFirst": "首个面向城市环境的具身无人机跟踪视觉-语言数据集 。首个全面支持自然语言引导与 4-DoF 连续运动的无人机专用具身跟踪基准 。",
+    "image": "assets/papers/perception/uav-track-vla.png",
+    "paperUrl": "https://arxiv.org/abs/2604.02241",
+    "codeUrl": ""
+  },
+  {
+    "id": "oa-vat",
+    "category": "embodied-perception",
+    "title": "Instance-level Visual Active Tracking with Occlusion-Aware Planning",
+    "methodName": "OA-VAT",
+    "authors": [
+      "Haowei Sun",
+      "Kai Zhou",
+      "Hao Gao",
+      "Shiteng Zhang",
+      "Jinwu Hu",
+      "Xutao Wen",
+      "Qixiang Ye",
+      "Mingkui Tan"
+    ],
+    "taskTags": [
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "VFM"
+    ],
+    "datasets": [
+      "仿真场景",
+      "真实场景",
+      "自建数据集"
+    ],
+    "venue": "CVPR",
+    "year": "2026",
+    "summary": "Proposes an occlusion-aware visual active tracking method utilizing instance-level planning to anticipate and avoid visual occlusions during UAV flight.",
+    "theFirst": "",
+    "image": "assets/papers/perception/oa-vat.png",
+    "paperUrl": "https://arxiv.org/abs/2604.21453",
+    "codeUrl": ""
+  },
+  {
+    "id": "esarbench",
+    "category": "embodied-perception",
+    "title": "ESARBench: A Benchmark for Agentic UAV Embodied Search and Rescue",
+    "methodName": "ESARBench",
+    "authors": [
+      "Daoxuan Zhang",
+      "Ping Chen",
+      "Jianyi Zhou",
+      "Shuo Yang"
+    ],
+    "taskTags": [
+      "benchmark",
+      "主动感知"
+    ],
+    "methodTags": [
+      "Benchmark"
+    ],
+    "datasets": [
+      "仿真场景"
+    ],
+    "venue": "arXiv",
+    "year": "2026",
+    "summary": "Constructs an embodied benchmark and evaluation suite for autonomous agentic UAV search and rescue missions in complex spatial environments.",
+    "theFirst": "论文明确声称两个\"首个\"：首次正式提出具身搜救（ESAR）任务概念；首个面向 ESAR 智能体的高保真仿真平台。任务定义的独特点：不同于只输出飞行动作的传统导航，ESAR 要求联合输出动作与新发现线索的语义+空间信息 (A,M)=π(O,S,P,H)——把\"发现并报告证据\"写进任务本身。定位上填补两个空白：传统 UAV 搜救 = 经典感知+几何规划的解耦栈，基准碎片化、各测各的预设假设；空中 VLN 依赖细粒度逐步指令，把智能体降格为被动指令跟随者，而 ESAR 的提示是抽象案情式的（目标最后已知行踪的文字描述，如\"目标 1 人，最后出现在河边，长时间向上行进\"）。与现有空中基准对比表（其 Table 1）：唯一同时具备 ESAR 任务、荒野场景、UE5、大尺度地图、13 种天气、真实数据的基准。",
+    "image": "assets/papers/perception/esarbench.png",
+    "paperUrl": "https://arxiv.org/abs/2605.01371",
+    "codeUrl": ""
+  },
+  {
+    "id": "active-contact-engagement",
+    "category": "embodied-perception",
+    "title": "Active Contact Engagement for Aerial Navigation in Unknown Environments with Glass",
+    "methodName": "Active Contact Engagement for Aerial Navigation in Unknown Environments With Glass",
+    "authors": [
+      "Xinyi Chen",
+      "Yichen Zhang",
+      "Hetai Zou",
+      "Junzhe Wang",
+      "Shaojie Shen"
+    ],
+    "taskTags": [
+      "主动感知"
+    ],
+    "methodTags": [
+      "Planning"
+    ],
+    "datasets": [
+      "仿真场景",
+      "真实场景"
+    ],
+    "venue": "RA-L",
+    "year": "2026",
+    "summary": "Explores physical contact-assisted aerial perception and navigation strategies for UAVs operating in unknown environments with transparent glass obstacles.",
+    "theFirst": "论文明确声称（To the best of the authors' knowledge）：首个将主动接触交互（active contact engagement）引入玻璃密集未知环境自主空中导航的工作。相关工作中自我定位于主动感知谱系（上承 1980 年代末主动感知，与主动定位、主动 SLAM、主动跟踪并列）。",
+    "image": "assets/papers/perception/active-contact-engagement.png",
+    "paperUrl": "https://arxiv.org/abs/2505.00332",
+    "codeUrl": ""
+  },
+  {
+    "id": "detrack-aadworlds",
+    "category": "embodied-perception",
+    "title": "DeTrack: A Benchmark and Altitude-Aware Dual World Model for Drone-embodied Tracking",
+    "methodName": "DeTrack / AaDWorlds",
+    "authors": [
+      "Guyue Hu",
+      "Haoming Liu",
+      "Siyuan Song",
+      "Chenglong Li",
+      "Feng Chen",
+      "Jin Tang"
+    ],
+    "taskTags": [
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "World Model"
+    ],
+    "datasets": [
+      "仿真场景"
+    ],
+    "venue": "arXiv",
+    "year": "2026",
+    "summary": "Introduces an altitude-aware dual world model and benchmark for drone-embodied active tracking across heterogeneous flight altitudes.",
+    "theFirst": "1. 任务与血统层面：被动航拍跟踪社区（UAV123/VisDrone/OSTrack 谱系）向具身闭环跟踪的进军之作——与钟方威 VAT/AOT/EVT 一系互不引用的第二条血统（其相关工作引 Luo 等 DRL 主动跟踪但整体框架、指标、基线全部来自被动跟踪传统）。独特任务设定：智能体除保持跟随外须每步输出目标包围框（B^trk），把被动跟踪的 mIoU 考核缝进具身闭环——全表唯一。综述叙事价值：B4 术语映射（VAT/AOT/EVT）之外的第四个名字 drone-embodied tracking（DeTrack），且是独立社区独立提出，\"同一任务在不同社区反复重新发明\"论点的最强证据。\n2. 方法层面：首个显式建模\"高度中介的可见性-安全矛盾\"的工作——高飞视野宽障碍少但目标仅数像素、低飞细节足但遮挡密碰撞险，高度把感知与安全耦合为内生矛盾；以高/低空双世界模型 + 高度感知伪观测正面回应。与 ATRNet-LUDO（AOD-JEPA）同为世界模型用法，但用途不同：ATRNet-LUDO 用世界模型选下一视角，AaDWorlds 用世界模型想象两种高度体制的未来状态辅助当前决策，可互引对照。\n3. 注意：仅 arXiv v1 预印本（IEEE 期刊格式，疑投 TCSVT/TIP 类），入 B2 追踪名单。",
+    "image": "assets/papers/perception/detrack-aadworlds.png",
+    "paperUrl": "https://arxiv.org/abs/2605.17451",
+    "codeUrl": ""
+  },
+  {
+    "id": "cosfly-track",
+    "category": "embodied-perception",
+    "title": "CosFly-Track: A Large-Scale Multi-Modal Dataset for UAV Visual Tracking via Multi-Constraint Trajectory Optimization",
+    "methodName": "CosFly-Track",
+    "authors": [
+      "Xiangyue Wang",
+      "Hanxuan Chen",
+      "Songsheng Cheng",
+      "Ruilong Ren",
+      "Jie Zheng",
+      "Shuai Yuan",
+      "Tianle Zeng",
+      "Hanzhong Guo",
+      "Kangli Wang",
+      "Ji Pei"
+    ],
+    "taskTags": [
+      "benchmark",
+      "具身跟踪"
+    ],
+    "methodTags": [
+      "Dataset"
+    ],
+    "datasets": [
+      "仿真场景"
+    ],
+    "venue": "arXiv",
+    "year": "2026",
+    "summary": "Provides a large-scale multi-modal visual tracking benchmark for UAVs optimized under multi-constraint aerial trajectory formulations.",
+    "theFirst": "论文自述（To our knowledge）两处\"首个\"：1) 首个面向 UAV 视觉跟踪的大规模多模态数据集——此前空中数据集或为导航向（AerialVLN/OpenFly/AirNav 等，静态目标）、或为真实视频无动作标注（VisDrone/UAV123/UAVDT），均不含动态目标跟踪的动作级监督；2) 首个用于将 VLM 适配到 UAV 跟踪任务的大规模训练资源（含中英双语指令支持跨语言研究）。其 Table 1 自证：唯一同时具备跟踪任务、6-DoF 动作、运动学约束、可见性保证、专家/扰动配对轨迹与 7 对齐通道的空中数据集。\n综述叙事定位：第二类\"燃料侧\"唯一条目——第二类的标尺（DAT/EVT-Bench/Gym-UnrealCV）与燃料（本篇）已两头齐备，但燃料侧自带的评测仍是开环模仿指标，\"闭环基准与训练数据尚未接通到同一套协议\"本身是可写的开放问题观察（与 ESARBench\"方法与基准未接通\"形成 1C/第二类对仗）。注意：论文自我定位始终是 dataset/training resource，从未声称\"首个评测基准\"；第 6 章标题虽为 Benchmarks，实质是微调七个 VLM 验证数据有效性。配套技术报告 CosFly（arXiv 2605.19120，工程细节）为另一篇论文，不另立条目。",
+    "image": "assets/papers/perception/cosfly-track.png",
+    "paperUrl": "https://arxiv.org/abs/2605.17776",
+    "codeUrl": ""
+  },
+  {
+    "id": "uast",
+    "category": "embodied-perception",
+    "title": "UAST: Unified Active Search and Tracking for Arbitrary Targets with UAVs",
+    "methodName": "UAST: Unified Active Search and Tracking for Arbitrary Targets with UAVs",
+    "authors": [
+      "Liang Qin",
+      "Min Wang",
+      "Xingyu Lu",
+      "Aowen Qiu",
+      "Wengang Zhou",
+      "Houqiang Li"
+    ],
+    "taskTags": [
+      "主动感知",
+      "具身跟踪",
+      "具身搜索"
+    ],
+    "methodTags": [
+      "Active Perception"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景",
+      "仿真场景"
+    ],
+    "venue": "CVPR",
+    "year": "2026",
+    "summary": "Presents a unified mapping-free framework that coordinates autonomous active search and target tracking within a single embodied UAV architecture.",
+    "theFirst": "首个免建图（mapping-free）统一主动搜索与持续跟踪的无人机框架：仅用RGB-D输入，通过单一感知-控制管线联合实现探索、重捕获与连续跟随任意目标，无需显式建图或多阶段规划",
+    "image": "assets/papers/perception/uast.png",
+    "paperUrl": "https://arxiv.org/abs/2606.05000",
+    "codeUrl": ""
+  },
+  {
+    "id": "scoutvla",
+    "category": "embodied-perception",
+    "title": "ScoutVLA: UAV-Centric Active Perception via a Dual-Expert VLA Model for Open-World Embodied Question Answering",
+    "methodName": "ScoutVLA",
+    "authors": [
+      "Wenhao Lu",
+      "Zhengqiu Zhu",
+      "Xiaofeng Wang",
+      "Xiaoran Zhang",
+      "Yatai Ji",
+      "Yong Zhao",
+      "Yue Hu",
+      "Yingzhen Nie",
+      "Jinlong Zhu",
+      "Zheng Zhu"
+    ],
+    "taskTags": [
+      "主动感知",
+      "具身问答"
+    ],
+    "methodTags": [
+      "VLA"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景",
+      "仿真场景"
+    ],
+    "venue": "arXiv",
+    "year": "2026",
+    "summary": "Develops a dual-expert vision-language-action model tailored for UAV-centric active perception and open-world embodied question answering.",
+    "theFirst": "首个空中EQA细粒度主动感知基准（FG-EQA），首次形式化\"问题条件化的细粒度主动感知\"任务；首个将语言问题直接融入连续5-DoF动作生成的空中VLA（单目RGB+流匹配）",
+    "image": "assets/papers/perception/scoutvla.png",
+    "paperUrl": "https://arxiv.org/abs/2606.14772",
+    "codeUrl": ""
+  },
+  {
+    "id": "activefly-bench",
+    "category": "embodied-perception",
+    "title": "ActiveFly-Bench: Aligning Embodied Question Answering with Vision-Language-Action for Aerial Embodied Perception",
+    "methodName": "ActiveFly-Bench",
+    "authors": [
+      "Weichen Zhang",
+      "Shiquan Yu",
+      "Yinan Zhu",
+      "Peizhi Tang",
+      "Shilong Ji",
+      "Zhiyuan Deng",
+      "Tianyi Lyu",
+      "Haoyang Wang",
+      "Xin Zeng",
+      "Chen Gao",
+      "Yong Li",
+      "Xinlei Chen"
+    ],
+    "taskTags": [
+      "主动感知",
+      "benchmark"
+    ],
+    "methodTags": [
+      "VLA+LLM"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景"
+    ],
+    "venue": "arXiv",
+    "year": "2026",
+    "summary": "Establishes an aerial embodied question answering benchmark aligning vision-language-action representations for active perspective adjustment.",
+    "theFirst": "首个对齐赛博空间与物理世界的无人机具身感知基准（the first benchmark that aligns cyberspace and the physical world for UAV embodied perception）；同时提供首个细粒度语言引导无人机控制（FLUC）数据集，联合建模机体与云台控制。",
+    "image": "assets/papers/perception/activefly-bench.png",
+    "paperUrl": "https://arxiv.org/abs/2607.10180",
+    "codeUrl": ""
+  }
+]

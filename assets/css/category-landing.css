@@ -1,0 +1,264 @@
+/* ==========================================================================
+   UAVs Meet Embodied Intelligence - Level 1 Category Landing Styles
+   Rectangular Vertical Strips (Strict 90° Angles, Zero Border-Radius),
+   Hover Image Brightening & Activation, Clean Category Title Only.
+   ========================================================================== */
+
+/* Level 1 Landing Container */
+.category-landing-view {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 2.5rem;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.category-landing-view.is-hidden {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Landing Top Bar */
+.landing-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.landing-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--color-navy, #102639);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.landing-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.landing-links a {
+  text-decoration: none;
+  color: var(--color-muted, #586976);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.landing-links a:hover {
+  color: var(--color-orange, #df6f3f);
+}
+
+/* Landing Center Content Area */
+.landing-center-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  padding: 1rem 0;
+}
+
+.landing-hero-heading {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.landing-pill {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-orange, #df6f3f);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.landing-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-navy, #102639);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.landing-subtitle {
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  color: var(--color-muted, #586976);
+  font-weight: 400;
+}
+
+/* 4 Vertical Category Image Strips */
+.category-windows-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 1.5rem auto;
+  perspective: 1000px;
+}
+
+/* Sharp Rectangular Strip (Zero Border-Radius, Strict 90° Angles) */
+.category-panel,
+.category-strip {
+  position: relative;
+  width: 128px; /* Constant width */
+  height: 380px; /* Constant height */
+  border-radius: 0px !important; /* STRICTLY NO ROUNDED CORNERS */
+  overflow: hidden;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid rgba(16, 38, 57, 0.16);
+  box-shadow: 0 10px 30px rgba(16, 38, 57, 0.08);
+  transition: border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  user-select: none;
+}
+
+/* Hover: Panel outer frame remains constant size (NO expansion) */
+.category-panel:hover,
+.category-panel.is-active {
+  border-color: rgba(223, 111, 63, 0.6);
+  box-shadow: 0 18px 45px rgba(16, 38, 57, 0.16);
+  transform: translateY(-2px);
+  z-index: 5;
+}
+
+/* Full-color paper image with hover brightening & mouse parallax */
+.category-panel-media {
+  position: absolute;
+  inset: -14px;
+  width: calc(100% + 28px);
+  height: calc(100% + 28px);
+  object-fit: cover;
+  border-radius: 0px !important;
+  filter: brightness(0.74) contrast(0.94) saturate(0.96); /* Dimmed default */
+  opacity: 0.88;
+  transition: filter 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.16s ease-out;
+  pointer-events: none;
+}
+
+/* Hovered strip image is awakened & brightened */
+.category-panel:hover .category-panel-media,
+.category-panel.is-active .category-panel-media {
+  filter: brightness(1.0) contrast(1.04) saturate(1.08); /* Fully bright & clear */
+  opacity: 1.0;
+}
+
+/* Non-hovered strips become subtly dimmer */
+.category-windows-group.is-hovered .category-panel:not(:hover) .category-panel-media {
+  filter: brightness(0.62) contrast(0.92) saturate(0.92);
+  opacity: 0.72;
+}
+
+/* Gradient overlay for title legibility */
+.category-panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 38, 57, 0.02) 0%, rgba(16, 38, 57, 0.22) 50%, rgba(16, 38, 57, 0.88) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem 0.85rem;
+  box-sizing: border-box;
+  pointer-events: none;
+  border-radius: 0px !important;
+  transition: background 0.32s ease;
+}
+
+.category-panel:hover .category-panel-overlay,
+.category-panel.is-active .category-panel-overlay {
+  background: linear-gradient(180deg, rgba(16, 38, 57, 0.0) 0%, rgba(16, 38, 57, 0.14) 40%, rgba(16, 38, 57, 0.92) 100%);
+}
+
+/* Clean Category Name Only */
+.category-strip-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  line-height: 1.28;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  transition: color 0.25s ease;
+}
+
+.category-panel:hover .category-strip-title,
+.category-panel.is-active .category-strip-title {
+  color: #ffffff;
+}
+
+/* Landing Footer Hint */
+.landing-footer {
+  text-align: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  color: var(--color-muted, #586976);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* FLIP Transition Morph Overlay */
+.category-morph-overlay {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  border-radius: 0px !important;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 24px 80px rgba(16, 38, 57, 0.25);
+  transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  display: none;
+}
+
+.category-morph-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0px !important;
+}
+
+/* Responsive: Mobile 2x2 Strip Layout (< 768px) */
+@media (max-width: 768px) {
+  .category-landing-view {
+    padding: 1.5rem 1rem;
+  }
+  .category-windows-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 340px;
+  }
+  .category-panel,
+  .category-strip {
+    width: 100% !important;
+    height: 220px;
+    border-radius: 0px !important;
+  }
+}
