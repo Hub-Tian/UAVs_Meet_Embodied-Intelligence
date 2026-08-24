@@ -1,0 +1,58 @@
+/* ==========================================================================
+   UAVs Meet Embodied Intelligence - Main Global Stylesheet
+   Academic, Clean, Aerospace & Embodied Intelligence Design System
+   ========================================================================== */
+
+:root {
+  --color-bg: #f4f1e8;
+  --color-surface: #ffffff;
+  --color-navy: #102639;
+  --color-navy-soft: #1b354b;
+  --color-muted: #586976;
+  --color-light-muted: #8899a6;
+  --color-orange: #df6f3f;
+  --color-orange-hover: #ed875d;
+  --color-orange-ink: #8f3e21;
+  --color-blue: #356c9a;
+  --color-border: rgba(16, 38, 57, 0.12);
+  --color-border-strong: rgba(16, 38, 57, 0.22);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-navy);
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Accessibility Focus States */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+/* Selection Highlight */
+::selection {
+  background: var(--color-orange);
+  color: #ffffff;
+}

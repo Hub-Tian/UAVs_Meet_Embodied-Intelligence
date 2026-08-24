@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UAVs Meet Embodied Intelligence</title>
+  <meta name="description" content="A Survey of Embodied Intelligence for Unmanned Aerial Vehicles." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚁</text></svg>" />
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/interactive-grid.css" />
+  <link rel="stylesheet" href="assets/css/category-landing.css" />
+  <link rel="stylesheet" href="assets/css/research.css" />
+</head>
+<body>
+
+  <!-- Background Interactive Terrain Canvas (Wireframe Mountain & UAV Spatial Field) -->
+  <canvas id="interactive-grid" class="interactive-grid-canvas"></canvas>
+
+  <!-- Morph Overlay for FLIP Transitions -->
+  <div id="category-morph-overlay" class="category-morph-overlay"></div>
+
+  <!-- =========================================================================
+       LEVEL 1: Aristide Benoist-Inspired Rectangular Category Strips Landing
+       ========================================================================= -->
+  <section id="category-landing-view" class="category-landing-view">
+    <!-- Top Bar -->
+    <header class="landing-top-bar">
+      <a href="#" class="landing-brand" aria-label="UAVs Meet Embodied Intelligence Home">
+        <span>🚁</span>
+        <span>UAVs Meet Embodied Intelligence</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="landing-links">
+          <li>
+            <a href="https://github.com/Hub-Tian/UAVs_Meet_Embodied-Intelligence" target="_blank" rel="noopener noreferrer">
+              GitHub ↗
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Center Stage -->
+    <div class="landing-center-stage">
+      <div class="landing-hero-heading">
+        <h1 class="landing-title">UAVs Meet Embodied Intelligence</h1>
+        <p class="landing-subtitle">A Survey of Embodied Intelligence for Unmanned Aerial Vehicles</p>
+      </div>
+
+      <!-- 4 Rectangular Category Vertical Strips (Sharp 90° Angles, Text ONLY Category Name) -->
+      <div class="category-windows-group" id="category-windows-group" role="region" aria-label="Research Categories">
+        
+        <!-- Embodied Perception -->
+        <div class="category-panel category-strip" data-category="embodied-perception" tabindex="0" role="button" aria-label="Embodied Perception">
+          <img src="assets/covers/perception-cover.png" alt="Embodied Perception Cover" class="category-panel-media" />
+          <div class="category-panel-overlay">
+            <div class="category-strip-title">Embodied Perception</div>
+          </div>
+        </div>
+
+        <!-- Embodied Navigation -->
+        <div class="category-panel category-strip" data-category="embodied-navigation" tabindex="0" role="button" aria-label="Embodied Navigation">
+          <img src="assets/covers/navigation-cover.png" alt="Embodied Navigation Cover" class="category-panel-media" />
+          <div class="category-panel-overlay">
+            <div class="category-strip-title">Embodied Navigation</div>
+          </div>
+        </div>
+
+        <!-- Embodied Manipulation -->
+        <div class="category-panel category-strip" data-category="embodied-manipulation" tabindex="0" role="button" aria-label="Embodied Manipulation">
+          <img src="assets/covers/manipulation-cover.png" alt="Embodied Manipulation Cover" class="category-panel-media" />
+          <div class="category-panel-overlay">
+            <div class="category-strip-title">Embodied Manipulation</div>
+          </div>
+        </div>
+
+        <!-- Embodied Collaboration -->
+        <div class="category-panel category-strip" data-category="embodied-collaboration" tabindex="0" role="button" aria-label="Embodied Collaboration">
+          <img src="assets/covers/collaboration-cover.png" alt="Embodied Collaboration Cover" class="category-panel-media" />
+          <div class="category-panel-overlay">
+            <div class="category-strip-title">Embodied Collaboration</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer Hint -->
+    <footer class="landing-footer">
+      <span>Select a direction above to explore papers • Click background for terrain pulse</span>
+    </footer>
+  </section>
+
+  <!-- =========================================================================
+       LEVEL 2: Flying Intelligence Recent Research Paper Gallery
+       ========================================================================= -->
+  <section id="paper-gallery-view" class="paper-gallery-view is-hidden">
+    <!-- Top Bar -->
+    <div class="gallery-top-bar">
+      <button type="button" class="btn-back-categories" id="btn-back-categories" aria-label="Back to Category Landing">
+        <span>←</span>
+        <span>Back to Categories</span>
+      </button>
+
+      <div class="gallery-counter-badge" id="gallery-counter">
+        <span class="gallery-counter-current">01</span> / 03
+      </div>
+    </div>
+
+    <!-- Header Title -->
+    <div class="gallery-header">
+      <h2 class="gallery-title" id="gallery-category-title">Embodied Perception</h2>
+    </div>
+
+    <!-- Stage Container -->
+    <div id="stage-container" style="position: relative; width: 100%;">
+      <!-- Left Prev Button -->
+      <button type="button" class="research-stage-nav research-stage-prev" id="stage-btn-prev" aria-label="Previous paper">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <!-- Flying Intelligence 3D Stage -->
+      <div class="research-airspace-stage" id="research-airspace-stage">
+        <!-- Dynamically rendered paper records -->
+      </div>
+
+      <!-- Right Next Button -->
+      <button type="button" class="research-stage-nav research-stage-next" id="stage-btn-next" aria-label="Next paper">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+
+    <!-- Pending Container (for categories without imported papers yet) -->
+    <div id="pending-container" class="pending-category-container" style="display: none;">
+      <h3 class="pending-category-title">Embodied Navigation</h3>
+      <div class="pending-category-msg">Paper data integration pending in Phase 2.</div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       LEVEL 3: Full-Screen Origin-Captured 3D Flip Detail View
+       ========================================================================= -->
+  <div id="research-detail" class="research-detail" role="dialog" aria-modal="true" aria-label="Paper Details">
+    <div class="research-detail__backdrop" aria-hidden="true"></div>
+
+    <div class="research-detail__stage">
+      <!-- Detail Prev Nav Button -->
+      <button type="button" class="detail-nav-btn detail-nav-prev" id="detail-btn-prev" aria-label="Previous paper in detail">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <!-- 3D Flipper -->
+      <div class="research-detail__flipper" id="research-detail-flipper">
+        <!-- Front Face: Magnified Paper Figure -->
+        <div class="research-detail__face research-detail__front" id="research-detail-front"></div>
+
+        <!-- Back Face: Structured Academic Detail -->
+        <div class="research-detail__face research-detail__back" id="research-detail-back"></div>
+      </div>
+
+      <!-- Detail Next Nav Button -->
+      <button type="button" class="detail-nav-btn detail-nav-next" id="detail-btn-next" aria-label="Next paper in detail">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/interactive-grid.js"></script>
+  <script src="assets/js/research-gallery.js"></script>
+  <script src="assets/js/category-landing.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

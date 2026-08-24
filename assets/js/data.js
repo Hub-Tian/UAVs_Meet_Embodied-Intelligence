@@ -1,4 +1,9 @@
-[
+/**
+ * UAVs Meet Embodied Intelligence - Standardized Survey Literature Data Store
+ * Contains all 16 verified Embodied Perception papers.
+ */
+
+window.PAPERS_DATA = [
   {
     "id": "ad-aot",
     "category": "embodied-perception",
@@ -505,4 +510,4 @@
     "paperUrl": "https://arxiv.org/abs/2607.10180",
     "codeUrl": ""
   }
-]
+];
