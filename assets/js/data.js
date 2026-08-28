@@ -1,6 +1,5 @@
 /**
  * UAVs Meet Embodied Intelligence - Standardized Survey Literature Data Store
- * Contains all 16 verified Embodied Perception papers.
  */
 
 window.PAPERS_DATA = [
@@ -508,6 +507,73 @@ window.PAPERS_DATA = [
     "theFirst": "首个对齐赛博空间与物理世界的无人机具身感知基准（the first benchmark that aligns cyberspace and the physical world for UAV embodied perception）；同时提供首个细粒度语言引导无人机控制（FLUC）数据集，联合建模机体与云台控制。",
     "image": "assets/papers/perception/activefly-bench.png",
     "paperUrl": "https://arxiv.org/abs/2607.10180",
+    "codeUrl": ""
+  },
+  {
+    "id": "air-vla",
+    "category": "embodied-manipulation",
+    "title": "AIR-VLA: Vision-Language-Action Systems for Aerial Manipulation",
+    "methodName": "AIR-VLA",
+    "authors": [
+      "Jianli Sun",
+      "Bin Tian",
+      "Qiyao Zhang",
+      "Chengxiang Li",
+      "Zihan Song",
+      "Zhiyong Cui",
+      "Yisheng Lv",
+      "Yonglin Tian"
+    ],
+    "taskTags": [
+      "具身抓取"
+    ],
+    "methodTags": [
+      "VLA"
+    ],
+    "datasets": [
+      "自建数据集",
+      "仿真场景"
+    ],
+    "venue": "ICML",
+    "year": "2026",
+    "summary": "Proposes AIR-VLA, a full-stack vision-language-action benchmark and simulation platform tailored for 12-DoF aerial manipulation across multi-modal observations and diverse tasks.",
+    "theFirst": "明确宣称是首个专门面向空中操作系统的VLA训练与评测基准（the first VLA benchmark specifically tailored for aerial manipulation；正文亦称 first full-stack VLA benchmark for Aerial Manipulation Systems）。",
+    "image": "具身抓取文献图片\\AIR-VLA.png",
+    "paperUrl": "https://arxiv.org/abs/2601.21602",
+    "codeUrl": "https://github.com/SpencerSon2001/AIR-VLA"
+  },
+  {
+    "id": "air-vla-plus",
+    "category": "embodied-manipulation",
+    "title": "AIR-VLA+: Decoupling Movement and Manipulation via Cascaded Dual-Action Decoders with Asymmetric MoE for Aerial Robots",
+    "methodName": "AIR-VLA+",
+    "authors": [
+      "Jianli Sun",
+      "Bin Tian",
+      "Qiyao Zhang",
+      "Zijian Liu",
+      "Yutong Wang",
+      "Zhiyong Cui",
+      "Bai Li",
+      "Yisheng Lv",
+      "Yonglin Tian"
+    ],
+    "taskTags": [
+      "具身抓取"
+    ],
+    "methodTags": [
+      "VLA",
+      "MoE"
+    ],
+    "datasets": [
+      "AIR-VLA benchmark"
+    ],
+    "venue": "arXiv",
+    "year": "2026",
+    "summary": "Introduces cascaded dual-action decoders with asymmetric Mixture-of-Experts to decouple gross aerial mobility from fine-grained manipulation for aerial robots.",
+    "theFirst": "论文宣称在AIR-VLA基准上达到新的SOTA性能。",
+    "image": "具身抓取文献图片\\AIR-VLA+.png",
+    "paperUrl": "https://arxiv.org/abs/2606.12859",
     "codeUrl": ""
   }
 ];

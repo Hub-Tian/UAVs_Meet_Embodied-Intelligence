@@ -111,6 +111,8 @@ If you find this repository useful, please consider starring ⭐ this repo!
 | Learning to Throw: Agile and Accurate Cable-Suspended Payload Delivery with a Quadrotor | RL | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.27603) | - |
 | Aco2 (Autonomous Aerial Manipulation via Contextual Contrastive Meta Reinforcement Learning) | RL | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.08533) | - |
 | Swooper (Swooper: Learning High-Speed Aerial Grasping With a Simple Gripper) | RL | [ _RA-L 2026_ ](https://doi.org/10.1109/LRA.2025.3643298) | - |
+| AIR-VLA (AIR-VLA: Vision-Language-Action Systems for Aerial Manipulation) | VLA | [ _ICML 2026_ ](https://arxiv.org/abs/2601.21602) | [ _GitHub_ ](https://github.com/SpencerSon2001/AIR-VLA) |
+| AIR-VLA+ (AIR-VLA+: Decoupling Movement and Manipulation via Cascaded Dual-Action Decoders with Asymmetric MoE for Aerial Robots) | VLA, MoE | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.12859) | - |
 | Whole-Body Integrated Motion Planning for Aerial Manipulators | IL | [ _T-RO 2025_ ](https://arxiv.org/abs/2501.06493) | [ _GitHub_ ](https://github.com/SYSU-HILAB/am-planner) |
 | Flying Hand (Flying Hand: End-Effector-Centric Framework for Versatile Aerial Manipulation Teleoperation and Policy Learning) | IL | [ _RSS 2025_ ](https://arxiv.org/abs/2504.10334) | [ _GitHub_ ](https://github.com/LeCAR-Lab/flying_hand) |
 | DDPG-Based Adaptive Robust Tracking Control for Aerial Manipulators With Decoupling Approach | RL | [ _TCYB 2022_ ](https://doi.org/10.1109/TCYB.2021.3049555) | - |
