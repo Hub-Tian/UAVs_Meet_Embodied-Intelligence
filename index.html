@@ -10,6 +10,7 @@
   <!-- Core Stylesheets -->
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/interactive-grid.css" />
+  <link rel="stylesheet" href="assets/css/mountain-scene.css" />
   <link rel="stylesheet" href="assets/css/category-landing.css" />
   <link rel="stylesheet" href="assets/css/research.css" />
 </head>
@@ -17,6 +18,7 @@
 
   <!-- Background Interactive Terrain Canvas (Wireframe Mountain & UAV Spatial Field) -->
   <canvas id="interactive-grid" class="interactive-grid-canvas"></canvas>
+  <div class="mountain-atmosphere" aria-hidden="true"><canvas id="mountain-scene"></canvas></div>
 
   <!-- Morph Overlay for FLIP Transitions -->
   <div id="category-morph-overlay" class="category-morph-overlay"></div>
@@ -27,11 +29,6 @@
   <section id="category-landing-view" class="category-landing-view">
     <!-- Top Bar -->
     <header class="landing-top-bar">
-      <a href="#" class="landing-brand" aria-label="UAVs Meet Embodied Intelligence Home">
-        <span>🚁</span>
-        <span>UAVs Meet Embodied Intelligence</span>
-      </a>
-
       <nav aria-label="Main Navigation">
         <ul class="landing-links">
           <li>
@@ -170,6 +167,8 @@
 
   <!-- JavaScript Modules -->
   <script src="assets/js/data.js"></script>
+  <script src="assets/js/category-data.js"></script>
+  <script src="assets/js/mountain-scene.bundle.js"></script>
   <script src="assets/js/interactive-grid.js"></script>
   <script src="assets/js/research-gallery.js"></script>
   <script src="assets/js/category-landing.js"></script>

@@ -28,7 +28,8 @@
 /* Landing Top Bar */
 .landing-top-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  min-height: 1.725rem;
   align-items: center;
   width: 100%;
   max-width: 1440px;
@@ -244,6 +245,10 @@
 }
 
 /* Responsive: Mobile 2x2 Strip Layout (< 768px) */
+@media (max-width: 480px) {
+  .landing-top-bar { min-height: 3.45rem; }
+}
+
 @media (max-width: 768px) {
   .category-landing-view {
     padding: 1.5rem 1rem;

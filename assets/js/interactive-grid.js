@@ -263,9 +263,12 @@ const InteractiveGrid = (function () {
 
   function setIntensity(val) {
     intensity = Math.max(0, Math.min(1, val));
+    window.MountainScene?.setActive(intensity === 1);
+    startLoop();
   }
 
   function render(time) {
+    if (document.body.classList.contains('mountain-home')) return;
     ctx.clearRect(0, 0, width, height);
 
     // Smooth tilt interpolation

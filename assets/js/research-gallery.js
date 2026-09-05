@@ -26,7 +26,12 @@ const ResearchGallery = (function () {
   let detailPrevBtn = null;
   let detailNextBtn = null;
   let isDetailOpen = false;
-  let detailOriginRect = null;
+  let detailTimer = null;
+  let detailBusy = false;
+  let returnFocus = null;
+  let dragStartY = 0;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const flipDuration = () => reducedMotion.matches ? 20 : 880;
 
   function padZero(num) {
     return String(num).padStart(2, '0');
@@ -122,6 +127,7 @@ const ResearchGallery = (function () {
     detailBack = document.getElementById('research-detail-back');
     detailPrevBtn = document.getElementById('detail-btn-prev');
     detailNextBtn = document.getElementById('detail-btn-next');
+    detailDialog.inert = true;
 
     bindGlobalEvents();
     bindDetailControls();
@@ -198,6 +204,13 @@ const ResearchGallery = (function () {
           setActive(idx);
         }
       });
+      record.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (relativeOffset(idx) === 0) openDetail(idx);
+          else setActive(idx);
+        }
+      });
 
       stageEl.appendChild(record);
       recordEls.push(record);
@@ -208,23 +221,26 @@ const ResearchGallery = (function () {
   // Level 3: 3D Flip Paper Detail Implementation
   // =========================================================================
 
-  function captureDetailOrigin(index) {
-    const record = recordEls[index];
-    if (!record) return null;
-    const mediaFrame = record.querySelector('.research-media-frame');
-    return mediaFrame ? mediaFrame.getBoundingClientRect() : record.getBoundingClientRect();
+  function flipToBack() {
+    detailDialog.classList.add('is-flipped');
+    detailTimer = setTimeout(() => {
+      detailBusy = false;
+      detailBack.inert = false;
+      detailBack.querySelector('#btn-close-detail')?.focus({ preventScroll: true });
+    }, flipDuration());
   }
 
   function openDetail(index) {
-    if (index < 0 || index >= papers.length) return;
+    if (isDetailOpen || index < 0 || index >= papers.length) return;
+    clearTimeout(detailTimer);
+    detailBusy = true;
+    returnFocus = recordEls[index].querySelector('.research-record__cover');
     detailIndex = index;
     isDetailOpen = true;
     const paper = papers[index];
 
     // Lower grid intensity during detail
     InteractiveGrid.setIntensity(0.15);
-
-    detailOriginRect = captureDetailOrigin(index);
 
     // 1. Populate Front Face
     detailFront.innerHTML = `
@@ -233,15 +249,17 @@ const ResearchGallery = (function () {
 
     // 2. Populate Back Face
     renderDetailBackFace(paper, index);
+    detailBack.inert = true;
+    detailDialog.inert = false;
+    document.getElementById('paper-gallery-view').inert = true;
+    document.body.style.overflow = 'hidden';
 
     // 3. Open Dialog Overlay
     detailDialog.classList.add('is-open');
     detailDialog.classList.remove('is-flipped');
 
-    // 4. Animate 3D Flip after origin zoom
-    setTimeout(() => {
-      detailDialog.classList.add('is-flipped');
-    }, 280);
+    // A fixed-size front turns into the information face; no hover zoom.
+    detailTimer = setTimeout(flipToBack, reducedMotion.matches ? 0 : 60);
   }
 
   function renderDetailBackFace(paper, index) {
@@ -329,6 +347,8 @@ const ResearchGallery = (function () {
     }
 
     detailBack.innerHTML = `
+      <div class="detail-figure"><img src="${escapeHtml(paper.image)}" alt="${escapeHtml(paper.methodName || paper.title)} figure" /></div>
+      <div class="detail-copy">
       <div class="detail-header">
         <span class="detail-counter">${padZero(index + 1)} / ${padZero(total)}</span>
         <button type="button" class="btn-detail-close" id="btn-close-detail" aria-label="Close detail view">
@@ -383,6 +403,7 @@ const ResearchGallery = (function () {
         ${paperBtnHtml}
         ${codeBtnHtml}
       </div>
+      </div>
     `;
 
     // Re-bind close & tooltip inside detailBack
@@ -407,30 +428,45 @@ const ResearchGallery = (function () {
 
   function closeDetail() {
     if (!isDetailOpen) return;
+    clearTimeout(detailTimer);
+    detailBusy = true;
+    detailBack.inert = true;
     detailDialog.classList.remove('is-flipped');
 
     // Restore grid intensity
     InteractiveGrid.setIntensity(0.45);
 
-    setTimeout(() => {
+    detailTimer = setTimeout(() => {
       detailDialog.classList.remove('is-open');
+      detailDialog.inert = true;
       isDetailOpen = false;
+      detailBusy = false;
       detailIndex = -1;
+      document.getElementById('paper-gallery-view').inert = false;
+      document.body.style.overflow = '';
       updateRecords();
-    }, 280);
+      returnFocus?.focus({ preventScroll: true });
+    }, flipDuration());
   }
 
   function navigateFromDetail(dir) {
-    if (!isDetailOpen || papers.length <= 1) return;
+    if (!isDetailOpen || detailBusy || papers.length <= 1) return;
+    detailBusy = true;
+    detailBack.inert = true;
     const nextIdx = (detailIndex + dir + papers.length) % papers.length;
     activeIndex = nextIdx;
     updateRecords();
 
     // Flip to front briefly, then populate new paper and flip back
     detailDialog.classList.remove('is-flipped');
-    setTimeout(() => {
-      openDetail(nextIdx);
-    }, 200);
+    detailTimer = setTimeout(() => {
+      detailIndex = nextIdx;
+      const paper = papers[nextIdx];
+      detailFront.innerHTML = `<img src="${escapeHtml(paper.image)}" alt="${escapeHtml(paper.methodName || paper.title)}" />`;
+      renderDetailBackFace(paper, nextIdx);
+      returnFocus = recordEls[nextIdx].querySelector('.research-record__cover');
+      flipToBack();
+    }, flipDuration());
   }
 
   function bindDetailControls() {
@@ -463,6 +499,16 @@ const ResearchGallery = (function () {
 
     // Keyboard navigation
     window.addEventListener('keydown', function (e) {
+      if (document.getElementById('paper-gallery-view').classList.contains('is-hidden')) return;
+      if (isDetailOpen && e.key === 'Tab') {
+        const focusable = Array.from(detailDialog.querySelectorAll('button, a[href], [tabindex="0"]')).filter(el => !el.closest('[inert]'));
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && (document.activeElement === first || !detailDialog.contains(document.activeElement))) {
+          e.preventDefault(); last?.focus();
+        } else if (!e.shiftKey && (document.activeElement === last || !detailDialog.contains(document.activeElement))) {
+          e.preventDefault(); first?.focus();
+        }
+      }
       if (e.key === 'ArrowLeft') {
         if (isDetailOpen) navigateFromDetail(-1);
         else prev();
@@ -478,31 +524,41 @@ const ResearchGallery = (function () {
     if (stageEl) {
       stageEl.addEventListener('touchstart', function (e) {
         dragStartX = e.changedTouches[0].screenX;
+        dragStartY = e.changedTouches[0].screenY;
+        dragMoved = false;
+      }, { passive: true });
+
+      stageEl.addEventListener('touchmove', function (e) {
+        if (Math.hypot(e.changedTouches[0].screenX - dragStartX, e.changedTouches[0].screenY - dragStartY) > 8) dragMoved = true;
       }, { passive: true });
 
       stageEl.addEventListener('touchend', function (e) {
         const endX = e.changedTouches[0].screenX;
         const diff = endX - dragStartX;
-        if (diff > 45) prev();
-        else if (diff < -45) next();
+        const vertical = Math.abs(e.changedTouches[0].screenY - dragStartY);
+        if (Math.abs(diff) > vertical * 1.4) {
+          if (diff > 45) prev();
+          else if (diff < -45) next();
+        }
       }, { passive: true });
 
       // Mouse Drag Gestures on Stage
-      stageEl.addEventListener('mousedown', function (e) {
+      stageEl.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'mouse') return;
         if (e.target.closest('a, button, .first-badge-container')) return;
         isDragging = true;
         dragMoved = false;
         dragStartX = e.clientX;
       });
 
-      window.addEventListener('mousemove', function (e) {
+      window.addEventListener('pointermove', function (e) {
         if (!isDragging) return;
         if (Math.abs(e.clientX - dragStartX) > 8) {
           dragMoved = true;
         }
       });
 
-      window.addEventListener('mouseup', function (e) {
+      window.addEventListener('pointerup', function (e) {
         if (!isDragging) return;
         isDragging = false;
         const diff = e.clientX - dragStartX;
