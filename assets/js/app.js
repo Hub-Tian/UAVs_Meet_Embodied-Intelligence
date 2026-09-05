@@ -20,6 +20,7 @@ const App = (function () {
 
     // 1. Initialize Interactive Grid Canvas
     InteractiveGrid.init('interactive-grid');
+    MountainScene.init();
 
     // 2. Initialize Category Landing
     CategoryLanding.init();

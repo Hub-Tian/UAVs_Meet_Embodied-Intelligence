@@ -1,0 +1,551 @@
+[
+  {
+    "category": "embodied-navigation",
+    "source": "具身导航/具身导航文献汇总表_cleaned.xlsx",
+    "sha256": "eb84775cb973d796e944df4edd6e3aef7c166043ec772ec6fd0d9831d0318e7b",
+    "sheet": "具身导航文献汇总表",
+    "rawRows": 20,
+    "includedRows": 20,
+    "excludedRows": [],
+    "papers": [
+      {
+        "id": "navigation-002",
+        "row": 2,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-002.png",
+        "imageSource": null,
+        "imageSha256": "cfebf9d0a34287153feec3b55d4f6ead3df92fb78216a2850aba3babf0ff441a",
+        "imageRetained": true,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-003",
+        "row": 3,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-003.png",
+        "imageSource": "具身导航/具身导航文献图片/TravelUAV.png",
+        "imageSha256": "b6283571245f7b47e3df0c026273748ce0b4589ec8ca7af1f4cffec6f8d2349b",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-004",
+        "row": 4,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-004.png",
+        "imageSource": "具身导航/具身导航文献图片/AVDN.png",
+        "imageSha256": "b4aca3eab716726aa5618e34c4f40a097a3401846a2f59c0b0f6aeff670e55a4",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-005",
+        "row": 5,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-005.png",
+        "imageSource": "具身导航/具身导航文献图片/UAV-VLA.png",
+        "imageSha256": "691f64119bc1dcbcc10fbdff08b3ab88cb8692097c4ee489e9d0a30f725a1184",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-006",
+        "row": 6,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-006.png",
+        "imageSource": "具身导航/具身导航文献图片/CityNav.png",
+        "imageSha256": "158c4cbc0759ac4d4bfc433d0d1392dde0d6aea2b67f4c5d4da372f02edb1e25",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-007",
+        "row": 7,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-007.png",
+        "imageSource": "具身导航/具身导航文献图片/OpenFly.png",
+        "imageSha256": "62126d6be0eb8fec4f96368e44b5ce46bb73e54c933e6590a8e529a23fd0122c",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-008",
+        "row": 8,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-008.png",
+        "imageSource": "具身导航/具身导航文献图片/CityNavAgent.png",
+        "imageSha256": "2436fb312f5bd7d0e4f6b3765f84b37fdd67e2d3a49ec493975f8ea3eb940558",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-009",
+        "row": 9,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-009.png",
+        "imageSource": "具身导航/具身导航文献图片/UrbanVideo-Bench.png",
+        "imageSha256": "d2f57e20de70ca1690c280451d8a5b239b719d25f8e166f314a6344e635e1b96",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-010",
+        "row": 10,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-010.png",
+        "imageSource": "具身导航/具身导航文献图片/UAV-ON.png",
+        "imageSha256": "f69af6f5280457b97b176655c8ca5c9101705f59b233012a06a7c144266c821d",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-011",
+        "row": 11,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-011.png",
+        "imageSource": "具身导航/具身导航文献图片/UAV-Flow.png",
+        "imageSha256": "9808f630742f64df34246bf0f7cf1e08dbb99129f6acbc0113df9dc149327055",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-012",
+        "row": 12,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-012.png",
+        "imageSource": "具身导航/具身导航文献图片/UnrealZoo.png",
+        "imageSha256": "0b6edfefd6bfbca0ccd0415a4fc786956d64fedbabab0d73b1c318fdc8c3887f",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-013",
+        "row": 13,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-013.png",
+        "imageSource": "具身导航/具身导航文献图片/See, Point, Fly.png",
+        "imageSha256": "99eedd94e085480362000802340acb283cf9370aebd4c8044385c79cd4d14969",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-014",
+        "row": 14,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-014.png",
+        "imageSource": "具身导航/具身导航文献图片/SkyVLN.png",
+        "imageSha256": "ac7b2a7cbae88d341209105fe3cff7ba5051eb7c2f459be378c4e5f78a637440",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-015",
+        "row": 15,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-015.png",
+        "imageSource": "具身导航/具身导航文献图片/AutoFly.png",
+        "imageSha256": "013dd2db935101edcd3a6be311244c7e0513a066848ef0e622bb21a546aa8a2f",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-016",
+        "row": 16,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-016.png",
+        "imageSource": "具身导航/具身导航文献图片/CARLA-Air.png",
+        "imageSha256": "e42203b213df33cd0e3e764ceab3b3f9b0bc0d5660f42faf249a34a2b6c1dfd5",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-017",
+        "row": 17,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-017.png",
+        "imageSource": "具身导航/具身导航文献图片/FELA.png",
+        "imageSha256": "809d1409faaa3b15574495b4163a2796979e8d43382c6c271a05f149a2d71e11",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-018",
+        "row": 18,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-018.png",
+        "imageSource": "具身导航/具身导航文献图片/APEX.png",
+        "imageSha256": "1157d98dc94a2d5bb26bebd6599590df129dc6ab0b7e17642efc506d0dcea7ab",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-019",
+        "row": 19,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-019.png",
+        "imageSource": "具身导航/具身导航文献图片/LookasideVLN.png",
+        "imageSha256": "efbf2b3c5a11022be0f86f04f3a80dd82fbb67b47b6c59375c85020aec808821",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-020",
+        "row": 20,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-020.png",
+        "imageSource": "具身导航/具身导航文献图片/PSC-AVDN.png",
+        "imageSha256": "4b3ab13ed27e50181e193e23f93b24a8264148f0128e28c5863279154ba4ff20",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "navigation-021",
+        "row": 21,
+        "inclusion": "是",
+        "image": "assets/papers/navigation/navigation-021.png",
+        "imageSource": "具身导航/具身导航文献图片/OctMem-Agent.png",
+        "imageSha256": "918d1fe3c1f41e145dbd4cf7119179ca5e6f66511d63b12a206d1db21367127d",
+        "imageRetained": false,
+        "imageSupplement": null
+      }
+    ]
+  },
+  {
+    "category": "embodied-manipulation",
+    "source": "具身抓取/具身抓取文献汇总表_cleaned.xlsx",
+    "sha256": "76642acfc077887f3f9fbd22b199d5ea2fef5ec209aa8065b064d5ccbdb2c071",
+    "sheet": "具身抓取文献汇总表",
+    "rawRows": 9,
+    "includedRows": 9,
+    "excludedRows": [],
+    "papers": [
+      {
+        "id": "manipulation-002",
+        "row": 2,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-002.png",
+        "imageSource": "具身抓取/具身抓取文献图片/AirVLA.png",
+        "imageSha256": "b41697cc5d82e74885ca800a7ff20567aa5014f5627c0d65fefed5284381da5b",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "manipulation-003",
+        "row": 3,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-003.png",
+        "imageSource": "具身抓取/具身抓取文献图片/Whole-Body Integrated Motion Planning framework.png",
+        "imageSha256": "8ea19ea6b6eb44b1bd19990e8ce9663a3116ed646d1845a57377ae6d5f0e06fe",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "manipulation-004",
+        "row": 4,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-004.png",
+        "imageSource": "具身抓取/具身抓取文献图片/Flying Hand.png",
+        "imageSha256": "d517cc0860c4d51fead5d3b7496daa797b5a06b008956fdb16a4515e4e48b153",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "manipulation-005",
+        "row": 5,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-005.png",
+        "imageSource": "具身抓取/具身抓取文献图片/DDPG.png",
+        "imageSha256": "e91a5c73bf146c2ae91fcd35aac51854d0fcc7798b7bfcea72839ed528d4be90",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "manipulation-006",
+        "row": 6,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-006.png",
+        "imageSource": "具身抓取/具身抓取文献图片/Learning to Throw_ Agile and Accurate Cable-Suspended Payload Delivery with a Quadrotor.png",
+        "imageSha256": "0fb3c95c96f7ce95ff7a7a66a2e21e83fba49cd70ab88e4ca4a5bb85c48b64e0",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "manipulation-007",
+        "row": 7,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-007.png",
+        "imageSource": "具身抓取/具身抓取文献图片/Aco2.png",
+        "imageSha256": "cf984eac034c7df58e3aad62e4c9df0e6cde0806a0ec79b550499521b981be49",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "manipulation-008",
+        "row": 8,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-008.png",
+        "imageSource": "具身抓取/具身抓取文献图片/Swooper .png",
+        "imageSha256": "9d255415b9b33b872541c0f467748e087f3226cb9382f2b7c08605a4be560126",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "manipulation-009",
+        "row": 9,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-009.png",
+        "imageSource": "具身抓取/具身抓取文献图片/AIR-VLA1.png",
+        "imageSha256": "7dc1261c6a60891935eb5b22830a150de456c96a98ace1ee579e53f5b9e492fa",
+        "imageRetained": false,
+        "imageSupplement": "具身抓取/具身抓取文献汇总表_新增AIR-VLA与AIR-VLA+.xlsx"
+      },
+      {
+        "id": "manipulation-010",
+        "row": 10,
+        "inclusion": "是",
+        "image": "assets/papers/manipulation/manipulation-010.png",
+        "imageSource": "具身抓取/具身抓取文献图片/AIR-VLA+.png",
+        "imageSha256": "510b4f1b9e862be1c4eda797ee2f0b1c8d89eefa072a216c71b8c24894ccb4fd",
+        "imageRetained": false,
+        "imageSupplement": null
+      }
+    ]
+  },
+  {
+    "category": "embodied-collaboration",
+    "source": "具身协同/具身协同文献汇总表_cleaned.xlsx",
+    "sha256": "d779bc13b4bb61c7ce3c4480c8f8be8f408b590b1660db32866b92a9c56ecea9",
+    "sheet": "具身协同文献汇总表",
+    "rawRows": 45,
+    "includedRows": 20,
+    "excludedRows": [
+      2,
+      9,
+      10,
+      11,
+      14,
+      16,
+      18,
+      21,
+      22,
+      23,
+      25,
+      26,
+      27,
+      28,
+      29,
+      32,
+      33,
+      34,
+      35,
+      36,
+      38,
+      39,
+      41,
+      42,
+      46
+    ],
+    "papers": [
+      {
+        "id": "collaboration-003",
+        "row": 3,
+        "inclusion": "是-但benchmark",
+        "image": "assets/papers/collaboration/collaboration-003.png",
+        "imageSource": "具身协同/具身协同文献图片/AIRV2X.png",
+        "imageSha256": "256276798d9ef16ed54370cc0dc3f377e681a8cb9a408cf3f4ed37c05839086f",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-004",
+        "row": 4,
+        "inclusion": "是",
+        "image": "assets/papers/collaboration/collaboration-004.png",
+        "imageSource": "具身协同/具身协同文献图片/AeroDuo.png",
+        "imageSha256": "19e2fe9c4978552a48bfac8ecf2280f53937f5248465815ff338c2ba23c84f9c",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-005",
+        "row": 5,
+        "inclusion": "是-但benchmark",
+        "image": "assets/papers/collaboration/collaboration-005.png",
+        "imageSource": "具身协同/具身协同文献图片/AirCopBench.png",
+        "imageSha256": "3a06eca6a73dbfe5e6ae3acb7cd14e3b84f56b0fd3b6647d1968a18688924b92",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-006",
+        "row": 6,
+        "inclusion": "是-但benchmark",
+        "image": "assets/papers/collaboration/collaboration-006.png",
+        "imageSource": "具身协同/具身协同文献图片/AirSimAG.png",
+        "imageSha256": "08a83459d7f715491eae551207163b35b60324cd184ee954bc318deb54a3c039",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-007",
+        "row": 7,
+        "inclusion": "是-但benchmark",
+        "image": "assets/papers/collaboration/collaboration-007.png",
+        "imageSource": "具身协同/具身协同文献图片/CARLA-Air.png",
+        "imageSha256": "6913bc4d783fbae62af1cae7090e23c94171843e639e825aa68f2444f1125b54",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-008",
+        "row": 8,
+        "inclusion": "是-无人机与其他机器人协同",
+        "image": "assets/papers/collaboration/collaboration-008.png",
+        "imageSource": "具身协同/具身协同文献图片/COHERENT.png",
+        "imageSha256": "9edf853ceefd090bb4c6f0d64112eaf73b4e358e98e3699df124814d05e01835",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-012",
+        "row": 12,
+        "inclusion": "是",
+        "image": "assets/papers/collaboration/collaboration-012.png",
+        "imageSource": "具身协同/具身协同文献图片/CoNav-UAV.png",
+        "imageSha256": "742194ee5de279cc10d628e2ae1d529354c89d31b5800f89bd4252dc1807b285",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-013",
+        "row": 13,
+        "inclusion": "是-无人机与其他机器人协同",
+        "image": "assets/papers/collaboration/collaboration-013.png",
+        "imageSource": "具身协同/具身协同文献图片/CoPerception-UAVs+（CoCa3D）.png",
+        "imageSha256": "33a90eb16762701f0afd504a3b5d688a85a30a6f871e70eab7e508df31f3c890",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-015",
+        "row": 15,
+        "inclusion": "是-无人机与其他机器人协同",
+        "image": "assets/papers/collaboration/collaboration-015.png",
+        "imageSource": "具身协同/具身协同文献图片/D-VLC.png",
+        "imageSha256": "e89f10eba73588bc852466a385b3b35344f045181acf7cdec1ff694849f1778d",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-017",
+        "row": 17,
+        "inclusion": "是",
+        "image": "assets/papers/collaboration/collaboration-017.png",
+        "imageSource": "具身协同/具身协同文献图片/DGPPO.png",
+        "imageSha256": "cbfec19aec4f2f70770c2d1e10cbe0f6d2d313e5375c3e2c81f804252e09a9fb",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-019",
+        "row": 19,
+        "inclusion": "是-无人机与其他机器人协同",
+        "image": "assets/papers/collaboration/collaboration-019.png",
+        "imageSource": "具身协同/具身协同文献图片/EMOS.png",
+        "imageSha256": "b94633d9923f8fed8cef389fe2f3b684a6071cc61c33cc366cfc84e8fa1797a6",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-020",
+        "row": 20,
+        "inclusion": "是",
+        "image": "assets/papers/collaboration/collaboration-020.png",
+        "imageSource": "具身协同/具身协同文献图片/FlockGPT.png",
+        "imageSha256": "dfe5a1f92e21963dc2e5c66f9fe8a5167fbf6b65ed2b5f9f46953f062fd98d0b",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-024",
+        "row": 24,
+        "inclusion": "是-无人机与其他机器人协同",
+        "image": "assets/papers/collaboration/collaboration-024.png",
+        "imageSource": "具身协同/具身协同文献图片/LAGCN.png",
+        "imageSha256": "cc229522f3bbdcf97b93b72b1863e2b0f3609cdac2401f1bc2a85cbb096d638d",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-030",
+        "row": 30,
+        "inclusion": "是",
+        "image": "assets/papers/collaboration/collaboration-030.png",
+        "imageSource": "具身协同/具身协同文献图片/MRLMN.png",
+        "imageSha256": "a49dcf1a2b21443eee0afaf7dc135b7160a0506dbba8083f86722496db00482a",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-031",
+        "row": 31,
+        "inclusion": "是-无人机与其他机器人协同",
+        "image": "assets/papers/collaboration/collaboration-031.png",
+        "imageSource": "具身协同/具身协同文献图片/OpenCOOD-air.png",
+        "imageSha256": "77d586f136d5fcc3d9cd70bb098e94aff1954116312a0d17ca685dff5360805a",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-037",
+        "row": 37,
+        "inclusion": "是",
+        "image": "assets/papers/collaboration/collaboration-037.png",
+        "imageSource": "具身协同/具身协同文献图片/Swarm-GPT.png",
+        "imageSha256": "8d3185d539852f66f19f74afb5d7df3c927b9bbcfe6e8e6cb9949bc7139bf5a6",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-040",
+        "row": 40,
+        "inclusion": "是",
+        "image": "assets/papers/collaboration/collaboration-040.png",
+        "imageSource": "具身协同/具身协同文献图片/SwarmGPT.png",
+        "imageSha256": "9504e028a1acb695079e0a7f649bc34f826e764766697b4ae3511fcedd3acdd1",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-043",
+        "row": 43,
+        "inclusion": "是-但benchmark",
+        "image": "assets/papers/collaboration/collaboration-043.png",
+        "imageSource": "具身协同/具身协同文献图片/U2UData+.png",
+        "imageSha256": "9eb3454d7238336108a457cbb25726cca1340db404879f4d2bcdcc9c255353cb",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-044",
+        "row": 44,
+        "inclusion": "是-但benchmark",
+        "image": "assets/papers/collaboration/collaboration-044.png",
+        "imageSource": "具身协同/具身协同文献图片/V2U4Real.png",
+        "imageSha256": "7bd3bd45bc7619d716970ef135b1507303fa2dc40d7b9c6d4621cd0703df47b7",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "collaboration-045",
+        "row": 45,
+        "inclusion": "是-无人机与其他机器人协同",
+        "image": "assets/papers/collaboration/collaboration-045.png",
+        "imageSource": "具身协同/具身协同文献图片/VL-UniTrack.png",
+        "imageSha256": "4dc5e30f6f88d968729d027dcddd06671939fdac20cf1be490bcb0562d53b110",
+        "imageRetained": false,
+        "imageSupplement": null
+      }
+    ]
+  }
+]

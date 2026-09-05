@@ -1,0 +1,21 @@
+/* Home-only color treatment; existing foreground geometry stays intact. */
+html:has(body.mountain-home) { background-color: #0b1d30; }
+.mountain-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+  background: linear-gradient(180deg, #0b1d30 0%, #233f55 30%, #567582 58%, #677c7d 74%, #173643 100%);
+}
+.mountain-home .mountain-atmosphere { display: block; }
+#mountain-scene { width: 100%; height: 100%; display: block; }
+#mountain-scene[data-state="unavailable"] { visibility: hidden; }
+.mountain-home #interactive-grid { visibility: hidden; }
+.mountain-home .landing-title,
+.mountain-home .landing-brand { color: #edf5f7; text-shadow: 0 2px 16px #10283d80; }
+.mountain-home .landing-subtitle,
+.mountain-home .landing-links a,
+.mountain-home .landing-footer { color: #cfdee4; text-shadow: 0 1px 8px #10283d; }
+.mountain-home .landing-links a:hover { color: #efba91; }
+.mountain-home .category-panel { box-shadow: 0 12px 32px #081a2c55; border-color: #9abdc14d; }
