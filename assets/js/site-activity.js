@@ -6,7 +6,7 @@
 
   const analyticsConfig = {
     provider: 'goatcounter',
-    siteId: '',
+    siteId: 'uavs',
     productionOrigin: 'https://hub-tian.github.io',
     path: '/UAVs_Meet_Embodied-Intelligence/'
   };
@@ -67,7 +67,7 @@
       if (!Number.isSafeInteger(count) || count < 0) throw new Error('Invalid count');
       const format = new Intl.NumberFormat('en-US');
       const finalText = format.format(count);
-      total.setAttribute('aria-label', `${finalText} site total views, session-deduplicated since tracking began`);
+      total.setAttribute('aria-label', `${finalText} site total visits, session-deduplicated since tracking began`);
       activity.dataset.state = 'ready';
       if (matchMedia('(prefers-reduced-motion: reduce)').matches || count === 0) {
         total.textContent = finalText;
