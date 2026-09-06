@@ -1,0 +1,50 @@
+/* Home telemetry occupies the existing footer; no foreground layout changes. */
+.site-activity-footer {
+  position: relative;
+  min-height: 1.17rem;
+  pointer-events: none;
+}
+
+.site-activity {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 176px;
+  max-width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid currentColor;
+  text-align: right;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-muted);
+  opacity: 0.85;
+}
+
+.mountain-home .site-activity {
+  color: #cfdee4;
+}
+
+.site-activity-heading,
+.site-activity-label {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+}
+
+.site-activity-value {
+  margin: 5px 0 1px;
+  font-size: 28px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+/* Narrow layouts get their own footer space, below all four entries. */
+@media (max-width: 1000px) {
+  .site-activity {
+    position: static;
+    margin: 16px 0 0 auto;
+  }
+}
