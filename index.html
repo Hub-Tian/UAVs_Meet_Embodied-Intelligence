@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/mountain-scene.css" />
   <link rel="stylesheet" href="assets/css/category-landing.css" />
   <link rel="stylesheet" href="assets/css/research.css" />
+  <link rel="stylesheet" href="assets/css/site-activity.css" />
 </head>
 <body>
 
@@ -85,9 +86,13 @@
       </div>
     </div>
 
-    <!-- Footer Hint -->
-    <footer class="landing-footer">
-      <span>Select a direction above to explore papers • Click background for terrain pulse</span>
+    <!-- Home-only site telemetry; shares the former hint's footer space. -->
+    <footer class="landing-footer site-activity-footer">
+      <aside class="site-activity" id="site-activity" aria-label="Site-wide activity">
+        <h2 class="site-activity-heading">SITE ACTIVITY</h2>
+        <p class="site-activity-value" id="site-activity-total" role="status" aria-label="Site total views unavailable">—</p>
+        <p class="site-activity-label">TOTAL VIEWS</p>
+      </aside>
     </footer>
   </section>
 
@@ -173,5 +178,6 @@
   <script src="assets/js/research-gallery.js"></script>
   <script src="assets/js/category-landing.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/site-activity.js" defer></script>
 </body>
 </html>
