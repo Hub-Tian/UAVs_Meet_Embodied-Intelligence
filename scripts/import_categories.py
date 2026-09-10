@@ -15,8 +15,10 @@ import openpyxl
 
 REPO = Path(__file__).resolve().parents[1]
 WORKSPACE = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else REPO.parent
-SOURCES = [('具身导航', 'navigation', 20), ('具身抓取', 'manipulation', 9),
-           ('具身协同', 'collaboration', 20)]
+SOURCES = [('具身导航', 'navigation', '具身导航文献汇总表_cleaned.xlsx', '具身导航文献汇总表', 20),
+           ('具身抓取', 'manipulation', '具身抓取文献汇总表_cleaned.xlsx', '具身抓取文献汇总表', 9),
+           ('具身协同', 'collaboration', '具身协同文献汇总表_cleaned.xlsx', '具身协同文献汇总表', 20),
+           ('具身规划', 'planning', '具身规划文献.xlsx', '具身规划文献汇总表', 8)]
 IMAGE_ALIASES = {
     ('manipulation', 5): 'DDPG.png',
 }
@@ -26,12 +28,43 @@ def text(value):
     return '' if value is None else str(value).strip()
 
 
-def rows(path, sheet):
-    book = openpyxl.load_workbook(path, read_only=True, data_only=True)
-    values = list(book[sheet].values)
-    book.close()
-    return [(i, dict(zip(values[0], row))) for i, row in enumerate(values[1:], 2)
-            if any(value is not None for value in row)]
+def extract_hyperlink(val):
+    if val is None:
+        return ''
+    val_str = str(val).strip()
+    m = re.search(r'HYPERLINK\(\s*["\']([^"\']+)["\']', val_str, re.I)
+    if m:
+        return m.group(1).strip()
+    return val_str
+
+
+def rows(path, sheet, is_planning=False):
+    if is_planning:
+        wb = openpyxl.load_workbook(path, data_only=False)
+        ws = wb[sheet]
+        headers = [c.value for c in ws[1]]
+        records = []
+        for r_idx in range(2, ws.max_row + 1):
+            row_vals = [ws.cell(r_idx, c).value for c in range(1, ws.max_column + 1)]
+            if any(v is not None for v in row_vals):
+                d = dict(zip(headers, row_vals))
+                if '论文pdf' in d:
+                    d['论文访问链接'] = extract_hyperlink(d['论文pdf'])
+                if '纳入综述？' in d and '是否纳入综述' not in d:
+                    d['是否纳入综述'] = d['纳入综述？']
+                if 'github代码链接（如果有的话）' in d and '代码链接（如果有的话）' not in d:
+                    d['代码链接（如果有的话）'] = d['github代码链接（如果有的话）']
+                if '日期（首次公开）' in d and '日期' not in d:
+                    d['日期'] = d['日期（首次公开）']
+                records.append((r_idx, d))
+        wb.close()
+        return records
+    else:
+        book = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        values = list(book[sheet].values)
+        book.close()
+        return [(i, dict(zip(values[0], row))) for i, row in enumerate(values[1:], 2)
+                if any(value is not None for value in row)]
 
 
 def split(value):
@@ -41,6 +74,8 @@ def split(value):
 def url(value):
     value = text(value)
     if not value or value in ('-', '无', '暂无', 'None'):
+        return ''
+    if any(k in value for k in ('未发现', '未公开', '待核验', '无', '暂无')):
         return ''
     parsed = urlparse(value)
     assert parsed.scheme in ('https', 'http') and parsed.netloc, value
@@ -52,16 +87,15 @@ def sha(path):
 
 
 papers, manifest = [], []
-for folder, slug, expected in SOURCES:
-    sheet = folder + '文献汇总表'
-    source = WORKSPACE / folder / (sheet + '_cleaned.xlsx')
-    records = rows(source, sheet)
-    included = [(i, r) for i, r in records if text(r['是否纳入综述']).startswith('是')]
+for folder, slug, workbook_file, sheet, expected in SOURCES:
+    source = WORKSPACE / folder / workbook_file
+    records = rows(source, sheet, is_planning=(slug == 'planning'))
+    included = [(i, r) for i, r in records if text(r.get('是否纳入综述', '')).startswith('是')]
     assert len(included) == expected, (source, len(included), expected)
     provenance = {'category': 'embodied-' + slug, 'source': source.relative_to(WORKSPACE).as_posix(),
                   'sha256': sha(source), 'sheet': sheet, 'rawRows': len(records),
                   'includedRows': len(included), 'excludedRows': [i for i, r in records
-                  if not text(r['是否纳入综述']).startswith('是')], 'papers': []}
+                  if not text(r.get('是否纳入综述', '')).startswith('是')], 'papers': []}
     for row, r in included:
         identity = f'{slug}-{row:03d}'
         image_source = source.parent / text(r['配图'])
@@ -100,16 +134,27 @@ for folder, slug, expected in SOURCES:
                        'methodTags': split(r['方法标签']), 'datasets': split(r['数据集']),
                        'venue': venue, 'year': year, 'summary': text(r['方法']),
                        'theFirst': text(r['The First']), 'image': image,
-                       'paperUrl': url(r['论文访问链接']), 'codeUrl': url(r['代码链接（如果有的话）'])})
+                       'paperUrl': url(r.get('论文访问链接', '')), 'codeUrl': url(r.get('代码链接（如果有的话）', ''))})
         provenance['papers'].append({'id': identity, 'row': row,
-            'inclusion': text(r['是否纳入综述']), 'image': image,
+            'inclusion': text(r.get('是否纳入综述', '')), 'image': image,
             'imageSource': image_source.relative_to(WORKSPACE).as_posix() if image_source.is_file() else None,
             'imageSha256': sha(target) if target.is_file() else None,
             'imageRetained': retained_image,
             'imageSupplement': image_note or None})
     manifest.append(provenance)
 
-assert len(papers) == 49 and len({p['id'] for p in papers}) == 49
+EXPECTED_EXISTING = 49
+old_papers = [p for p in papers if p['category'] != 'embodied-planning']
+planning_papers = [p for p in papers if p['category'] == 'embodied-planning']
+assert len(old_papers) == EXPECTED_EXISTING and len({p['id'] for p in old_papers}) == EXPECTED_EXISTING
+assert len([p for p in old_papers if p['category'] == 'embodied-navigation']) == 20
+assert len([p for p in old_papers if p['category'] == 'embodied-manipulation']) == 9
+assert len([p for p in old_papers if p['category'] == 'embodied-collaboration']) == 20
+
+INCLUDED_PLANNING_ROWS = len(planning_papers)
+EXPECTED_TOTAL = EXPECTED_EXISTING + INCLUDED_PLANNING_ROWS
+assert len(papers) == EXPECTED_TOTAL and len({p['id'] for p in papers}) == EXPECTED_TOTAL
+
 serialized = json.dumps(papers, ensure_ascii=False, indent=2)
 (REPO / 'data/category-papers.json').write_text(serialized + '\n', encoding='utf-8')
 (REPO / 'assets/js/category-data.js').write_text(
@@ -118,3 +163,4 @@ serialized = json.dumps(papers, ensure_ascii=False, indent=2)
 (REPO / 'data/category-provenance.json').write_text(
     json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 print(json.dumps({p['category']: p['includedRows'] for p in manifest}, ensure_ascii=False))
+

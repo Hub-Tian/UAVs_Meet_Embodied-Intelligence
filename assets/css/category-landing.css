@@ -266,4 +266,9 @@
     height: 220px;
     border-radius: 0px !important;
   }
+  .category-windows-group > .category-panel:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 6px);
+    justify-self: center;
+  }
 }

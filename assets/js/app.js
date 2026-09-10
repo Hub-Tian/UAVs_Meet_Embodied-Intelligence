@@ -11,6 +11,7 @@ const App = (function () {
   const CATEGORY_NAMES = {
     'embodied-perception': 'Embodied Perception',
     'embodied-navigation': 'Embodied Navigation',
+    'embodied-planning': 'Embodied Planning',
     'embodied-manipulation': 'Embodied Manipulation',
     'embodied-collaboration': 'Embodied Collaboration'
   };

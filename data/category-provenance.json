@@ -547,5 +547,96 @@
         "imageSupplement": null
       }
     ]
+  },
+  {
+    "category": "embodied-planning",
+    "source": "具身规划/具身规划文献.xlsx",
+    "sha256": "cb437f42ab4fd9cde0d309114b1f2fb09cf3b5a68e349c7dfe0a97f84d5d114d",
+    "sheet": "具身规划文献汇总表",
+    "rawRows": 8,
+    "includedRows": 8,
+    "excludedRows": [],
+    "papers": [
+      {
+        "id": "planning-002",
+        "row": 2,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-002.png",
+        "imageSource": "具身规划/具身规划图片/Learning high-speed flight in the wild.png",
+        "imageSha256": "90fc0107a4b99c6149913eda49f220c749e373b7016b5c74889eb0e57f94f6aa",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "planning-003",
+        "row": 3,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-003.png",
+        "imageSource": "具身规划/具身规划图片/Deep-PANTHER.png",
+        "imageSha256": "1298c520a94a636535b6eeb697a62b8e9cb00321d71d165dd773016ab2e42799",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "planning-004",
+        "row": 4,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-004.png",
+        "imageSource": "具身规划/具身规划图片/RAPID.png",
+        "imageSha256": "cc4b20626672717894283de0dfb51b3155c78349c3253721ecb720443eb7eb34",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "planning-005",
+        "row": 5,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-005.png",
+        "imageSource": "具身规划/具身规划图片/Learning Minimum-Time Flight in Cluttered Environments.png",
+        "imageSha256": "6c03f59dd051519c267d8d4d53df601747ad969b4e180cecb8de42c706d21ad1",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "planning-006",
+        "row": 6,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-006.png",
+        "imageSource": "具身规划/具身规划图片/Learning Perception-Aware Agile Flight in Cluttered Environments.png",
+        "imageSha256": "55a79b64cbe0f0028162f11bce30807251d2243b96379615ecf1e3d89dedb260",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "planning-007",
+        "row": 7,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-007.png",
+        "imageSource": "具身规划/具身规划图片/Swift.png",
+        "imageSha256": "65d9c8608b21b770557c812d3f0cf84c02b53a26813f0e1eabd27cf9c9ea335d",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "planning-008",
+        "row": 8,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-008.png",
+        "imageSource": "具身规划/具身规划图片/SketchPlan.png",
+        "imageSha256": "7fc3d8fa8e988148e9cd97cb0b7d2798e1f67d8fcaabc02d7e78c94ee111f4ee",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "planning-009",
+        "row": 9,
+        "inclusion": "是",
+        "image": "assets/papers/planning/planning-009.png",
+        "imageSource": "具身规划/具身规划图片/Sensorimotor Policies.png",
+        "imageSha256": "eb3cf634eb5ecda45819a5951713a5d15d6317dcd7be4b9b0d694ce0ff45ada9",
+        "imageRetained": false,
+        "imageSupplement": null
+      }
+    ]
   }
 ]

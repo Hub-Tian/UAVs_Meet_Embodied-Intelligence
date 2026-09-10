@@ -1551,5 +1551,263 @@
     "image": "assets/papers/collaboration/collaboration-045.png",
     "paperUrl": "https://arxiv.org/abs/2605.04574",
     "codeUrl": "https://github.com/xuboyue1999/VL-UniTrack"
+  },
+  {
+    "id": "planning-002",
+    "category": "embodied-planning",
+    "title": "Learning High-Speed Flight in the Wild",
+    "methodName": "Learning high-speed flight in the wild",
+    "authors": [
+      "Antonio Loquercio",
+      "Elia Kaufmann",
+      "René Ranftl",
+      "Matthias Müller",
+      "Vladlen Koltun",
+      "Davide Scaramuzza"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "端到端感知运动策略",
+      "privileged learning",
+      "多假设轨迹预测",
+      "receding horizon",
+      "深度图抽象"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景",
+      "仿真环境"
+    ],
+    "venue": "Science Robotics",
+    "year": "2021",
+    "summary": "1. 直接将噪声深度图、惯性测量和参考方向映射为一组短时可执行轨迹及风险代价。\n2. 在仿真中用拥有完整状态和环境点云的专家进行 privileged learning。\n3. 用多假设 winner-takes-all 损失保留绕障轨迹的多模态性，并用滚动时域选择低风险轨迹执行。",
+    "theFirst": "未明确宣称",
+    "image": "assets/papers/planning/planning-002.png",
+    "paperUrl": "https://www.science.org/doi/10.1126/scirobotics.abg5810",
+    "codeUrl": "https://github.com/uzh-rpg/agile_autonomy"
+  },
+  {
+    "id": "planning-003",
+    "category": "embodied-planning",
+    "title": "Deep-PANTHER: Learning-Based Perception-Aware Trajectory Planner in Dynamic Environments",
+    "methodName": "Deep-PANTHER",
+    "authors": [
+      "Jesus Tordesillas",
+      "Jonathan P. How"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "imitation learning",
+      "多模态专家",
+      "LSA 损失",
+      "FOV-aware 规划",
+      "神经网络学生规划器"
+    ],
+    "datasets": [
+      "自建数据集",
+      "仿真环境"
+    ],
+    "venue": "RA-L",
+    "year": "2022",
+    "summary": "1. 用优化专家 PANTHER* 生成多条感知感知候选轨迹，学生网络学习近似专家输出。\n2. 用 linear sum assignment 约束每条专家轨迹匹配不同学生轨迹，保留多模态绕障解。\n3. 测试时学生一次输出多条轨迹，按约束满足与代价选择碰撞安全且代价最低的轨迹。",
+    "theFirst": "未明确宣称",
+    "image": "assets/papers/planning/planning-003.png",
+    "paperUrl": "https://arxiv.org/abs/2209.01268",
+    "codeUrl": "https://github.com/mit-acl/deep_panther"
+  },
+  {
+    "id": "planning-004",
+    "category": "embodied-planning",
+    "title": "RAPID: Robust and Agile Planner Using Inverse Reinforcement Learning for Vision-Based Drone Navigation",
+    "methodName": "RAPID",
+    "authors": [
+      "Minwoo Kim",
+      "Geunsik Bae",
+      "Jinwoo Lee",
+      "Woojae Shin",
+      "Changseung Kim",
+      "Myongyol Choi",
+      "Heejung Shin",
+      "Hyongdong Oh"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "IRL",
+      "运动基元专家数据",
+      "视觉 waypoint 规划",
+      "仿真交互学习",
+      "无显式建图"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景",
+      "仿真环境"
+    ],
+    "venue": "RSS",
+    "year": "2025",
+    "summary": "1. 用带 privileged map data 的 motion primitive path planner 收集专家数据，覆盖多样仿真场景。\n2. 同时利用专家数据和学习器在仿真中的交互数据，通过 IRL 学习奖励函数与策略。\n3. 输出碰撞安全 waypoints，避免单独构建感知、建图、规划模块。",
+    "theFirst": "first work to successfully apply an IRL framework for high-speed visual navigation of drones",
+    "image": "assets/papers/planning/planning-004.png",
+    "paperUrl": "https://arxiv.org/abs/2502.02054",
+    "codeUrl": ""
+  },
+  {
+    "id": "planning-005",
+    "category": "embodied-planning",
+    "title": "Learning Minimum-Time Flight in Cluttered Environments",
+    "methodName": "Learning Minimum-Time Flight in Cluttered Environments",
+    "authors": [
+      "Robert Penicka",
+      "Yunlong Song",
+      "Elia Kaufmann",
+      "Davide Scaramuzza"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "拓扑路径规划、深度强化学习、轨迹-控制联合学习、最短时间策略、真实飞行验证"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景"
+    ],
+    "venue": "RA-L",
+    "year": "2022",
+    "summary": "1. 先用拓扑路径规划枚举绕障拓扑，再用强化学习直接学习从状态到集体推力和机体系角速度的控制策略。\n2. 训练过程从有效状态初始化并逐步提高难度，使策略在接近执行器极限时仍能将绕障和时间最优控制耦合起来。\n3. 用神经策略替代在线轨迹优化，推理时间约0.0004 s级别，使复杂场景中规划-控制闭环低延迟。\n4. 将仿真训练策略部署到真实Agilicious平台，在动捕场地验证速度和时间一致性。",
+    "theFirst": "无明确宣称",
+    "image": "assets/papers/planning/planning-005.png",
+    "paperUrl": "https://arxiv.org/abs/2203.15052",
+    "codeUrl": ""
+  },
+  {
+    "id": "planning-006",
+    "category": "embodied-planning",
+    "title": "Learning Perception-Aware Agile Flight in Cluttered Environments",
+    "methodName": "Learning Perception-Aware Agile Flight in Cluttered Environments",
+    "authors": [
+      "Yunlong Song",
+      "Kexin Shi",
+      "Robert Penicka",
+      "Davide Scaramuzza"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "learning-by-cheating、RL教师策略、视觉学生策略、感知感知奖励、模仿学习、HIL部署"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景"
+    ],
+    "venue": "ICRA",
+    "year": "2022",
+    "summary": "1. 先训练具备特权状态的RL教师策略，学习高速通过障碍的控制规律，再将其蒸馏为只用相机输入的学生策略。\n2. 在教师奖励中加入相机朝向/可见性相关的感知感知项，使策略主动保持未来飞行方向和障碍在视野内。\n3. 用轻量视觉网络直接输出控制，绕过显式建图和在线规划，从而同时降低延迟并保持视觉闭环。\n4. 通过硬件在环将真实四旋翼动力学接入渲染环境，验证真实控制频率和速度。",
+    "theFirst": "无明确宣称",
+    "image": "assets/papers/planning/planning-006.png",
+    "paperUrl": "https://arxiv.org/abs/2210.01841",
+    "codeUrl": ""
+  },
+  {
+    "id": "planning-007",
+    "category": "embodied-planning",
+    "title": "Champion-Level Drone Racing Using Deep Reinforcement Learning",
+    "methodName": "Swift",
+    "authors": [
+      "Elia Kaufmann",
+      "Leonard Bauersfeld",
+      "Antonio Loquercio",
+      "Matthias Müller",
+      "Vladlen Koltun",
+      "Davide Scaramuzza"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "深度强化学习、机载感知控制、真实数据残差建模、VIO-门检测融合、仿真到现实迁移"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景"
+    ],
+    "venue": "Nature",
+    "year": "2023",
+    "summary": "1. Swift由感知系统和控制策略组成：感知将视觉/惯性输入压缩为低维状态，控制策略以100 Hz输出集体推力和体角速度。\n2. 控制策略在仿真中通过模型无关on-policy深度RL训练，奖励同时包含朝向下一门的进度和保持下一门在视野内的感知目标。\n3. 用少量真实赛道数据估计动力学残差和观测噪声残差，并把残差模型注入仿真微调策略以弥合sim-to-real差距。\n4. 用门角点检测和VIO经Kalman滤波融合修正漂移，使真实竞赛中仅依赖机载传感器闭环运行。",
+    "theFirst": "论文明确声称：首次证明自主无人机在真实世界的运动中达到冠军级表现",
+    "image": "assets/papers/planning/planning-007.png",
+    "paperUrl": "https://www.nature.com/articles/s41586-023-06419-4",
+    "codeUrl": ""
+  },
+  {
+    "id": "planning-008",
+    "category": "embodied-planning",
+    "title": "SketchPlan: Diffusion Based Drone Planning From Human Sketches",
+    "methodName": "SketchPlan",
+    "authors": [
+      "Sixten Norelius",
+      "Aaron O. Feldman",
+      "Mac Schwager"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "草图—投影适配、条件扩散轨迹生成、部分标注学习、3D Gaussian Splatting 合成数据、反应式碰撞安全过滤。"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景",
+      "仿真环境"
+    ],
+    "venue": "RA-L",
+    "year": "2025",
+    "summary": "1.将端到端的“人类草图→三维路径”拆解为两个独立训练的子问题：SketchAdapter 先把人类草图转换为模型训练分布中的二维相机投影，DiffPath 再根据该投影和第一视角深度图生成三维轨迹。该解耦使少量真人草图只负责校正表示失配，而大规模无真人草图数据可用于学习三维路径分布。\n2.SketchAdapter 使用带有 5 个潜在分量的 Partial Least Squares（PLS）仿射映射，最大化草图特征与真实二维投影之间的协方差；选择低容量线性适配器是为了在仅有872条人工草图的条件下抑制过拟合。\n3.DiffPath 以条件扩散模型处理二维到三维的一对多映射：CNN 从224×224深度图提取特征，并沿二维路径投影进行双线性采样，融合路径局部特征、全局场景特征和投影坐标；随后以该融合表示通过 FiLM 调制1D U-Net，从高斯噪声迭代去噪得到100个三维航点。\n4.使用 Zip-NeRF 场景构建3DGS环境，由 SplatNav 在其中生成无碰撞样条轨迹；轨迹统一裁剪为3 m并重采样为100个航点，同时自动渲染深度图并计算相机平面投影。作者只对少量预生成路径进行“路径→草图”的反向人工标注，从而形成大规模自动标注数据与小规模真人草图数据的混合训练机制。\n5.在部署端加入反应式碰撞过滤器：累计最近10 s深度图并反投影为实时点云，在无人机当前位置周围构建无碰撞凸多面体，再通过带松弛变量的二次规划，将碰撞航点移动到距离原预测最近的安全位置；该优化可至少以50 Hz运行。",
+    "theFirst": "未明确宣称",
+    "image": "assets/papers/planning/planning-008.png",
+    "paperUrl": "https://arxiv.org/abs/2510.03545",
+    "codeUrl": "https://github.com/sixnor/SketchPlan"
+  },
+  {
+    "id": "planning-009",
+    "category": "embodied-planning",
+    "title": "Precise Aggressive Aerial Maneuvers with Sensorimotor Policies",
+    "methodName": "Sensorimotor Policies",
+    "authors": [
+      "Tianyue Wu",
+      "Guangtong Xu",
+      "Zihan Wang",
+      "Junxiao Lin",
+      "Tianyang Chen",
+      "Yuze Wu",
+      "Zhichao Han",
+      "Zhiyang Liu",
+      "Fei Gao"
+    ],
+    "taskTags": [
+      "具身规划"
+    ],
+    "methodTags": [
+      "强化学习、端到端感知运动策略、策略蒸馏、informed reset、仿真到真实迁移"
+    ],
+    "datasets": [
+      "自建数据集",
+      "真实场景",
+      "仿真环境"
+    ],
+    "venue": "Science Robotics",
+    "year": "2026",
+    "summary": "1. 将机载视觉和本体感知历史直接映射到集体推力与机体系角速度，使策略绕过显式缝隙位姿估计和轨迹接口，直接优化穿越所需的感知-动作闭环。\n2. 先用含特权状态的 RL 专家在仿真中学习，再用图像历史和本体感知进行监督蒸馏，使真实部署策略只依赖机载传感输入，同时保留专家的低容差控制行为。\n3. 用模型规划器生成的轨迹构造 informed reset，把初始状态放到更有信息量的可行区域，缓解窄缝任务中奖励稀疏和局部最优问题。\n4. 通过扰动力、响应随机化和响应参数随机化扩大训练分布，吸收动力学、执行器和传感延迟差异，服务于真实四旋翼迁移。",
+    "theFirst": "论文明确称其为“仅使用机载感知的动态窄缝穿越”的首次展示，并称其为真实世界中仅使用机载感知精确穿越连续窄缝的首次展示。",
+    "image": "assets/papers/planning/planning-009.png",
+    "paperUrl": "https://www.science.org/doi/10.1126/scirobotics.aeb0180",
+    "codeUrl": ""
   }
 ]

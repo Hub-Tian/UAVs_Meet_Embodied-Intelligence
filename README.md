@@ -103,6 +103,19 @@ If you find this repository useful, please consider starring ⭐ this repo!
 | AerialVLN (AerialVLN: Vision-and-Language Navigation for UAVs) | CMA | [ _ICCV 2023_ ](https://arxiv.org/abs/2308.06735) | [ _GitHub_ ](https://github.com/AirVLN/AirVLN) |
 | AVDN (Aerial Vision-and-Dialog Navigation) | Transformer | [ _Findings of ACL 2023_ ](https://arxiv.org/abs/2205.12219) | [ _GitHub_ ](https://github.com/UCSB-AI/Aerial-Vision-and-Dialog-Navigation) |
 
+### Embodied Planning
+
+| Title | Type | Publication | Code |
+|---|---|---|---|
+| Sensorimotor Policies (Precise Aggressive Aerial Maneuvers with Sensorimotor Policies) | 强化学习、端到端感知运动策略、策略蒸馏、informed reset、仿真到真实迁移 | [ _Science Robotics 2026_ ](https://www.science.org/doi/10.1126/scirobotics.aeb0180) | - |
+| RAPID (RAPID: Robust and Agile Planner Using Inverse Reinforcement Learning for Vision-Based Drone Navigation) | IRL, 运动基元专家数据, 视觉 waypoint 规划, 仿真交互学习, 无显式建图 | [ _RSS 2025_ ](https://arxiv.org/abs/2502.02054) | - |
+| SketchPlan (SketchPlan: Diffusion Based Drone Planning From Human Sketches) | 草图—投影适配、条件扩散轨迹生成、部分标注学习、3D Gaussian Splatting 合成数据、反应式碰撞安全过滤。 | [ _RA-L 2025_ ](https://arxiv.org/abs/2510.03545) | [ _GitHub_ ](https://github.com/sixnor/SketchPlan) |
+| Swift (Champion-Level Drone Racing Using Deep Reinforcement Learning) | 深度强化学习、机载感知控制、真实数据残差建模、VIO-门检测融合、仿真到现实迁移 | [ _Nature 2023_ ](https://www.nature.com/articles/s41586-023-06419-4) | - |
+| Deep-PANTHER (Deep-PANTHER: Learning-Based Perception-Aware Trajectory Planner in Dynamic Environments) | imitation learning, 多模态专家, LSA 损失, FOV-aware 规划, 神经网络学生规划器 | [ _RA-L 2022_ ](https://arxiv.org/abs/2209.01268) | [ _GitHub_ ](https://github.com/mit-acl/deep_panther) |
+| Learning Minimum-Time Flight in Cluttered Environments | 拓扑路径规划、深度强化学习、轨迹-控制联合学习、最短时间策略、真实飞行验证 | [ _RA-L 2022_ ](https://arxiv.org/abs/2203.15052) | - |
+| Learning Perception-Aware Agile Flight in Cluttered Environments | learning-by-cheating、RL教师策略、视觉学生策略、感知感知奖励、模仿学习、HIL部署 | [ _ICRA 2022_ ](https://arxiv.org/abs/2210.01841) | - |
+| Learning High-Speed Flight in the Wild | 端到端感知运动策略, privileged learning, 多假设轨迹预测, receding horizon, 深度图抽象 | [ _Science Robotics 2021_ ](https://www.science.org/doi/10.1126/scirobotics.abg5810) | [ _GitHub_ ](https://github.com/uzh-rpg/agile_autonomy) |
+
 ### Embodied Manipulation
 
 | Title | Type | Publication | Code |

@@ -30,6 +30,7 @@ CATEGORY_ORDER = [
     "Embodied Perception",
     "Embodied Collaboration",
     "Embodied Navigation",
+    "Embodied Planning",
     "Embodied Manipulation",
 ]
 
