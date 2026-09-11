@@ -103,6 +103,19 @@ If you find this repository useful, please consider starring ⭐ this repo!
 | AerialVLN (AerialVLN: Vision-and-Language Navigation for UAVs) | CMA | [ _ICCV 2023_ ](https://arxiv.org/abs/2308.06735) | [ _GitHub_ ](https://github.com/AirVLN/AirVLN) |
 | AVDN (Aerial Vision-and-Dialog Navigation) | Transformer | [ _Findings of ACL 2023_ ](https://arxiv.org/abs/2205.12219) | [ _GitHub_ ](https://github.com/UCSB-AI/Aerial-Vision-and-Dialog-Navigation) |
 
+### Embodied Planning
+
+| Title | Type | Publication | Code |
+|---|---|---|---|
+| Sensorimotor Policies (Precise Aggressive Aerial Maneuvers with Sensorimotor Policies) | RL | [Science Robotics 2026](https://www.science.org/doi/10.1126/scirobotics.aeb0180) | - |
+| RAPID (RAPID: Robust and Agile Planner Using Inverse Reinforcement Learning for Vision-Based Drone Navigation) | Planning+IRL | [RSS 2025](https://arxiv.org/abs/2502.02054) | - |
+| SketchPlan (SketchPlan: Diffusion Based Drone Planning From Human Sketches) | Diffusion+Planning | [RA-L 2026](https://arxiv.org/abs/2510.03545) | [GitHub](https://github.com/sixnor/SketchPlan) |
+| Swift (Champion-Level Drone Racing Using Deep Reinforcement Learning) | RL | [Nature 2023](https://www.nature.com/articles/s41586-023-06419-4) | - |
+| Deep-PANTHER (Deep-PANTHER: Learning-Based Perception-Aware Trajectory Planner in Dynamic Environments) | IL+Planning | [RA-L 2023](https://arxiv.org/abs/2209.01268) | [GitHub](https://github.com/mit-acl/deep_panther) |
+| Learning Minimum-Time Flight in Cluttered Environments | Planning+RL | [RA-L 2022](https://arxiv.org/abs/2203.15052) | - |
+| Learning Perception-Aware Agile Flight in Cluttered Environments | RL+IL | [ICRA 2023](https://arxiv.org/abs/2210.01841) | - |
+| Learning High-Speed Flight in the Wild | Motion Planning | [Science Robotics 2021](https://www.science.org/doi/10.1126/scirobotics.abg5810) | [GitHub](https://github.com/uzh-rpg/agile_autonomy) |
+
 ### Embodied Manipulation
 
 | Title | Type | Publication | Code |
