@@ -53,6 +53,24 @@ If you find this repository useful, please consider starring ⭐ this repo!
 | Ad-AOT (Anti-distractor active object tracking in 3D environments) | RL | [ _TCSVT 2021_ ](https://ieeexplore.ieee.org/document/9521193) | - |
 | Semantic-aware active perception for uavs using deep reinforcement learning | RL | [ _IROS 2021_ ](https://ieeexplore.ieee.org/document/9635893) | - |
 
+### Embodied World Model
+
+| Title | Type | Publication | Code |
+|---|---|---|---|
+| ANWM (Aerial World Model for Long-horizon Visual Generation and Navigation in 3D Space) | World Model | [ _arXiv 2025_ ](https://arxiv.org/abs/2512.21887) | [ _GitHub_ ](https://github.com/EmbodiedCity/ANWM.code) |
+| Dream to Fly (Dream to Fly: Model-Based Reinforcement Learning for Vision-Based Drone Flight) | World Model | [ _ICRA 2026_ ](https://arxiv.org/abs/2501.14377) | - |
+| Generalization of World Models under Environmental Variability for Vision-based Quadrotor Navigation | World Model | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.05015) | [ _GitHub_ ](https://github.com/ntnu-arl/world-model-nav-generalization) |
+| MAD (Mapping-Aware Dreamer) (MAD: Mapping-Aware World Models for Agile Quadrotor Flight) | World Model | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.04534) | - |
+| WorldFly (WorldFly: A World-Model-Based Vision-Language-Action Model for UAV Navigation) | World Model | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.06147) | - |
+| ImagineUAV (ImagineUAV: Aerial Vision-Language Navigation via World-Action Modeling and Kinodynamic Planning) | World Model | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.01205) | - |
+| FlyMirage (FlyMirage: A Fully Automated Generation Pipeline for Diverse and Scalable UAV Flight Data via Generative World Model) | World Model | [ _arXiv 2026_ ](https://arxiv.org/abs/2605.19600) | - |
+| AirDreamer (AirDreamer: Generalist Drone Navigation with World Models) | World Model+RL | [ _arXiv 2026_ ](https://arxiv.org/abs/2606.03252) | - |
+| WorldVLN (WorldVLN: Autoregressive World Action Model for Aerial Vision-Language Navigation) | World Model | [ _arXiv 2026_ ](https://arxiv.org/abs/2605.15964) | [ _GitHub_ ](https://github.com/EmbodiedCity/WorldVLN.code) |
+| SIS-Motion (Self in Space: Benchmarking Self-Awareness and Spatial Cognition in UAV Embodied Intelligence) | Benchmark | [ _ACM MM 2026_ ](https://arxiv.org/abs/2607.12477) | [ _GitHub_ ](https://github.com/IntelliSensing/Self-in-Space) |
+| AirZoo (AirZoo: A Unified Large-Scale Dataset for Grounding Aerial Geometric 3D Vision) | Dataset | [ _ECCV 2026_ ](https://arxiv.org/abs/2604.26567) | [ _GitHub_ ](https://github.com/nudt-sawlab/AirZoo) |
+| UAVBench (Benchmark) & UAVIT-1M (Dataset) (UAVBench and UAVIT-1M: Benchmarking and Enhancing MLLMs for Low-Altitude UAV Vision-Language Understanding) | Benchmark+Dataset | [ _arXiv 2026_ ](https://arxiv.org/abs/2603.14336) | [ _GitHub_ ](https://github.com/ZhanYang-nwpu/UAVBench-and-UAVIT-1M) |
+| AeroVerse (AeroVerse: UAV-Agent Benchmark Suite for Simulating, Pre-training, Finetuning, and Evaluating Aerospace Embodied World Models) | Benchmark | [ _TPAMI 2026_ ](https://ieeexplore.ieee.org/document/11538323/) | - |
+
 ### Embodied Collaboration
 
 | Title | Type | Publication | Code |
