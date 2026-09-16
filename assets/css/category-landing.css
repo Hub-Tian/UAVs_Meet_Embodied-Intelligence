@@ -81,8 +81,13 @@
 }
 
 .landing-hero-heading {
+  width: 100%;
+  max-width: 1180px;
+  margin-top: -1.35rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.6rem;
   text-align: center;
-  margin-bottom: 2.25rem;
 }
 
 .landing-pill {
@@ -97,18 +102,39 @@
 }
 
 .landing-title {
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
   color: var(--color-navy, #102639);
-  line-height: 1.1;
-  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.landing-subtitle {
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-  color: var(--color-muted, #586976);
-  font-weight: 400;
+.landing-title-main {
+  display: block;
+  font-size: clamp(2.1rem, 3.8vw, 3.15rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: inherit;
+}
+
+.landing-title-extension {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.35rem;
+  font-size: clamp(1.22rem, 2.25vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: inherit;
+}
+
+.landing-title-extension > span {
+  display: block;
 }
 
 /* 4 Vertical Category Image Strips */
@@ -252,6 +278,26 @@
 @media (max-width: 768px) {
   .category-landing-view {
     padding: 1.5rem 1rem;
+  }
+  .landing-hero-heading {
+    margin-top: -0.6rem;
+    margin-bottom: 0.85rem;
+  }
+  .landing-title {
+    margin-bottom: 0;
+  }
+  .landing-title-main {
+    font-size: clamp(1.75rem, 7.5vw, 2.25rem);
+    line-height: 1.12;
+  }
+  .landing-title-extension {
+    margin-top: 0.35rem;
+    font-size: clamp(1.02rem, 4.4vw, 1.32rem);
+    line-height: 1.28;
+    text-wrap: balance;
+  }
+  .landing-title-extension > span {
+    display: inline;
   }
   .category-windows-group {
     display: grid;
