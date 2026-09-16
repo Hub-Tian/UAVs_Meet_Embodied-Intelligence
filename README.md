@@ -18,6 +18,11 @@
 
 ---
 
+## 🌐 Website
+
+Visit the project website here:  
+[https://hub-tian.github.io/UAVs_Meet_Embodied-Intelligence/](https://hub-tian.github.io/UAVs_Meet_Embodied-Intelligence/)
+
 ## 🏡 About
 
 This repository accompanies our ongoing survey on **"UAVs Meet Embodied Intelligence"**.
@@ -25,6 +30,14 @@ This repository accompanies our ongoing survey on **"UAVs Meet Embodied Intellig
 It provides a structured, curated collection of research literature on Embodied Intelligence for Unmanned Aerial Vehicles (UAVs), spanning active perception, embodied navigation, manipulation, and multi-agent collaboration.
 
 If you find this repository useful, please consider starring ⭐ this repo!
+
+## UAV EI and EI UAV
+
+UAV EI and EI UAV provide complementary capability and system perspectives on aerial embodied intelligence. UAV EI describes what an aerial embodied agent should be able to accomplish, whereas an EI UAV describes how these capabilities are realized in an operational system. Fig. 1 summarizes this relationship through a 5+5 framework.
+
+<p align="center">
+  <img src="assets/uav-ei-ei-uav-framework.png" alt="UAV EI and EI UAV 5+5 framework" width="100%">
+</p>
 
 ---
 
