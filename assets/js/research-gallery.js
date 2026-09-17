@@ -135,6 +135,7 @@ const ResearchGallery = (function () {
 
   function loadCategory(categorySlug, categoryTitle) {
     currentCategory = categorySlug;
+    window.PaperArchive?.load(categorySlug);
     activeIndex = 0;
 
     const titleEl = document.getElementById('gallery-category-title');
@@ -173,6 +174,7 @@ const ResearchGallery = (function () {
       const record = document.createElement('article');
       record.className = 'research-record';
       record.setAttribute('data-id', paper.id);
+      if (currentCategory === 'embodied-perception') record.id = 'paper-card-' + paper.id;
       record.setAttribute('data-index', idx);
 
       const venueYear = paper.venue && paper.year ? `${paper.venue} · ${paper.year}` : (paper.venue || paper.year || '');
@@ -193,6 +195,11 @@ const ResearchGallery = (function () {
       // Click behavior: side paper activates; center paper opens detail
       record.addEventListener('click', function (e) {
         if (dragMoved) return;
+        if (currentCategory === 'embodied-perception') {
+          setActive(idx);
+          openDetail(idx);
+          return;
+        }
         const offset = relativeOffset(idx);
         if (offset === 0) {
           openDetail(idx);
@@ -207,7 +214,8 @@ const ResearchGallery = (function () {
       record.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          if (relativeOffset(idx) === 0) openDetail(idx);
+          if (currentCategory === 'embodied-perception') { setActive(idx); openDetail(idx); }
+          else if (relativeOffset(idx) === 0) openDetail(idx);
           else setActive(idx);
         }
       });
@@ -232,6 +240,10 @@ const ResearchGallery = (function () {
 
   function openDetail(index) {
     if (isDetailOpen || index < 0 || index >= papers.length) return;
+    if (currentCategory === 'embodied-perception' && window.PaperArchive) {
+      window.PaperArchive.open(papers[index].id, recordEls[index]);
+      return;
+    }
     clearTimeout(detailTimer);
     detailBusy = true;
     returnFocus = recordEls[index].querySelector('.research-record__cover');
@@ -262,7 +274,7 @@ const ResearchGallery = (function () {
     detailTimer = setTimeout(flipToBack, reducedMotion.matches ? 0 : 60);
   }
 
-  function renderDetailBackFace(paper, index) {
+  function renderDetailBackFace(paper, index, target = detailBack, options = {}) {
     const total = papers.length;
     const venueYear = paper.venue && paper.year ? `${paper.venue} · ${paper.year}` : (paper.venue || paper.year || '');
 
@@ -346,14 +358,14 @@ const ResearchGallery = (function () {
       `;
     }
 
-    detailBack.innerHTML = `
+    target.innerHTML = `
       <div class="detail-figure"><img src="${escapeHtml(paper.image)}" alt="${escapeHtml(paper.methodName || paper.title)} figure" /></div>
       <div class="detail-copy">
       <div class="detail-header">
         <span class="detail-counter">${padZero(index + 1)} / ${padZero(total)}</span>
-        <button type="button" class="btn-detail-close" id="btn-close-detail" aria-label="Close detail view">
+        ${options.archive ? `<span class="archive-native-exit" id="expansion-exit-hint">Scroll to return · Esc</span>` : `<button type="button" class="btn-detail-close" id="btn-close-detail" aria-label="Close detail view">
           ✕ Back
-        </button>
+        </button>`}
       </div>
 
       <div class="detail-body">
@@ -397,6 +409,14 @@ const ResearchGallery = (function () {
         ` : ''}
 
         ${firstBadgeHtml}
+        ${options.archive ? [
+          ['Method details', paper.method],
+          ['Dataset details', paper.datasetText],
+          ['Results', paper.results]
+        ].filter(([, value]) => value).map(([label, value]) => `
+          <div class="detail-meta-row"><span class="detail-meta-label">${label}</span>
+            <div class="detail-meta-content archive-source-text">${escapeHtml(value)}</div></div>
+        `).join('') : ''}
       </div>
 
       <div class="detail-actions">
@@ -407,17 +427,18 @@ const ResearchGallery = (function () {
     `;
 
     // Re-bind close & tooltip inside detailBack
-    const closeBtn = detailBack.querySelector('#btn-close-detail');
+    const closeBtn = target.querySelector('#btn-close-detail');
     if (closeBtn) {
       closeBtn.addEventListener('click', closeDetail);
     }
 
-    const firstContainer = detailBack.querySelector('.first-badge-container');
+    const firstContainer = target.querySelector('.first-badge-container');
     if (firstContainer) {
       firstContainer.addEventListener('click', function (e) {
         e.stopPropagation();
         firstContainer.classList.toggle('is-active');
       });
+      if (options.archive) return;
       document.addEventListener('click', function (e) {
         if (!firstContainer.contains(e.target)) {
           firstContainer.classList.remove('is-active');
@@ -499,6 +520,7 @@ const ResearchGallery = (function () {
 
     // Keyboard navigation
     window.addEventListener('keydown', function (e) {
+      if (e.target.closest('.paper-archive')) return;
       if (document.getElementById('paper-gallery-view').classList.contains('is-hidden')) return;
       if (isDetailOpen && e.key === 'Tab') {
         const focusable = Array.from(detailDialog.querySelectorAll('button, a[href], [tabindex="0"]')).filter(el => !el.closest('[inert]'));
@@ -579,6 +601,7 @@ const ResearchGallery = (function () {
     prev: prev,
     setActive: setActive,
     openDetail: openDetail,
+    renderArchiveDetail: (paper, index, target) => renderDetailBackFace(paper, index, target, { archive: true }),
     closeDetail: closeDetail,
     getCurrentIndex: function () { return activeIndex; }
   };
