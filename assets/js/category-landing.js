@@ -160,6 +160,7 @@ const CategoryLanding = (function () {
 
     // Hide Paper Gallery
     App.hidePaperGallery();
+    window.PaperArchive?.deactivate();
 
     // Reveal Landing
     landingView.classList.remove('is-hidden');

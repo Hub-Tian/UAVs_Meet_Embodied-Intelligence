@@ -135,6 +135,20 @@ const ResearchGallery = (function () {
 
   function loadCategory(categorySlug, categoryTitle) {
     currentCategory = categorySlug;
+
+    // Merge enriched workbook data if available
+    if (window.PERCEPTION_ARCHIVE_DATA && window.PAPERS_DATA) {
+      window.PERCEPTION_ARCHIVE_DATA.forEach(p => {
+        const target = window.PAPERS_DATA.find(d => d.id === p.id);
+        if (target) Object.assign(target, p);
+      });
+    }
+
+    if (categorySlug === 'embodied-perception' && window.PaperArchive?.getPapers) {
+      papers = window.PaperArchive.getPapers();
+    } else {
+      papers = (window.PAPERS_DATA || []).filter(p => p.category === categorySlug);
+    }
     window.PaperArchive?.load(categorySlug);
     activeIndex = 0;
 
@@ -144,7 +158,12 @@ const ResearchGallery = (function () {
     const stageContainer = document.getElementById('stage-container');
     const pendingContainer = document.getElementById('pending-container');
 
-    papers = (window.PAPERS_DATA || []).filter(p => p.category === categorySlug);
+    if (categorySlug === 'embodied-perception') {
+      if (stageContainer) stageContainer.style.display = 'none';
+      if (pendingContainer) pendingContainer.style.display = 'none';
+      if (statusEl) statusEl.textContent = '16 PAPERS';
+      return;
+    }
 
     if (papers.length === 0) {
       // Pending state for other categories
@@ -195,11 +214,6 @@ const ResearchGallery = (function () {
       // Click behavior: side paper activates; center paper opens detail
       record.addEventListener('click', function (e) {
         if (dragMoved) return;
-        if (currentCategory === 'embodied-perception') {
-          setActive(idx);
-          openDetail(idx);
-          return;
-        }
         const offset = relativeOffset(idx);
         if (offset === 0) {
           openDetail(idx);
@@ -214,8 +228,7 @@ const ResearchGallery = (function () {
       record.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          if (currentCategory === 'embodied-perception') { setActive(idx); openDetail(idx); }
-          else if (relativeOffset(idx) === 0) openDetail(idx);
+          if (relativeOffset(idx) === 0) openDetail(idx);
           else setActive(idx);
         }
       });
@@ -240,13 +253,9 @@ const ResearchGallery = (function () {
 
   function openDetail(index) {
     if (isDetailOpen || index < 0 || index >= papers.length) return;
-    if (currentCategory === 'embodied-perception' && window.PaperArchive) {
-      window.PaperArchive.open(papers[index].id, recordEls[index]);
-      return;
-    }
     clearTimeout(detailTimer);
     detailBusy = true;
-    returnFocus = recordEls[index].querySelector('.research-record__cover');
+    returnFocus = recordEls[index]?.querySelector('.research-record__cover') || document.activeElement || document.getElementById('archive-preview-stage');
     detailIndex = index;
     isDetailOpen = true;
     const paper = papers[index];
@@ -260,7 +269,7 @@ const ResearchGallery = (function () {
     `;
 
     // 2. Populate Back Face
-    renderDetailBackFace(paper, index);
+    renderDetailBackFace(paper, index, detailBack, { archive: true });
     detailBack.inert = true;
     detailDialog.inert = false;
     document.getElementById('paper-gallery-view').inert = true;
@@ -269,9 +278,17 @@ const ResearchGallery = (function () {
     // 3. Open Dialog Overlay
     detailDialog.classList.add('is-open');
     detailDialog.classList.remove('is-flipped');
-
-    // A fixed-size front turns into the information face; no hover zoom.
     detailTimer = setTimeout(flipToBack, reducedMotion.matches ? 0 : 60);
+  }
+
+  function openDetailById(id) {
+    if (currentCategory === 'embodied-perception' && window.PaperArchive?.getPapers) {
+      papers = window.PaperArchive.getPapers();
+    }
+    const idx = papers.findIndex(p => p.id === id);
+    if (idx !== -1) {
+      openDetail(idx);
+    }
   }
 
   function renderDetailBackFace(paper, index, target = detailBack, options = {}) {
@@ -363,9 +380,12 @@ const ResearchGallery = (function () {
       <div class="detail-copy">
       <div class="detail-header">
         <span class="detail-counter">${padZero(index + 1)} / ${padZero(total)}</span>
-        ${options.archive ? `<span class="archive-native-exit" id="expansion-exit-hint">Scroll to return · Esc</span>` : `<button type="button" class="btn-detail-close" id="btn-close-detail" aria-label="Close detail view">
-          ✕ Back
-        </button>`}
+        <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <span class="archive-native-exit" id="expansion-exit-hint">Esc to return</span>
+          <button type="button" class="btn-detail-close" id="btn-close-detail" aria-label="Close detail view">
+            ✕ Back
+          </button>
+        </div>
       </div>
 
       <div class="detail-body">
@@ -410,6 +430,7 @@ const ResearchGallery = (function () {
 
         ${firstBadgeHtml}
         ${options.archive ? [
+          ['Problem definition', paper.problem],
           ['Method details', paper.method],
           ['Dataset details', paper.datasetText],
           ['Results', paper.results]
@@ -601,8 +622,13 @@ const ResearchGallery = (function () {
     prev: prev,
     setActive: setActive,
     openDetail: openDetail,
+    openDetailById: openDetailById,
     renderArchiveDetail: (paper, index, target) => renderDetailBackFace(paper, index, target, { archive: true }),
     closeDetail: closeDetail,
     getCurrentIndex: function () { return activeIndex; }
   };
 })();
+
+if (typeof window !== 'undefined') {
+  window.ResearchGallery = ResearchGallery;
+}

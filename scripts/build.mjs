@@ -7,6 +7,11 @@ await build({
   outfile: 'assets/js/mountain-scene.bundle.js',
   bundle: true, minify: true, format: 'iife', target: 'es2020', legalComments: 'eof'
 });
+await build({
+  entryPoints: ['assets/js/archive/archive-webgl.js'],
+  outfile: 'assets/js/archive-webgl.bundle.js',
+  bundle: true, minify: true, format: 'iife', globalName: 'ArchiveWebGLBundle', target: 'es2020', legalComments: 'eof'
+});
 await mkdir('dist', { recursive: true });
 for (const path of ['index.html', 'assets', 'data']) {
   await cp(path, `dist/${path}`, { recursive: true });
