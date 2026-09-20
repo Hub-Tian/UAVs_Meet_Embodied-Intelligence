@@ -20,14 +20,14 @@ let currentJourney = 0;
 let targetHeroScroll = 0;
 let currentHeroScroll = 0;
 
-const lightFogColor = new THREE.Color('#d8e7ea');
-const deepFogColor = new THREE.Color('#1a3e4c');
-const hemiSkyLight = new THREE.Color('#e0f0f4');
-const hemiSkyDeep = new THREE.Color('#78a9b6');
-const hemiGroundLight = new THREE.Color('#a8c8cc');
-const hemiGroundDeep = new THREE.Color('#123640');
-const dirLightMorning = new THREE.Color('#fff2dd');
-const dirLightValley = new THREE.Color('#d8eff4');
+const lightFogColor = new THREE.Color('#d2e3e8');
+const deepFogColor = new THREE.Color('#1a2c35');
+const hemiSkyLight = new THREE.Color('#e5f1f5');
+const hemiSkyDeep = new THREE.Color('#7aa3ad');
+const hemiGroundLight = new THREE.Color('#24362e');
+const hemiGroundDeep = new THREE.Color('#14221b');
+const dirLightMorning = new THREE.Color('#fff0d8');
+const dirLightValley = new THREE.Color('#dbeaf0');
 
 function resize() {
   if (!renderer) return;
@@ -167,7 +167,7 @@ function init() {
     scene.add(hemiLight);
 
     dirLight = new THREE.DirectionalLight(dirLightMorning, 2.5);
-    dirLight.position.set(-65, 80, -90);
+    dirLight.position.set(65, 75, -55);
     scene.add(dirLight);
 
     canvas.dataset.state = 'ready';

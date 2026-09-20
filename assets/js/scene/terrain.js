@@ -43,137 +43,165 @@ function alpinePeak(x, z, px, pz, h, rx, rz) {
   return h * Math.exp(-d * 1.35);
 }
 
-/**
- * Continuous Icelandic Mountain Valley Elevation Function.
- *
- * 3-Tier Geological Hierarchy with Sharp Alpine Arêtes:
- * Tier 1 (Macro): Continuous mountain massifs with dominant peaks,
- *         secondary peaks, saddles, and knife-edge ridge spines on both left and right.
- * Tier 2 (Meso): Domain-warped ridged facets, rock arêtes, and couloirs.
- * Tier 3 (Micro): Natural rock grain texture (zero periodic Moiré striping).
- *
- * Guarantees:
- * - Left side: Dominant Horn (h~46) + 2 Secondary Peaks (h~37 & h~20) with clear saddle passes.
- * - Right side: Dominant Peak (h~48) + Sunlit Ridge Break (h~37) + Front Shoulder (h~22).
- * - Central Valley: Continuous natural alluvial floor (Y ~ 1.8 - 2.6) meandering into distance.
- * - Foreground: Extends continuously past and under camera frustum with zero bottom edge.
- */
-export function elevation(x, z) {
-  // Sinuous valley corridor centerline that gently meanders
-  const valleyCenter = 10.0 * Math.sin(z * 0.014) + 3.0 * Math.cos(z * 0.032);
-  const distValley = x - valleyCenter;
+// Sinuous river centerline equation (delicate serpentine meanders)
+export function getRiverX(z) {
+  return 6.2 * Math.sin(z * 0.038) + 3.0 * Math.sin(z * 0.078 + 1.1);
+}
 
-  // Valley floor carving (flattens central canyon corridor)
-  const valleyW = 23.0 + Math.sin(z * 0.018) * 4.0;
-  const valleyMask = 1.0 - Math.exp(-Math.pow(distValley / valleyW, 2));
+// Sloping interlocking mountain spur (斜向交错山嘴)
+function mountainSpur(x, z, rootX, rootZ, tipX, tipZ, rootH, tipH, spurWidth) {
+  const vX = tipX - rootX;
+  const vZ = tipZ - rootZ;
+  const lenSq = vX * vX + vZ * vZ;
+  if (lenSq < 0.001) return 0;
 
-  // Alluvial floor with gentle natural wash undulation (smooth natural bed)
-  const floorUndulation = 1.6 + 0.5 * Math.sin(z * 0.02) + 0.3 * noise(x * 0.03, z * 0.03);
+  const t = THREE.MathUtils.clamp(((x - rootX) * vX + (z - rootZ) * vZ) / lenSq, 0.0, 1.0);
+  const projX = rootX + t * vX;
+  const projZ = rootZ + t * vZ;
 
-  // =========================================================================
-  // 1. LEFT CONTINUOUS MOUNTAIN RANGE (Sharp Spine & Massif)
-  // =========================================================================
-  const leftSpineX = -45.0 - 0.10 * (z + 82.0) + 3.5 * Math.sin(z * 0.024);
+  const distSq = (x - projX) * (x - projX) + (z - projZ) * (z - projZ);
+  const w = spurWidth * (1.0 + 0.32 * (1.0 - t));
+  const heightAlong = THREE.MathUtils.lerp(rootH, tipH, t);
 
-  // 1 Dominant Peak (z = -82, h = 46) + 2 Secondary Peaks (z = -138, h = 37; z = -32, h = 24)
-  const zRelL1 = Math.abs(z + 82.0) / 24.0;
-  const l1Peak = 46.0 * Math.exp(-zRelL1 * 1.25);
-
-  const zRelL2 = Math.abs(z + 138.0) / 20.0;
-  const l2Peak = 37.0 * Math.exp(-zRelL2 * 1.25);
-
-  const zRelL3 = Math.abs(z + 32.0) / 18.0;
-  const l3Peak = 24.0 * Math.exp(-zRelL3 * 1.20);
-
-  // Continuous connecting ridge baseline between peaks (arête spine)
-  const zNormLeft = THREE.MathUtils.clamp((-z + 40.0) / 190.0, 0.0, 1.0);
-  const leftRidgeBaseline = 14.0 + 14.0 * zNormLeft;
-
-  const leftSpineH = Math.max(leftRidgeBaseline, Math.max(l1Peak, Math.max(l2Peak, l3Peak)));
-
-  // Sharp knife-edge cross-section at spine
-  const distFromLeftSpine = Math.abs(x - leftSpineX);
-  const leftSlopeW = x > leftSpineX ? 26.0 : 48.0;
-  const leftCrossSection = Math.exp(-Math.pow(distFromLeftSpine / leftSlopeW, 1.18));
-  const leftMassif = leftSpineH * leftCrossSection;
-
-  // =========================================================================
-  // 2. RIGHT CONTINUOUS MOUNTAIN RANGE (Sharp Spine & Massif)
-  // =========================================================================
-  const rightSpineX = 44.0 - 0.08 * (z + 80.0) + 3.0 * Math.sin(z * 0.026);
-
-  // 1 Dominant Peak (z = -92, h = 48) + Sun Break Ridge (z = -54, h = 37) + Front Shoulder (z = -12, h = 22)
-  const zRelR1 = Math.abs(z + 92.0) / 24.0;
-  const r1Peak = 48.0 * Math.exp(-zRelR1 * 1.25);
-
-  const zRelR2 = Math.abs(z + 54.0) / 18.0;
-  const r2Peak = 37.0 * Math.exp(-zRelR2 * 1.20);
-
-  const zRelR3 = Math.abs(z + 12.0) / 16.0;
-  const r3Peak = 22.0 * Math.exp(-zRelR3 * 1.15);
-
-  const zNormRight = THREE.MathUtils.clamp((-z + 40.0) / 190.0, 0.0, 1.0);
-  const rightRidgeBaseline = 13.0 + 13.0 * zNormRight;
-
-  const rightSpineH = Math.max(rightRidgeBaseline, Math.max(r1Peak, Math.max(r2Peak, r3Peak)));
-
-  // Sharp knife-edge cross-section at right spine
-  const distFromRightSpine = Math.abs(x - rightSpineX);
-  const rightSlopeW = x < rightSpineX ? 25.0 : 46.0;
-  const rightCrossSection = Math.exp(-Math.pow(distFromRightSpine / rightSlopeW, 1.18));
-  const rightMassif = rightSpineH * rightCrossSection;
-
-  // Select left or right massif based on valley divide
-  let macroMass = distValley < 0 ? leftMassif : rightMassif;
-
-  // =========================================================================
-  // 3. FAR ALPINE HORIZON SKYLINE (Layer A: Z in [-335, -170])
-  // =========================================================================
-  const farPeaks = (
-    alpinePeak(x, z, -90.0, -255.0, 54.0, 38.0, 48.0) +
-    alpinePeak(x, z, -28.0, -265.0, 50.0, 30.0, 40.0) +
-    alpinePeak(x, z, 30.0, -270.0, 52.0, 32.0, 42.0) +
-    alpinePeak(x, z, 90.0, -255.0, 56.0, 38.0, 48.0)
-  );
-  const farCrest = 12.0 * ridged(x * 0.022 + 9.0, z * 0.022 + 4.0);
-  const farFactor = smoothstep(-140.0, -200.0, z);
-  macroMass = Math.max(macroMass, (farPeaks + farCrest) * farFactor);
-
-  // =========================================================================
-  // 4. MESO-SCALE TECTONIC RIDGES & ROCK FACETS (Domain-Warped)
-  // =========================================================================
-  const wx = 3.5 * noise(x * 0.018, z * 0.018);
-  const wz = 3.5 * noise(x * 0.018 + 13.0, z * 0.018 + 27.0);
-
-  const mesoRidges = (
-    3.6 * ridged((x + wx) * 0.026 + 12.0, (z + wz) * 0.026 + 34.0) +
-    1.8 * ridged((x + wx) * 0.055, (z + wz) * 0.055)
-  );
-  const mesoFactor = THREE.MathUtils.clamp(macroMass / 18.0, 0.0, 1.0);
-
-  // Natural fine rock grain
-  const fineRock = (ridged(x * 0.08 + wx * 0.5, z * 0.08 + wz * 0.5) - 0.5) * 1.2 * mesoFactor;
-
-  // Final composite elevation
-  return Math.max(0.5, floorUndulation + valleyMask * (macroMass + mesoRidges * mesoFactor + fineRock));
+  return heightAlong * Math.exp(-distSq / (w * w));
 }
 
 /**
- * Creates terrain material with dynamic Sun Break shader injection
+ * Grand Alpine Canyon Gorge Elevation Function (高山深切峡谷与真实交错山嘴).
+ *
+ * Geological Architecture:
+ * 1. Deep V-Canyon Corridor with sinuous alluvial floor and carved river channel.
+ * 2. Alternating Interlocking Spurs (交错山嘴): Sloping mountain spurs jutting into
+ *    the valley from left and right alternately, creating authentic photographic canyon depth.
+ * 3. Stepped Stratified Escarpments: Sheer rock cliff bands alternating with structural ledges.
+ * 4. Sawtooth Horizon Horns: High jagged peaks towering into misty morning sky.
  */
-function createTerrainMaterial(lowColor, highColor, enableSunBreak = false) {
+export function elevation(x, z) {
+  const riverX = getRiverX(z);
+  const distRiver = x - riverX;
+
+  // Gentle river channel groove
+  const riverBed = -0.42 * Math.exp(-Math.pow(distRiver / 1.6, 2));
+
+  // Natural valley alluvial bed
+  const floorBase = 1.6 + 0.3 * Math.sin(z * 0.02) + 0.2 * noise(x * 0.04, z * 0.04) + riverBed;
+
+  // Sinuous canyon floor width
+  const valleyW = 15.2 + 2.5 * Math.sin(z * 0.025);
+
+  // =========================================================================
+  // 1. LEFT CANYON MASSIF & INTERLOCKING SPURS
+  // =========================================================================
+  const leftSpineX = -48.0 - 0.08 * (z + 80.0) + 3.0 * Math.sin(z * 0.025);
+
+  // Left peaks
+  const zRelL1 = Math.abs(z + 82.0) / 24.0;
+  const l1Peak = 48.0 * Math.exp(-zRelL1 * 1.25);
+
+  const zRelL2 = Math.abs(z + 138.0) / 20.0;
+  const l2Peak = 39.0 * Math.exp(-zRelL2 * 1.25);
+
+  const zRelL3 = Math.abs(z + 32.0) / 18.0;
+  const l3Peak = 27.0 * Math.exp(-zRelL3 * 1.20);
+
+  const zNormLeft = THREE.MathUtils.clamp((-z + 40.0) / 190.0, 0.0, 1.0);
+  const leftBaseline = 16.0 + 15.0 * zNormLeft;
+  const leftSpineH = Math.max(leftBaseline, Math.max(l1Peak, Math.max(l2Peak, l3Peak)));
+
+  // Mountain wall profile
+  const distFromLeftSpine = Math.abs(x - leftSpineX);
+  const leftSlopeW = x > leftSpineX ? 32.0 : 48.0;
+  const leftMassif = leftSpineH * Math.exp(-Math.pow(distFromLeftSpine / leftSlopeW, 1.25));
+
+  // Left interlocking spurs (jutting into valley at z = -35, z = -115, z = +45)
+  const spurL1 = mountainSpur(x, z, -42.0, -35.0, -11.0, -38.0, 30.0, 6.5, 11.0);
+  const spurL2 = mountainSpur(x, z, -45.0, -115.0, -13.0, -118.0, 32.0, 7.5, 12.0);
+  const spurL3 = mountainSpur(x, z, -40.0, 45.0, -10.0, 42.0, 24.0, 5.5, 10.0);
+
+  // =========================================================================
+  // 2. RIGHT CANYON MASSIF & INTERLOCKING SPURS
+  // =========================================================================
+  const rightSpineX = 46.0 - 0.07 * (z + 80.0) + 3.0 * Math.sin(z * 0.026);
+
+  // Right peaks
+  const zRelR1 = Math.abs(z + 92.0) / 24.0;
+  const r1Peak = 50.0 * Math.exp(-zRelR1 * 1.25);
+
+  const zRelR2 = Math.abs(z + 54.0) / 18.0;
+  const r2Peak = 40.0 * Math.exp(-zRelR2 * 1.20);
+
+  const zRelR3 = Math.abs(z + 12.0) / 16.0;
+  const r3Peak = 25.0 * Math.exp(-zRelR3 * 1.15);
+
+  const zNormRight = THREE.MathUtils.clamp((-z + 40.0) / 190.0, 0.0, 1.0);
+  const rightBaseline = 16.0 + 14.0 * zNormRight;
+  const rightSpineH = Math.max(rightBaseline, Math.max(r1Peak, Math.max(r2Peak, r3Peak)));
+
+  // Mountain wall profile
+  const distFromRightSpine = Math.abs(x - rightSpineX);
+  const rightSlopeW = x < rightSpineX ? 31.0 : 46.0;
+  const rightMassif = rightSpineH * Math.exp(-Math.pow(distFromRightSpine / rightSlopeW, 1.25));
+
+  // Right interlocking spurs (jutting into valley at z = -75, z = -10, z = +80)
+  const spurR1 = mountainSpur(x, z, 42.0, -75.0, 12.0, -78.0, 32.0, 7.0, 12.0);
+  const spurR2 = mountainSpur(x, z, 38.0, -10.0, 11.0, -12.0, 26.0, 6.0, 10.5);
+  const spurR3 = mountainSpur(x, z, 36.0, 80.0, 10.0, 78.0, 22.0, 5.0, 10.0);
+
+  // Combine massifs and spurs
+  const totalLeft = Math.max(leftMassif, Math.max(spurL1, Math.max(spurL2, spurL3)));
+  const totalRight = Math.max(rightMassif, Math.max(spurR1, Math.max(spurR2, spurR3)));
+
+  // Valley floor carving
+  const valleyMask = 1.0 - Math.exp(-Math.pow(distRiver / valleyW, 2));
+  let canyonH = valleyMask * (distRiver < 0 ? totalLeft : totalRight);
+
+  // Stepped structural terraces on lower slopes (y < 22)
+  const terraceStep = 0.8 * Math.sin(canyonH * 0.7) * smoothstep(2.5, 20.0, canyonH);
+  canyonH += terraceStep;
+
+  // =========================================================================
+  // 3. FAR ALPINE SAWTOOTH HORIZON (Z in [-340, -180])
+  // =========================================================================
+  const farPeaks = (
+    alpinePeak(x, z, -85.0, -255.0, 58.0, 36.0, 46.0) +
+    alpinePeak(x, z, -24.0, -270.0, 54.0, 28.0, 38.0) +
+    alpinePeak(x, z, 32.0, -265.0, 56.0, 30.0, 40.0) +
+    alpinePeak(x, z, 88.0, -250.0, 60.0, 36.0, 46.0)
+  );
+  const farSawtooth = 14.0 * ridged(x * 0.024 + 7.0, z * 0.024 + 5.0);
+  const farFactor = smoothstep(-140.0, -210.0, z);
+  canyonH = Math.max(canyonH, (farPeaks + farSawtooth) * farFactor);
+
+  // =========================================================================
+  // 4. MESO-SCALE VERTICAL ROCK GULLIES & JOINT FISSURES
+  // =========================================================================
+  const wx = 3.0 * noise(x * 0.018, z * 0.018);
+  const wz = 3.0 * noise(x * 0.018 + 11.0, z * 0.018 + 23.0);
+  const rockGullies = (
+    3.6 * ridged((x + wx) * 0.028 + 14.0, (z + wz) * 0.028 + 36.0) +
+    1.8 * ridged((x + wx) * 0.06, (z + wz) * 0.06)
+  );
+  const mesoFactor = THREE.MathUtils.clamp(canyonH / 16.0, 0.0, 1.0);
+  const fineRock = (ridged(x * 0.08 + wx * 0.5, z * 0.08 + wz * 0.5) - 0.5) * 1.1 * mesoFactor;
+
+  return Math.max(0.4, floorBase + canyonH + rockGullies * mesoFactor + fineRock);
+}
+
+/**
+ * Creates canyon terrain material with dynamic Sun Break shader injection
+ */
+function createTerrainMaterial(enableSunBreak = false) {
   const material = new THREE.MeshStandardMaterial({
     vertexColors: true,
-    roughness: 0.88,
-    metalness: 0.04,
+    roughness: 0.84,
+    metalness: 0.05,
     depthTest: true,
     depthWrite: true
   });
 
   if (enableSunBreak) {
-    // Center of morning sunbreak on the prominent right ridge break (x=41, z=-54, y=37)
     material.userData.uSunBreak = { value: 0.0 };
-    material.userData.uSunCenter = { value: new THREE.Vector3(41.0, 35.0, -54.0) };
+    material.userData.uSunCenter = { value: new THREE.Vector3(38.0, 30.0, -50.0) };
 
     material.onBeforeCompile = (shader) => {
       shader.uniforms.uSunBreak = material.userData.uSunBreak;
@@ -200,18 +228,18 @@ function createTerrainMaterial(lowColor, highColor, enableSunBreak = false) {
         `
         #include <dithering_fragment>
         if (uSunBreak > 0.001) {
-          // Localized morning sunlight beam on the right mountain ridge (15% - 35% of ridge)
+          // Morning sunlight beam striking the right canyon cliff and golden terraces
           vec2 beamOffset = (vCustomWorldPos.xz - uSunCenter.xz) * vec2(0.85, 1.15);
           float beamDist = length(beamOffset);
-          float beamMask = smoothstep(44.0, 6.0, beamDist);
-          float heightMask = smoothstep(16.0, 42.0, vCustomWorldPos.y);
-          vec3 sunDir = normalize(vec3(-0.62, 0.70, 0.35));
+          float beamMask = smoothstep(52.0, 6.0, beamDist);
+          float heightMask = smoothstep(6.0, 44.0, vCustomWorldPos.y);
+          vec3 sunDir = normalize(vec3(0.58, 0.67, -0.49));
           float facing = clamp(dot(normalize(vNormal), sunDir), 0.0, 1.0);
-          float sunFactor = uSunBreak * beamMask * heightMask * pow(facing, 1.35);
+          float sunFactor = uSunBreak * beamMask * heightMask * pow(facing, 1.3);
 
-          // Warm morning sun illumination: warm golden grazing light, no blown-out white
-          vec3 warmSun = vec3(1.0, 0.86, 0.65);
-          gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * warmSun * 1.45 + warmSun * 0.22, sunFactor);
+          // Warm golden amber sunlight matching photographic reference
+          vec3 warmSun = vec3(1.0, 0.82, 0.48);
+          gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * warmSun * 1.55 + warmSun * 0.28, sunFactor);
         }
         `
       );
@@ -221,47 +249,131 @@ function createTerrainMaterial(lowColor, highColor, enableSunBreak = false) {
   return material;
 }
 
-function buildTerrainMesh(width, depth, segW, segD, centerZ, lowColor, midColor, highColor, enableSunBreak = false) {
+/**
+ * Builds terrain mesh with slope-aware, elevation-aware, and river-aware multi-strata coloring:
+ * - Silvery glistening river stream with fine gravel banks
+ * - Golden autumn terraces and meadows on flat/gentle lower grounds
+ * - Clustered dark conifer pine forests dotting slopes and ravines
+ * - Stratified slate rock cliffs on steep vertical escarpments with sedimentary strata
+ * - High alpine crags fading into atmospheric sky haze
+ */
+function buildTerrainMesh(width, depth, segW, segD, centerZ, enableSunBreak = false, isFar = false) {
   const geometry = new THREE.PlaneGeometry(width, depth, segW, segD);
   geometry.rotateX(-Math.PI / 2);
   geometry.translate(0, 0, centerZ);
   const positions = geometry.attributes.position;
-  const colors = [];
-  const cLow = new THREE.Color(lowColor);
-  const cMid = new THREE.Color(midColor);
-  const cHigh = new THREE.Color(highColor);
-  const vertexColor = new THREE.Color();
 
   for (let i = 0; i < positions.count; i++) {
     const x = positions.getX(i);
     const z = positions.getZ(i);
-    const y = elevation(x, z);
-    positions.setY(i, y);
+    positions.setY(i, elevation(x, z));
+  }
 
-    // Continuous geological strata color assignment using smooth Hermite curve
-    const normH = THREE.MathUtils.clamp((y - 1.5) / 46.0, 0, 1);
-    const tH = normH * normH * (3.0 - 2.0 * normH);
-    if (tH < 0.38) {
-      vertexColor.copy(cLow).lerp(cMid, tH / 0.38);
+  geometry.computeVertexNormals();
+  const normals = geometry.attributes.normal;
+  const colors = [];
+
+  // Colors closely matched to user reference photo:
+  // 1. Water & Shore
+  const cRiver = new THREE.Color('#eaf5fa');
+  const cRiverGlint = new THREE.Color('#ffffff');
+  const cGravelShore = new THREE.Color('#8c9fa8');
+  // 2. Golden autumn terraces / meadows
+  const cGoldLush = new THREE.Color('#dfa435'); // rich autumn gold
+  const cGoldDeep = new THREE.Color('#c6922d'); // warm amber mustard
+  const cGoldPale = new THREE.Color('#eed87c'); // sunlit straw terrace highlight
+  const cAutumnMeadow = new THREE.Color('#7a8e42'); // olive yellow meadow
+  // 3. Pine forest (clustered conifers)
+  const cPineForest = new THREE.Color('#162d22'); // deep conifer green
+  const cPineShadow = new THREE.Color('#0e1f16'); // dark ravine conifer
+  // 4. Stratified rock cliffs
+  const cSlateCliff = new THREE.Color('#252d34'); // dark charcoal slate rock
+  const cRockStrata = new THREE.Color('#3c454e'); // sedimentary cool rock band
+  const cWarmStrata = new THREE.Color('#46433b'); // warm limestone strata band
+  const cHighCrag = new THREE.Color('#55606a'); // high alpine crags
+  const cFarMist = new THREE.Color('#7897a2'); // distant atmospheric haze
+
+  const vColor = new THREE.Color();
+
+  for (let i = 0; i < positions.count; i++) {
+    const x = positions.getX(i);
+    const y = positions.getY(i);
+    const z = positions.getZ(i);
+    const ny = normals.getY(i);
+
+    if (isFar) {
+      const hNorm = THREE.MathUtils.clamp((y - 4.0) / 48.0, 0, 1);
+      vColor.copy(cSlateCliff).lerp(cFarMist, 0.45 + 0.55 * hNorm);
     } else {
-      vertexColor.copy(cMid).lerp(cHigh, (tH - 0.38) / 0.62);
+      const riverX = getRiverX(z);
+      const dRiver = Math.abs(x - riverX);
+
+      if (dRiver < 2.4 && y < 3.2 && ny > 0.80) {
+        // Serpentine alpine river with glistening center and sandy gravel shores
+        const waterMask = smoothstep(1.4, 0.3, dRiver);
+        const shoreMask = smoothstep(2.4, 1.2, dRiver);
+        const glint = 0.5 + 0.5 * Math.sin(z * 0.16 + x * 0.1);
+        const riverColor = new THREE.Color().copy(cRiver).lerp(cRiverGlint, glint * 0.4);
+        vColor.copy(cGravelShore).lerp(riverColor, waterMask);
+      } else {
+        // Base rock with dual-band sedimentary strata
+        const strataOsc1 = 0.5 + 0.5 * Math.sin(y * 1.35 + noise(x * 0.05, z * 0.05) * 2.2);
+        const strataOsc2 = 0.5 + 0.5 * Math.sin(y * 2.1 + 1.2);
+        let rockBase = new THREE.Color().copy(cSlateCliff).lerp(cRockStrata, strataOsc1 * 0.55);
+        rockBase.lerp(cWarmStrata, strataOsc2 * 0.25);
+
+        if (y > 27.0) {
+          // High mountain crags
+          const hRatio = THREE.MathUtils.clamp((y - 27.0) / 23.0, 0, 1);
+          vColor.copy(rockBase).lerp(cHighCrag, hRatio * 0.7);
+        } else if (ny < 0.60) {
+          // Sheer vertical canyon cliff faces
+          const steepRatio = THREE.MathUtils.clamp((0.60 - ny) / 0.35, 0, 1);
+          vColor.copy(rockBase).multiplyScalar(1.0 - steepRatio * 0.26);
+        } else {
+          // Valley floor and stepped terraces:
+          const vegNoise = noise(x * 0.07 + 5.0, z * 0.07 + 11.0);
+          const treeCluster = noise(x * 0.11 + 3.0, z * 0.11 + 7.0);
+
+          if (treeCluster > 0.60 && ny < 0.86 && y > 2.0) {
+            // Clustered dark pine forest
+            const forestCol = new THREE.Color().copy(cPineForest).lerp(cPineShadow, vegNoise);
+            vColor.copy(rockBase).lerp(forestCol, 0.88);
+          } else if (y < 20.0 && ny > 0.66) {
+            // Golden autumn terraces and alpine meadows
+            let goldMix = new THREE.Color().copy(cGoldDeep).lerp(cGoldLush, vegNoise);
+            const terraceStripe = 0.5 + 0.5 * Math.sin(y * 2.2 + vegNoise * 2.4);
+            if (terraceStripe > 0.62) {
+              goldMix.lerp(cGoldPale, 0.45);
+            } else if (terraceStripe < 0.32) {
+              goldMix.lerp(cAutumnMeadow, 0.35);
+            }
+            const flatFactor = smoothstep(0.66, 0.82, ny);
+            vColor.copy(rockBase).lerp(goldMix, flatFactor * 0.94);
+          } else {
+            // Transitional alpine shrub & moss
+            const shrubCol = new THREE.Color().copy(cAutumnMeadow).lerp(cPineForest, vegNoise * 0.45);
+            vColor.copy(rockBase).lerp(shrubCol, 0.65);
+          }
+        }
+      }
     }
-    colors.push(vertexColor.r, vertexColor.g, vertexColor.b);
+
+    colors.push(vColor.r, vColor.g, vColor.b);
   }
 
   geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-  geometry.computeVertexNormals();
 
-  const material = createTerrainMaterial(lowColor, highColor, enableSunBreak);
+  const material = createTerrainMaterial(enableSunBreak);
   return { mesh: new THREE.Mesh(geometry, material), material };
 }
 
 /**
- * Creates continuous mountain depth layers with ZERO valley floor seam cuts:
- * 1. farGroup    (Z in [-340, -180]) - distant alpine peaks, soft mist, parallax ~0.14
- * 2. midFarGroup (Z in [-190, -80])  - dominant peaks & high alpine crags, parallax ~0.36
+ * Creates continuous canyon depth layers with ZERO valley floor seam cuts:
+ * 1. farGroup    (Z in [-340, -180]) - distant sawtooth peaks, soft mist, parallax ~0.14
+ * 2. midFarGroup (Z in [-190, -80])  - dominant peaks & canyon escarpments, parallax ~0.36
  * 3. midGroup    - anchor group for scene hierarchy compatibility
- * 4. nearGroup   (Z in [-82, +138])  - continuous unified foreground + mid-valley floor and sunlit ridge break
+ * 4. nearGroup   (Z in [-82, +138])  - continuous unified foreground + mid-valley floor and sunlit terraces
  */
 export function createMultiLayerTerrain(compact) {
   const root = new THREE.Group();
@@ -272,8 +384,8 @@ export function createMultiLayerTerrain(compact) {
     480, 160,
     compact ? 80 : 140, compact ? 55 : 90,
     -260,
-    '#20444e', '#355f6b', '#628e99',
-    false
+    false,
+    true
   );
   const farGroup = new THREE.Group();
   farGroup.add(far.mesh);
@@ -281,13 +393,13 @@ export function createMultiLayerTerrain(compact) {
   root.add(farGroup);
   materials.push(far.material);
 
-  // 2. Mid-Far Mountains (Z ~ -135, depth 110: Z in [-190, -80]) - Dominant Horns & High Crags
+  // 2. Mid-Far Mountains (Z ~ -135, depth 110: Z in [-190, -80]) - Dominant Horns & Canyon Escarpments
   const midFar = buildTerrainMesh(
     420, 110,
-    compact ? 90 : 160, compact ? 60 : 110,
+    compact ? 95 : 170, compact ? 65 : 120,
     -135,
-    '#183d48', '#2b5764', '#6a97a1',
-    true
+    true,
+    false
   );
   const midFarGroup = new THREE.Group();
   midFarGroup.add(midFar.mesh);
@@ -301,14 +413,13 @@ export function createMultiLayerTerrain(compact) {
   root.add(midGroup);
 
   // 4. Unified Continuous Foreground & Mid-Valley Floor (Z ~ +28, depth 220: Z in [-82, +138])
-  // Extends unbroken from foreground (+138, behind camera) all the way to midground (-82)
-  // Guarantees ZERO visible seam, teeth, or sliding in the valley corridor!
+  // High mesh resolution ensures smooth terrain facets, crisp river, and terrace contours
   const near = buildTerrainMesh(
     360, 220,
-    compact ? 110 : 180, compact ? 90 : 150,
+    compact ? 130 : 220, compact ? 110 : 180,
     28,
-    '#112d36', '#1e4854', '#588891',
-    true
+    true,
+    false
   );
   const nearGroup = new THREE.Group();
   nearGroup.add(near.mesh);
