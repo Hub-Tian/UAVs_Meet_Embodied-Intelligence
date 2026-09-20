@@ -16,20 +16,25 @@ const angle = new THREE.Vector2();
 let targetJourney = 0;
 let currentJourney = 0;
 
+// Hero section scroll progress: 0 (Hover) -> 1 (Fly-away)
+let targetHeroScroll = 0;
+let currentHeroScroll = 0;
+
 const lightFogColor = new THREE.Color('#d8e7ea');
 const deepFogColor = new THREE.Color('#1a3e4c');
 const hemiSkyLight = new THREE.Color('#e0f0f4');
 const hemiSkyDeep = new THREE.Color('#78a9b6');
 const hemiGroundLight = new THREE.Color('#a8c8cc');
 const hemiGroundDeep = new THREE.Color('#123640');
-const dirLightColor = new THREE.Color('#fcf4e8');
+const dirLightMorning = new THREE.Color('#fff2dd');
+const dirLightValley = new THREE.Color('#d8eff4');
 
 function resize() {
   if (!renderer) return;
   renderer.setPixelRatio(Math.min(devicePixelRatio, innerWidth < 768 ? 1.25 : 1.5));
   renderer.setSize(innerWidth, innerHeight);
   camera.aspect = innerWidth / innerHeight;
-  camera.fov = innerWidth < 768 ? 58 : 44;
+  camera.fov = innerWidth < 768 ? 54 : 42;
   camera.updateProjectionMatrix();
   requestFrame();
 }
@@ -47,50 +52,53 @@ function render(now) {
   // Smooth mouse angle interpolation (restricted subtle yaw/pitch)
   const damping = 1 - Math.exp(-3.2 * dt);
   angle.lerp(reduced.matches ? new THREE.Vector2() : target, damping);
-  const yaw = angle.x * 0.10, pitch = angle.y * 0.048;
+  const yaw = angle.x * 0.08, pitch = angle.y * 0.042;
 
   // Smooth journey progress interpolation
   currentJourney = THREE.MathUtils.lerp(currentJourney, targetJourney, 1 - Math.exp(-6.0 * dt));
+  currentHeroScroll = THREE.MathUtils.lerp(currentHeroScroll, targetHeroScroll, 1 - Math.exp(-8.0 * dt));
 
-  // 1. True Multi-Plane Mountain Parallax (Far: ~0.20, Mid: ~0.48, Near: ~0.78)
+  // 1. True Multi-Plane Mountain Parallax (Far: ~0.16, Mid: ~0.42, Near: ~0.72)
   if (terrainLayers && !reduced.matches) {
     const { farGroup, midGroup, nearGroup } = terrainLayers;
-    farGroup.position.x = angle.x * 2.2;
-    farGroup.position.y = angle.y * 0.85;
+    farGroup.position.x = angle.x * 1.6;
+    farGroup.position.y = angle.y * 0.65;
 
-    midGroup.position.x = angle.x * 5.2;
-    midGroup.position.y = angle.y * 1.9;
+    midGroup.position.x = angle.x * 3.8;
+    midGroup.position.y = angle.y * 1.45;
 
-    nearGroup.position.x = angle.x * 8.5;
-    nearGroup.position.y = angle.y * 3.2;
+    nearGroup.position.x = angle.x * 6.5;
+    nearGroup.position.y = angle.y * 2.4;
   }
 
-  // 2. Camera forward flight into the valley (Section XII & XXII)
-  const camZ = THREE.MathUtils.lerp(78, 48, currentJourney);
-  const camY = THREE.MathUtils.lerp(49, 43, currentJourney);
-  const lookZ = THREE.MathUtils.lerp(-48, -78, currentJourney);
+  // 2. Distant Vista to Valley Forward Flight (Starts far with mountains occupying ~35%-55% screen height)
+  const camZ = THREE.MathUtils.lerp(102, 48, currentJourney);
+  const camY = THREE.MathUtils.lerp(34.5, 43, currentJourney);
+  const lookZ = THREE.MathUtils.lerp(-70, -78, currentJourney);
+  const lookY = THREE.MathUtils.lerp(21, 11, currentJourney);
   camera.position.set(Math.sin(yaw) * 45, camY + Math.sin(pitch) * 35, camZ);
-  camera.lookAt(0, 11, lookZ);
+  camera.lookAt(0, lookY, lookZ);
 
-  // 3. Continuous Atmosphere & Fog transition (Section XXI - XXIV)
+  // 3. Continuous Atmosphere & Fog transition
   if (scene && scene.fog) {
     scene.fog.color.lerpColors(lightFogColor, deepFogColor, currentJourney);
-    scene.fog.density = THREE.MathUtils.lerp(0.0075, 0.0036, currentJourney);
+    scene.fog.density = THREE.MathUtils.lerp(0.0055, 0.0036, currentJourney);
   }
 
-  // 4. Dynamic Lighting transition
+  // 4. Dynamic Lighting transition (Morning warm sunlight -> Cool valley daylight)
   if (hemiLight) {
     hemiLight.color.lerpColors(hemiSkyLight, hemiSkyDeep, currentJourney);
     hemiLight.groundColor.lerpColors(hemiGroundLight, hemiGroundDeep, currentJourney);
   }
   if (dirLight) {
-    dirLight.intensity = THREE.MathUtils.lerp(2.2, 2.6, currentJourney) + pulse * 0.5;
+    dirLight.color.lerpColors(dirLightMorning, dirLightValley, currentJourney);
+    dirLight.intensity = THREE.MathUtils.lerp(2.5, 2.7, currentJourney) + pulse * 0.5;
   }
   pulse *= Math.exp(-3 * dt);
 
-  // 5. Hero Drone Animation (Idle floating, mouse reaction, scroll forward cruising)
+  // 5. Hero Drone Animation (Foreground idle hover, 3D spline orbit around mountain with occlusion, and valley fly-away)
   if (heroDrone) {
-    animateHeroDrone(heroDrone, time, reduced.matches ? null : angle, currentJourney);
+    animateHeroDrone(heroDrone, time, reduced.matches ? null : angle, currentHeroScroll, dt);
   }
 
   // 6. Ambient background drones
@@ -99,7 +107,7 @@ function render(now) {
   }
 
   renderer.render(scene, camera);
-  if (!reduced.matches || angle.length() > 0.001 || Math.abs(currentJourney - targetJourney) > 0.001) {
+  if (!reduced.matches || angle.length() > 0.001 || Math.abs(currentJourney - targetJourney) > 0.001 || Math.abs(currentHeroScroll - targetHeroScroll) > 0.001) {
     requestFrame();
   }
 }
@@ -118,8 +126,8 @@ function init() {
     renderer.toneMappingExposure = 1.25;
 
     scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(lightFogColor, 0.0075);
-    camera = new THREE.PerspectiveCamera(44, 1, 1, 500);
+    scene.fog = new THREE.FogExp2(lightFogColor, 0.0055);
+    camera = new THREE.PerspectiveCamera(42, 1, 1, 500);
 
     // Multi-layer terrain
     terrainLayers = createMultiLayerTerrain(innerWidth < 768);
@@ -137,7 +145,7 @@ function init() {
     hemiLight = new THREE.HemisphereLight(hemiSkyLight, hemiGroundLight, 2.1);
     scene.add(hemiLight);
 
-    dirLight = new THREE.DirectionalLight(dirLightColor, 2.2);
+    dirLight = new THREE.DirectionalLight(dirLightMorning, 2.5);
     dirLight.position.set(-65, 80, -90);
     scene.add(dirLight);
 
@@ -158,8 +166,11 @@ window.MountainScene = {
     if (value) { previous = 0; resize(); }
     else { cancelAnimationFrame(frame); frame = 0; target.set(0, 0); }
   },
-  setJourney(progress) {
+  setJourney(progress, heroScroll) {
     targetJourney = THREE.MathUtils.clamp(progress, 0, 1);
+    if (heroScroll !== undefined) {
+      targetHeroScroll = THREE.MathUtils.clamp(heroScroll, 0, 1);
+    }
     requestFrame();
   }
 };

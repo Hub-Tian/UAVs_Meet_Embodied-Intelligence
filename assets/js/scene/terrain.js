@@ -51,7 +51,9 @@ function buildTerrainMesh(width, depth, segW, segD, centerZ, lowColor, highColor
   const material = new THREE.MeshStandardMaterial({
     vertexColors: true,
     roughness: 0.94,
-    metalness: 0.05
+    metalness: 0.05,
+    depthTest: true,
+    depthWrite: true
   });
 
   return new THREE.Mesh(geometry, material);
@@ -59,47 +61,47 @@ function buildTerrainMesh(width, depth, segW, segD, centerZ, lowColor, highColor
 
 /**
  * Creates 3 distinct mountain depth layers:
- * 1. nearGroup (Z: +25 to -55) - closest, highest contrast, mouse parallax ~0.78
- * 2. midGroup  (Z: -50 to -145) - middle distance, moderate contrast, mouse parallax ~0.48
- * 3. farGroup  (Z: -140 to -260) - distant peaks, soft mist, mouse parallax ~0.20
+ * 1. nearGroup (Z ~ -38) - valley entrance & ridge landmark for UAV orbit/occlusion
+ * 2. midGroup  (Z ~ -135) - midground peaks, moderate contrast, mouse parallax ~0.42
+ * 3. farGroup  (Z ~ -240) - distant peaks, soft mist, mouse parallax ~0.16
  */
 export function createMultiLayerTerrain(compact) {
   const root = new THREE.Group();
 
-  // Far Mountains (Z ~ -195)
+  // Far Mountains (Z ~ -240)
   const farMesh = buildTerrainMesh(
-    360, 130,
+    380, 140,
     compact ? 70 : 120, compact ? 50 : 80,
-    -195,
+    -240,
     '#254b56', '#527c85'
   );
   const farGroup = new THREE.Group();
   farGroup.add(farMesh);
-  farGroup.userData = { parallaxFactor: 0.20, baseZ: 0 };
+  farGroup.userData = { parallaxFactor: 0.16, baseZ: 0 };
   root.add(farGroup);
 
-  // Mid Mountains (Z ~ -95)
+  // Mid Mountains (Z ~ -135)
   const midMesh = buildTerrainMesh(
-    320, 105,
+    340, 110,
     compact ? 80 : 130, compact ? 55 : 90,
-    -95,
+    -135,
     '#18414d', '#5f8f96'
   );
   const midGroup = new THREE.Group();
   midGroup.add(midMesh);
-  midGroup.userData = { parallaxFactor: 0.48, baseZ: 0 };
+  midGroup.userData = { parallaxFactor: 0.42, baseZ: 0 };
   root.add(midGroup);
 
-  // Near Mountains (Z ~ -15)
+  // Near Mountains (Z ~ -38)
   const nearMesh = buildTerrainMesh(
-    280, 95,
+    300, 95,
     compact ? 90 : 140, compact ? 60 : 100,
-    -15,
+    -38,
     '#123b45', '#73a5a7'
   );
   const nearGroup = new THREE.Group();
   nearGroup.add(nearMesh);
-  nearGroup.userData = { parallaxFactor: 0.78, baseZ: 0 };
+  nearGroup.userData = { parallaxFactor: 0.72, baseZ: 0 };
   root.add(nearGroup);
 
   return { root, farGroup, midGroup, nearGroup };
