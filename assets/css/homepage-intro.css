@@ -1,0 +1,100 @@
+/* Only the homepage prelude; existing category and gallery styles stay intact. */
+#category-landing-view { padding: 0; }
+#category-landing-view > .landing-top-bar {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  width: auto;
+  z-index: 2;
+}
+#category-landing-view > .landing-top-bar a { color: #405b68; text-shadow: none; }
+.homepage-hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 480px;
+  display: grid;
+  place-items: center;
+  padding: 6rem 3rem 9rem;
+}
+.homepage-hero .landing-hero-heading { margin: 0; max-width: 1240px; }
+.homepage-hero .landing-title { color: #193a4b; text-shadow: none; max-width: none; }
+.homepage-hero .landing-title-main {
+  font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+  line-height: 1.12;
+  text-wrap: balance;
+  font-weight: 700;
+}
+.homepage-hero .landing-title-extension {
+  margin-top: 1.6rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.65rem);
+  line-height: 1.5;
+  font-weight: 400;
+  color: #38596a;
+  text-wrap: balance;
+}
+.homepage-scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font: 0.66rem var(--font-mono);
+  letter-spacing: 0.2em;
+  color: #33566a;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px;
+  white-space: nowrap;
+}
+.homepage-scroll-hint span { display: block; font-size: 1.35rem; margin-top: 0.8rem; }
+.homepage-introduction {
+  background: transparent;
+  min-height: 85svh;
+  display: flex;
+  align-items: center;
+  padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 5vw, 6rem);
+}
+.homepage-introduction-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 60fr) minmax(0, 34fr);
+  gap: 6%;
+  align-items: center;
+  max-width: 1600px;
+  margin: auto;
+}
+.homepage-figure { display: block; width: 100%; height: auto; object-fit: contain; }
+.homepage-introduction-text { font-size: clamp(1rem, 1.3vw, 1.25rem); line-height: 1.85; color: #304654; }
+.homepage-introduction-text { text-shadow: 0 1px 12px #e9f2f480; }
+.homepage-existing-categories {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100svh;
+  padding: 2rem 2.5rem;
+}
+/* The tint changes only while the new prelude is in view. */
+body.homepage-prelude .mountain-atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #e9f2f4;
+  opacity: calc(var(--prelude-light, 1) * 0.78);
+  pointer-events: none;
+}
+body.homepage-prelude #mountain-scene { transform: scale(var(--prelude-scale, 1)); }
+@media (max-width: 900px) {
+  .homepage-introduction-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .homepage-introduction-text { max-width: 42rem; margin: auto; }
+}
+@media (max-width: 768px) {
+  #category-landing-view > .landing-top-bar { top: 1rem; right: 1rem; }
+  .homepage-hero { padding: 6rem 1.25rem 8rem; }
+  .homepage-hero .landing-title-main { font-size: clamp(2.1rem, 8vw, 3.3rem); }
+  .homepage-hero .landing-title-extension > span { display: block; }
+  .homepage-existing-categories { padding: 1.5rem 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(#homepage-hero) { scroll-behavior: auto; }
+  .homepage-figure, .homepage-introduction-text { opacity: 1 !important; transform: none !important; }
+  body.homepage-prelude #mountain-scene { transform: none; }
+}

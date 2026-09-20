@@ -31,34 +31,36 @@ html { scrollbar-gutter: stable; }
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1380px;
-  margin: 0 auto 1.5rem;
+  max-width: 1420px;
+  margin: 0 auto 0.6rem;
+  padding: 0.4rem 1.5rem 0;
+  box-sizing: border-box;
 }
 
 .btn-back-categories {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.42rem 1.15rem;
   background: var(--color-surface, #ffffff);
-  border: 1px solid var(--color-border, rgba(16, 38, 57, 0.14));
+  border: 1px solid var(--color-border, rgba(16, 38, 57, 0.18));
   border-radius: 999px;
   color: var(--color-navy, #102639);
   font-family: var(--font-mono, monospace);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(16, 38, 57, 0.06);
+  box-shadow: 0 1px 4px rgba(16, 38, 57, 0.04);
   transition: all 0.2s ease;
 }
 
 .btn-back-categories:hover {
-  background: var(--color-navy, #102639);
-  color: #ffffff;
-  border-color: var(--color-navy, #102639);
-  transform: translateX(-3px);
+  background: #ffffff;
+  border-color: #102639;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(16, 38, 57, 0.08);
 }
 
 .gallery-counter-badge {
@@ -79,14 +81,14 @@ html { scrollbar-gutter: stable; }
 /* Gallery Header Title */
 .gallery-header {
   text-align: center;
-  margin: 0 auto 2rem;
+  margin: 0.2rem auto 1.4rem;
   max-width: 900px;
 }
 
 .gallery-title {
-  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.2rem, 3.2vw, 2.75rem);
+  font-weight: 850;
+  letter-spacing: -0.035em;
   color: var(--color-navy, #102639);
   line-height: 1.1;
 }

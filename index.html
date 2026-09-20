@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="assets/css/research.css" />
   <link rel="stylesheet" href="assets/css/site-activity.css" />
   <link rel="stylesheet" href="assets/css/paper-archive.css" />
+  <link rel="stylesheet" href="assets/css/homepage-intro.css" />
 </head>
 <body>
 
@@ -42,11 +43,10 @@
       </nav>
     </header>
 
-    <!-- Center Stage -->
-    <div class="landing-center-stage">
+    <section class="homepage-hero" id="homepage-hero" aria-label="UAVs Meet Embodied Intelligence">
       <div class="landing-hero-heading">
         <h1 class="landing-title">
-          <span class="landing-title-main">UAVs Meet Embodied Intelligence:</span>
+          <span class="landing-title-main">UAVs Meet Embodied Intelligence</span>
           <span class="landing-title-extension">
             <span>Bridging Human Intents and Flying Dynamics</span>
             <span>Via Harnessing Physical-Digital AI Agents</span>
@@ -54,6 +54,18 @@
         </h1>
       </div>
 
+
+      <a class="homepage-scroll-hint" href="#homepage-introduction">SCROLL TO EXPLORE<span aria-hidden="true">↓</span></a>
+    </section>
+    <section class="homepage-introduction" id="homepage-introduction" aria-label="Aerial embodied intelligence introduction">
+      <div class="homepage-introduction-inner">
+        <img class="homepage-figure" src="assets/images/uav-ei-framework.png" width="1322" height="490" decoding="async" alt="Fig. 1. The 5+5 framework of UAV EI and EI UAV, relating five capability dimensions to five architectural layers." />
+        <p class="homepage-introduction-text">UAV EI and EI UAV provide complementary capability and system perspectives on aerial embodied intelligence. UAV EI describes what an aerial embodied agent should be able to accomplish, whereas an EI UAV describes how these capabilities are realized in an operational system. Fig. 1 summarizes this relationship through a 5+5 framework.</p>
+      </div>
+    </section>
+    <div class="homepage-existing-categories">
+    <!-- Center Stage -->
+    <div class="landing-center-stage">
       <!-- 4 Rectangular Category Vertical Strips (Sharp 90° Angles, Text ONLY Category Name) -->
       <div class="category-windows-group" id="category-windows-group" role="region" aria-label="Research Categories">
         
@@ -108,6 +120,7 @@
         <p class="site-activity-label">TOTAL VISITS</p>
       </aside>
     </footer>
+    </div>
   </section>
 
   <!-- =========================================================================
@@ -117,8 +130,7 @@
     <!-- Top Bar -->
     <div class="gallery-top-bar">
       <button type="button" class="btn-back-categories" id="btn-back-categories" aria-label="Back to Category Landing">
-        <span>←</span>
-        <span>Back to Categories</span>
+        <span>← BACK TO CATEGORIES</span>
       </button>
 
       <div class="gallery-counter-badge" id="gallery-counter">
@@ -129,6 +141,44 @@
     <!-- Header Title -->
     <div class="gallery-header">
       <h2 class="gallery-title" id="gallery-category-title">Embodied Perception</h2>
+    </div>
+
+    <!-- Embodied Perception Paper Archive -->
+    <div id="perception-paper-archive" class="perception-archive" style="display: none;">
+      <!-- Toolbar -->
+      <div class="archive-toolbar">
+        <div class="archive-toolbar__left">
+          <label for="archive-search-input" class="search-label">Search</label>
+          <input type="search" id="archive-search-input" class="archive-search-input" placeholder="Title, author, type..." aria-label="Search papers" />
+        </div>
+        <div class="archive-toolbar__right">
+          <span class="archive-guide-hint">Choose a paper · Click its card to explore</span>
+        </div>
+      </div>
+
+      <!-- Split Exhibition: Left Directory Table (50%) + Right WebGL Card Stage (50%) -->
+      <div class="archive-exhibition">
+        <!-- Left: Paper Directory (Clean List without table header) -->
+        <nav class="archive-directory" id="archive-directory" aria-label="Embodied Perception Paper Directory">
+          <ol class="archive-list" id="archive-paper-list">
+            <!-- 16 paper items dynamically rendered -->
+          </ol>
+          <div class="archive-empty" id="archive-empty-msg" hidden>No matching papers found.</div>
+        </nav>
+
+        <!-- Right: Interactive Card Preview Stage (Floating 3D Paper Photo Cards) -->
+        <div class="archive-stage" id="archive-preview-stage" role="region" aria-label="Active Paper Preview Card" tabindex="0">
+          <div class="archive-stage-hint" id="archive-stage-hint">
+            <span class="flip-hint-badge">
+              <span>CLICK TO FLIP CARD</span>
+              <span class="flip-hint-icon">⟲</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WebGL Mount Container for Shader Plane -->
+      <div id="perception-webgl-container" class="perception-webgl-container"></div>
     </div>
 
     <!-- Stage Container -->
@@ -191,9 +241,11 @@
   <script src="assets/js/interactive-grid.js"></script>
   <script src="assets/js/research-gallery.js"></script>
   <script src="assets/js/category-landing.js"></script>
+  <script src="assets/js/archive-webgl.bundle.js"></script>
   <script src="assets/js/perception-archive-data.js"></script>
   <script src="assets/js/paper-archive.js"></script>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/site-activity.js" defer></script>
+  <script src="assets/js/homepage-intro.js" defer></script>
 </body>
 </html>
