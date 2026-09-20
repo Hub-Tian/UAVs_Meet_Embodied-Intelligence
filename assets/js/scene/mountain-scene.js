@@ -58,41 +58,62 @@ function render(now) {
   currentJourney = THREE.MathUtils.lerp(currentJourney, targetJourney, 1 - Math.exp(-6.0 * dt));
   currentHeroScroll = THREE.MathUtils.lerp(currentHeroScroll, targetHeroScroll, 1 - Math.exp(-8.0 * dt));
 
-  // 1. True Multi-Plane Mountain Parallax (Far: ~0.16, Mid: ~0.42, Near: ~0.72)
+  // 1. True Multi-Plane Mountain Parallax (Far: ~0.14, MidFar: ~0.36, Mid: ~0.62, Near: ~0.85)
   if (terrainLayers && !reduced.matches) {
-    const { farGroup, midGroup, nearGroup } = terrainLayers;
-    farGroup.position.x = angle.x * 1.6;
-    farGroup.position.y = angle.y * 0.65;
-
-    midGroup.position.x = angle.x * 3.8;
-    midGroup.position.y = angle.y * 1.45;
-
-    nearGroup.position.x = angle.x * 6.5;
-    nearGroup.position.y = angle.y * 2.4;
+    const { farGroup, midFarGroup, midGroup, nearGroup } = terrainLayers;
+    if (farGroup) {
+      farGroup.position.x = angle.x * 1.5;
+      farGroup.position.y = angle.y * 0.6;
+    }
+    if (midFarGroup) {
+      midFarGroup.position.x = angle.x * 2.8;
+      midFarGroup.position.y = angle.y * 1.1;
+    }
+    if (midGroup) {
+      midGroup.position.x = angle.x * 4.6;
+      midGroup.position.y = angle.y * 1.8;
+    }
+    if (nearGroup) {
+      nearGroup.position.x = angle.x * 6.8;
+      nearGroup.position.y = angle.y * 2.5;
+    }
   }
 
-  // 2. Distant Vista to Valley Forward Flight (Starts far with mountains occupying ~35%-55% screen height)
-  const camZ = THREE.MathUtils.lerp(102, 48, currentJourney);
-  const camY = THREE.MathUtils.lerp(34.5, 43, currentJourney);
-  const lookZ = THREE.MathUtils.lerp(-70, -78, currentJourney);
-  const lookY = THREE.MathUtils.lerp(21, 11, currentJourney);
+  // 2. Distant Vista to Valley Forward Flight (Starts far with mountains framing horizon, enters valley)
+  const camZ = THREE.MathUtils.lerp(106, 50, currentJourney);
+  const camY = THREE.MathUtils.lerp(36, 40, currentJourney);
+  const lookZ = THREE.MathUtils.lerp(-65, -78, currentJourney);
+  const lookY = THREE.MathUtils.lerp(19.5, 12, currentJourney);
   camera.position.set(Math.sin(yaw) * 45, camY + Math.sin(pitch) * 35, camZ);
   camera.lookAt(0, lookY, lookZ);
 
-  // 3. Continuous Atmosphere & Fog transition
-  if (scene && scene.fog) {
-    scene.fog.color.lerpColors(lightFogColor, deepFogColor, currentJourney);
-    scene.fog.density = THREE.MathUtils.lerp(0.0055, 0.0036, currentJourney);
+  // 3. Sun Break on Mountain Ridge (Scroll 60% -> 85%)
+  const sunBreak = THREE.MathUtils.clamp((currentHeroScroll - 0.58) / 0.24, 0, 1);
+  if (terrainLayers && terrainLayers.materials) {
+    for (let i = 0; i < terrainLayers.materials.length; i++) {
+      const mat = terrainLayers.materials[i];
+      if (mat.userData && mat.userData.uSunBreak) {
+        mat.userData.uSunBreak.value = sunBreak;
+      }
+    }
   }
 
-  // 4. Dynamic Lighting transition (Morning warm sunlight -> Cool valley daylight)
+  // 4. Continuous Atmosphere & Fog transition (Early morning mist -> Thinner valley daylight)
+  if (scene && scene.fog) {
+    scene.fog.color.lerpColors(lightFogColor, deepFogColor, currentJourney);
+    const baseDensity = THREE.MathUtils.lerp(0.0055, 0.0034, currentJourney);
+    scene.fog.density = baseDensity * (1.0 - sunBreak * 0.16);
+  }
+
+  // 5. Dynamic Lighting transition (Morning warm sunlight -> Cool valley daylight)
   if (hemiLight) {
     hemiLight.color.lerpColors(hemiSkyLight, hemiSkyDeep, currentJourney);
     hemiLight.groundColor.lerpColors(hemiGroundLight, hemiGroundDeep, currentJourney);
   }
   if (dirLight) {
     dirLight.color.lerpColors(dirLightMorning, dirLightValley, currentJourney);
-    dirLight.intensity = THREE.MathUtils.lerp(2.5, 2.7, currentJourney) + pulse * 0.5;
+    const baseIntensity = THREE.MathUtils.lerp(2.4, 2.7, currentJourney);
+    dirLight.intensity = baseIntensity + sunBreak * 0.55 + pulse * 0.5;
   }
   pulse *= Math.exp(-3 * dt);
 

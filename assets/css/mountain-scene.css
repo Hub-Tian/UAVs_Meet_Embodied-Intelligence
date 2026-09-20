@@ -100,6 +100,28 @@ html:has(body.mountain-home) {
   will-change: transform, opacity;
 }
 
+/* Sun Break Golden Ray / Sky Opening (Scroll 60% - 85%) */
+.mountain-atmosphere::after {
+  content: '';
+  position: absolute;
+  top: -8%;
+  right: 4%;
+  width: 62%;
+  height: 68%;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse 75% 55% at 75% 18%,
+    rgba(255, 238, 205, 0.38) 0%,
+    rgba(255, 220, 160, 0.18) 35%,
+    rgba(255, 205, 140, 0) 70%
+  );
+  opacity: var(--sun-break, 0);
+  filter: blur(28px);
+  pointer-events: none;
+  transition: opacity 0.22s linear;
+  will-change: opacity;
+}
+
 /* 3D WebGL Canvas Layer */
 #mountain-scene {
   position: relative;

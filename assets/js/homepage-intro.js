@@ -99,6 +99,9 @@
     rootStyle.setProperty('--golden-cloud-opacity', goldenCloudOpacity.toFixed(3));
     rootStyle.setProperty('--golden-cloud-lift', `${goldenCloudLift.toFixed(1)}px`);
 
+    const sunBreakProgress = clamp((heroScroll - 0.58) / 0.24, 0, 1);
+    rootStyle.setProperty('--sun-break', sunBreakProgress.toFixed(3));
+
     // Sync with 3D WebGL Mountain Scene (Camera forward flight, lights, drone spline flight)
     if (window.MountainScene && window.MountainScene.setJourney) {
       window.MountainScene.setJourney(journeyProgress, heroScroll);
