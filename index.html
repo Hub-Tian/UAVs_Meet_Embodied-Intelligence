@@ -21,7 +21,12 @@
 
   <!-- Background Interactive Terrain Canvas (Wireframe Mountain & UAV Spatial Field) -->
   <canvas id="interactive-grid" class="interactive-grid-canvas"></canvas>
-  <div class="mountain-atmosphere" aria-hidden="true"><canvas id="mountain-scene"></canvas></div>
+  <div class="mountain-atmosphere" aria-hidden="true">
+    <div class="atmosphere-sky-base"></div>
+    <div class="atmospheric-fog-layer fog-deep"></div>
+    <canvas id="mountain-scene"></canvas>
+    <div class="atmospheric-fog-layer fog-front"></div>
+  </div>
 
   <!-- Morph Overlay for FLIP Transitions -->
   <div id="category-morph-overlay" class="category-morph-overlay"></div>
@@ -58,9 +63,17 @@
       <a class="homepage-scroll-hint" href="#homepage-introduction">SCROLL TO EXPLORE<span aria-hidden="true">↓</span></a>
     </section>
     <section class="homepage-introduction" id="homepage-introduction" aria-label="Aerial embodied intelligence introduction">
-      <div class="homepage-introduction-inner">
-        <img class="homepage-figure" src="assets/images/uav-ei-framework.png" width="1322" height="490" decoding="async" alt="Fig. 1. The 5+5 framework of UAV EI and EI UAV, relating five capability dimensions to five architectural layers." />
-        <p class="homepage-introduction-text">UAV EI and EI UAV provide complementary capability and system perspectives on aerial embodied intelligence. UAV EI describes what an aerial embodied agent should be able to accomplish, whereas an EI UAV describes how these capabilities are realized in an operational system. Fig. 1 summarizes this relationship through a 5+5 framework.</p>
+      <div class="homepage-intro-sticky-track" id="homepage-intro-sticky-track">
+        <div class="homepage-intro-pin" id="homepage-intro-pin">
+          <div class="homepage-introduction-inner">
+            <div class="homepage-figure-col">
+              <img class="homepage-figure" src="assets/images/uav-ei-framework.png" width="1322" height="490" decoding="async" alt="Fig. 1. The 5+5 framework of UAV EI and EI UAV, relating five capability dimensions to five architectural layers." />
+            </div>
+            <div class="homepage-text-col">
+              <p class="homepage-introduction-text">UAV EI and EI UAV provide complementary capability and system perspectives on aerial embodied intelligence. UAV EI describes what an aerial embodied agent should be able to accomplish, whereas an EI UAV describes how these capabilities are realized in an operational system. Fig. 1 summarizes this relationship through a 5+5 framework.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <div class="homepage-existing-categories">

@@ -137,40 +137,61 @@
   display: block;
 }
 
-/* 4 Vertical Category Image Strips */
+/* 5 Vertical Category Image Strips (Enhanced Scale + Stagger Entrance) */
 .category-windows-group {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: clamp(16px, 1.4vw, 24px);
   margin: 1.5rem auto;
   perspective: 1000px;
 }
 
-/* Sharp Rectangular Strip (Zero Border-Radius, Strict 90° Angles) */
+/* Sharp Rectangular Strip (Zero Border-Radius, Strict 90° Angles, Enhanced 10-18% Presence) */
 .category-panel,
 .category-strip {
   position: relative;
-  width: 128px; /* Constant width */
-  height: 380px; /* Constant height */
+  width: clamp(140px, 9.6vw, 168px);
+  height: clamp(410px, 28vw, 470px);
   border-radius: 0px !important; /* STRICTLY NO ROUNDED CORNERS */
   overflow: hidden;
   cursor: pointer;
   background: #ffffff;
   border: 1px solid rgba(16, 38, 57, 0.16);
   box-shadow: 0 10px 30px rgba(16, 38, 57, 0.08);
+  opacity: 1;
+  transform: translateY(0);
   transition: border-color 0.32s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.45s ease;
   user-select: none;
+  will-change: transform, opacity;
 }
 
-/* Hover: Panel outer frame remains constant size (NO expansion) */
+/* 5-Card Stagger Entrance (Section XXVIII) */
+.category-windows-group.stagger-init .category-panel {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.category-windows-group.stagger-in .category-panel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.category-windows-group.stagger-in .category-panel:nth-child(1) { transition-delay: 0ms; }
+.category-windows-group.stagger-in .category-panel:nth-child(2) { transition-delay: 70ms; }
+.category-windows-group.stagger-in .category-panel:nth-child(3) { transition-delay: 140ms; }
+.category-windows-group.stagger-in .category-panel:nth-child(4) { transition-delay: 210ms; }
+.category-windows-group.stagger-in .category-panel:nth-child(5) { transition-delay: 280ms; }
+
+/* Enhanced Hover: Lift, Brighten, and Subtle Scale (Section XXIX) */
 .category-panel:hover,
 .category-panel.is-active {
-  border-color: rgba(223, 111, 63, 0.6);
-  box-shadow: 0 18px 45px rgba(16, 38, 57, 0.16);
-  transform: translateY(-2px);
+  border-color: rgba(223, 111, 63, 0.72);
+  box-shadow: 0 22px 50px rgba(8, 26, 44, 0.28);
+  transform: translateY(-6px);
   z-index: 5;
 }
 
