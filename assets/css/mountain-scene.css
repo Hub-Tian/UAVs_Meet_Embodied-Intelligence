@@ -31,63 +31,11 @@ html:has(body.mountain-home) {
   will-change: background;
 }
 
-/* Golden Clouds Container (Morning sunlight sunlit clouds across upper sky) */
-.golden-clouds-container {
-  position: absolute;
-  top: 0;
-  left: -6%;
-  width: 112%;
-  height: 48%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-  opacity: var(--golden-cloud-opacity, 1);
-  transform: translateY(var(--golden-cloud-lift, 0px));
-  transition: opacity 0.18s linear;
-  will-change: opacity, transform;
-}
-
-/* Far Clouds: Pale warm champagne morning haze, slowest drift */
-.golden-cloud-layer.cloud-far {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 65% 55% at 20% 15%, rgba(255, 248, 235, 0.45) 0%, rgba(255, 242, 220, 0.22) 50%, transparent 80%),
-    radial-gradient(ellipse 60% 45% at 80% 12%, rgba(255, 246, 230, 0.40) 0%, rgba(255, 240, 215, 0.18) 45%, transparent 75%);
-  filter: blur(28px);
-  animation: cloudDriftFar 46s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-/* Mid Clouds: Morning sunlight cumulus wisps with warm golden highlights */
-.golden-cloud-layer.cloud-mid {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 42% 26% at 18% 20%, rgba(255, 230, 180, 0.38) 0%, rgba(248, 218, 160, 0.18) 45%, transparent 72%),
-    radial-gradient(ellipse 38% 24% at 82% 16%, rgba(255, 226, 175, 0.32) 0%, rgba(245, 212, 150, 0.15) 45%, transparent 70%);
-  filter: blur(18px);
-  animation: cloudDriftMid 34s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-/* Highlight Clouds: Soft golden rim lighting along cloud edges */
-.golden-cloud-layer.cloud-rim {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 30% 12% at 22% 16%, rgba(255, 218, 130, 0.52) 0%, rgba(255, 202, 105, 0.25) 40%, transparent 68%),
-    radial-gradient(ellipse 28% 10% at 78% 12%, rgba(255, 214, 125, 0.46) 0%, rgba(255, 196, 95, 0.20) 40%, transparent 65%);
-  filter: blur(12px);
-  animation: cloudDriftRim 26s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
 /* Atmospheric Fog Layer - Deep (Behind 3D Mountain Midground) */
 .atmospheric-fog-layer.fog-deep {
   position: absolute;
   inset: -12% -25%;
-  z-index: 2;
+  z-index: 1;
   background: radial-gradient(
     ellipse 135% 65% at 50% 60%,
     rgba(223, 236, 238, 0.75) 0%,
@@ -100,32 +48,10 @@ html:has(body.mountain-home) {
   will-change: transform, opacity;
 }
 
-/* Sun Break Golden Ray / Sky Opening (Scroll 60% - 85%) */
-.mountain-atmosphere::after {
-  content: '';
-  position: absolute;
-  top: -8%;
-  right: 4%;
-  width: 62%;
-  height: 68%;
-  z-index: 2;
-  background: radial-gradient(
-    ellipse 75% 55% at 75% 18%,
-    rgba(255, 238, 205, 0.38) 0%,
-    rgba(255, 220, 160, 0.18) 35%,
-    rgba(255, 205, 140, 0) 70%
-  );
-  opacity: var(--sun-break, 0);
-  filter: blur(28px);
-  pointer-events: none;
-  transition: opacity 0.22s linear;
-  will-change: opacity;
-}
-
 /* 3D WebGL Canvas Layer */
 #mountain-scene {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   width: 100%;
   height: 100%;
   display: block;
@@ -143,7 +69,7 @@ html:has(body.mountain-home) {
   left: -20%;
   width: 140%;
   height: 48%;
-  z-index: 4;
+  z-index: 3;
   background: linear-gradient(
     180deg,
     rgba(223, 236, 238, 0) 0%,
@@ -167,9 +93,6 @@ html:has(body.mountain-home) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .golden-cloud-layer.cloud-far,
-  .golden-cloud-layer.cloud-mid,
-  .golden-cloud-layer.cloud-rim,
   .atmospheric-fog-layer.fog-deep,
   .atmospheric-fog-layer.fog-front {
     animation: none;

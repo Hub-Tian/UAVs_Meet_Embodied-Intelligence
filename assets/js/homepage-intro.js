@@ -92,21 +92,12 @@
     rootStyle.setProperty('--mountain-contrast', mtnContrast.toFixed(3));
     rootStyle.setProperty('--mountain-saturation', mtnSaturation.toFixed(3));
 
-    // 2. Hero Scroll Exit & Golden Clouds Dynamic Fade
-    const heroScroll = clamp(scroll / (heroH * 0.90), 0, 1);
-    const goldenCloudOpacity = Math.max(0, 1 - heroScroll * 1.32);
-    const goldenCloudLift = -heroScroll * 40;
-    rootStyle.setProperty('--golden-cloud-opacity', goldenCloudOpacity.toFixed(3));
-    rootStyle.setProperty('--golden-cloud-lift', `${goldenCloudLift.toFixed(1)}px`);
-
-    const sunBreakProgress = clamp((heroScroll - 0.58) / 0.24, 0, 1);
-    rootStyle.setProperty('--sun-break', sunBreakProgress.toFixed(3));
-
-    // Sync with 3D WebGL Mountain Scene (Camera forward flight, lights, drone spline flight)
+    // Sync with 3D WebGL Mountain Scene (Camera forward flight, lights, drone)
     if (window.MountainScene && window.MountainScene.setJourney) {
-      window.MountainScene.setJourney(journeyProgress, heroScroll);
+      window.MountainScene.setJourney(journeyProgress);
     }
 
+    // 2. Hero Scroll Exit (Section XII)
     if (!reduced.matches && hero) {
       const heroExit = clamp(scroll / (heroH * 0.85), 0, 1);
       if (hint) {
