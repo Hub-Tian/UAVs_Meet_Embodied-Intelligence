@@ -1,100 +1,264 @@
-/* Only the homepage prelude; existing category and gallery styles stay intact. */
+/* Continuous Mountain Journey Homepage Styles */
 #category-landing-view { padding: 0; }
 #category-landing-view > .landing-top-bar {
   position: absolute;
   top: 2rem;
   right: 2.5rem;
   width: auto;
-  z-index: 2;
+  z-index: 20;
 }
-#category-landing-view > .landing-top-bar a { color: #405b68; text-shadow: none; }
+#category-landing-view > .landing-top-bar a {
+  color: #315160;
+  text-shadow: none;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SECTION 01: Hero / Landing (100vh)
+   ========================================================================== */
 .homepage-hero {
   position: relative;
   height: 100vh;
   height: 100svh;
-  min-height: 480px;
+  min-height: 520px;
   display: grid;
   place-items: center;
   padding: 6rem 3rem 9rem;
+  box-sizing: border-box;
 }
-.homepage-hero .landing-hero-heading { margin: 0; max-width: 1240px; }
-.homepage-hero .landing-title { color: #193a4b; text-shadow: none; max-width: none; }
+
+.homepage-hero .landing-hero-heading {
+  margin: 0;
+  max-width: 1280px;
+  text-align: center;
+}
+
+.homepage-hero .landing-title {
+  color: #123547;
+  text-shadow: 0 1px 18px rgba(255, 255, 255, 0.65);
+  max-width: none;
+}
+
+/* Hero Opening Sequence: Cinematic reveal with subtle delays (Section XI) */
 .homepage-hero .landing-title-main {
-  font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+  display: block;
+  font-size: clamp(2.6rem, 4.8vw, 4.75rem);
   line-height: 1.12;
   text-wrap: balance;
   font-weight: 700;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroTitleReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  will-change: transform, opacity;
 }
+
 .homepage-hero .landing-title-extension {
+  display: block;
   margin-top: 1.6rem;
-  font-size: clamp(1.05rem, 1.8vw, 1.65rem);
-  line-height: 1.5;
+  font-size: clamp(1.1rem, 1.9vw, 1.7rem);
+  line-height: 1.52;
   font-weight: 400;
-  color: #38596a;
+  color: #2b4f61;
   text-wrap: balance;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroSubReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
+  will-change: transform, opacity;
 }
+
 .homepage-scroll-hint {
   position: absolute;
-  bottom: 3rem;
+  bottom: 3.2rem;
   left: 50%;
   transform: translateX(-50%);
-  font: 0.66rem var(--font-mono);
-  letter-spacing: 0.2em;
-  color: #33566a;
+  font: 0.68rem var(--font-mono);
+  letter-spacing: 0.22em;
+  color: #2a4c5e;
   text-align: center;
   text-decoration: none;
   padding: 12px;
   white-space: nowrap;
+  opacity: 0;
+  animation: heroHintReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+  will-change: transform, opacity;
 }
-.homepage-scroll-hint span { display: block; font-size: 1.35rem; margin-top: 0.8rem; }
+
+.homepage-scroll-hint span {
+  display: block;
+  font-size: 1.35rem;
+  margin-top: 0.75rem;
+  transition: transform 0.25s ease;
+}
+
+.homepage-scroll-hint:hover span {
+  transform: translateY(4px);
+}
+
+@keyframes heroTitleReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroSubReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroHintReveal {
+  to { opacity: 0.92; transform: translateX(-50%) translateY(0); }
+}
+
+/* ==========================================================================
+   SECTION 02: Introduction Sticky Progression (150vh track) (Section XV - XX)
+   ========================================================================== */
 .homepage-introduction {
+  position: relative;
   background: transparent;
-  min-height: 85svh;
+  height: 160vh;
+  min-height: 160vh;
+  width: 100%;
+}
+
+.homepage-intro-sticky-track {
+  position: relative;
+  width: 100%;
+  height: 160vh;
+}
+
+.homepage-intro-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: clamp(5rem, 10vw, 10rem) clamp(1.5rem, 5vw, 6rem);
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 5rem) clamp(2rem, 6vw, 7rem);
+  box-sizing: border-box;
+  overflow: hidden;
 }
+
 .homepage-introduction-inner {
   display: grid;
-  grid-template-columns: minmax(0, 60fr) minmax(0, 34fr);
-  gap: 6%;
+  grid-template-columns: minmax(0, 60fr) minmax(0, 31fr);
+  gap: 7%;
   align-items: center;
-  max-width: 1600px;
-  margin: auto;
+  width: 100%;
+  max-width: clamp(1240px, 86vw, 1780px);
+  margin: 0 auto;
 }
-.homepage-figure { display: block; width: 100%; height: auto; object-fit: contain; }
-.homepage-introduction-text { font-size: clamp(1rem, 1.3vw, 1.25rem); line-height: 1.85; color: #304654; }
-.homepage-introduction-text { text-shadow: 0 1px 12px #e9f2f480; }
+
+.homepage-figure-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* Figure Enlarged & Responsive (Section XV & XVI) */
+.homepage-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(72vh, 660px);
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 4px 24px rgba(18, 59, 69, 0.12));
+}
+
+.homepage-text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  will-change: transform, opacity;
+}
+
+.homepage-introduction-text {
+  font-size: clamp(1.05rem, 1.35vw, 1.32rem);
+  line-height: 1.88;
+  color: #1a3848;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* ==========================================================================
+   SECTION 03: Categories Container (Preserved Order, Enhanced Scale)
+   ========================================================================== */
 .homepage-existing-categories {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
   min-height: 100svh;
-  padding: 2rem 2.5rem;
+  padding: 2.5rem clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+  z-index: 10;
 }
-/* The tint changes only while the new prelude is in view. */
-body.homepage-prelude .mountain-atmosphere::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #e9f2f4;
-  opacity: calc(var(--prelude-light, 1) * 0.78);
-  pointer-events: none;
+
+/* Responsive adjustments */
+@media (min-width: 1800px) {
+  .homepage-figure {
+    max-height: min(76vh, 760px);
+  }
+  .homepage-hero .landing-title-main {
+    font-size: 5rem;
+  }
 }
-body.homepage-prelude #mountain-scene { transform: scale(var(--prelude-scale, 1)); }
+
+@media (max-width: 1024px) {
+  .homepage-introduction-inner {
+    grid-template-columns: minmax(0, 58fr) minmax(0, 36fr);
+    gap: 4%;
+  }
+}
+
 @media (max-width: 900px) {
-  .homepage-introduction-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .homepage-introduction-text { max-width: 42rem; margin: auto; }
+  .homepage-introduction {
+    min-height: auto;
+  }
+  .homepage-intro-pin {
+    position: relative;
+    height: auto;
+    min-height: 85svh;
+    padding: 4rem 1.5rem;
+  }
+  .homepage-introduction-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .homepage-introduction-text {
+    max-width: 44rem;
+    margin: 0 auto;
+    text-align: left;
+  }
 }
+
 @media (max-width: 768px) {
-  #category-landing-view > .landing-top-bar { top: 1rem; right: 1rem; }
+  #category-landing-view > .landing-top-bar { top: 1.25rem; right: 1.25rem; }
   .homepage-hero { padding: 6rem 1.25rem 8rem; }
-  .homepage-hero .landing-title-main { font-size: clamp(2.1rem, 8vw, 3.3rem); }
+  .homepage-hero .landing-title-main { font-size: clamp(2.1rem, 8vw, 3.2rem); }
   .homepage-hero .landing-title-extension > span { display: block; }
   .homepage-existing-categories { padding: 1.5rem 1rem; }
 }
+
 @media (prefers-reduced-motion: reduce) {
   html:has(#homepage-hero) { scroll-behavior: auto; }
-  .homepage-figure, .homepage-introduction-text { opacity: 1 !important; transform: none !important; }
-  body.homepage-prelude #mountain-scene { transform: none; }
+  .homepage-hero .landing-title-main,
+  .homepage-hero .landing-title-extension,
+  .homepage-scroll-hint {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .homepage-figure-col,
+  .homepage-text-col,
+  .homepage-figure {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

@@ -39,7 +39,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-navy);
   line-height: 1.5;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
