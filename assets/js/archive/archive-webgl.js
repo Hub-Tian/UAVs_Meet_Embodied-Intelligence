@@ -115,6 +115,12 @@ export class ArchiveWebGLScene {
       paper: p
     }));
 
+    this.activeIndex = 0;
+    this.targetScroll = 0;
+    this.currentScroll = 0;
+    this.velocity = 0;
+    this.smoothedVelocity = 0;
+
     if (this.group) {
       while (this.group.children.length > 0) {
         const obj = this.group.children[0];
