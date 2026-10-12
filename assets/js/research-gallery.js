@@ -144,44 +144,21 @@ const ResearchGallery = (function () {
       });
     }
 
-    if (categorySlug === 'embodied-perception' && window.PaperArchive?.getPapers) {
-      papers = window.PaperArchive.getPapers();
-    } else {
-      papers = (window.PAPERS_DATA || []).filter(p => p.category === categorySlug);
-    }
     window.PaperArchive?.load(categorySlug);
+    papers = window.PaperArchive?.getPapers() || [];
     activeIndex = 0;
 
     const titleEl = document.getElementById('gallery-category-title');
-    if (titleEl) titleEl.textContent = categoryTitle || 'Embodied Perception';
+    if (titleEl) titleEl.textContent = categoryTitle || 'Embodied Intelligence';
 
     const stageContainer = document.getElementById('stage-container');
     const pendingContainer = document.getElementById('pending-container');
-
-    if (categorySlug === 'embodied-perception') {
-      if (stageContainer) stageContainer.style.display = 'none';
-      if (pendingContainer) pendingContainer.style.display = 'none';
-      if (statusEl) statusEl.textContent = '16 PAPERS';
-      return;
-    }
-
-    if (papers.length === 0) {
-      // Pending state for other categories
-      if (stageContainer) stageContainer.style.display = 'none';
-      if (pendingContainer) {
-        pendingContainer.style.display = 'flex';
-        const pTitle = pendingContainer.querySelector('.pending-category-title');
-        if (pTitle) pTitle.textContent = categoryTitle;
-      }
-      if (statusEl) statusEl.textContent = '00 / 00';
-      return;
-    }
-
-    if (stageContainer) stageContainer.style.display = 'block';
+    if (stageContainer) stageContainer.style.display = 'none';
     if (pendingContainer) pendingContainer.style.display = 'none';
-
-    renderPapers();
-    updateRecords();
+    if (statusEl) {
+      statusEl.textContent = `${papers.length} PAPERS`;
+      statusEl.style.display = 'none';
+    }
   }
 
   function renderPapers() {
@@ -282,7 +259,7 @@ const ResearchGallery = (function () {
   }
 
   function openDetailById(id) {
-    if (currentCategory === 'embodied-perception' && window.PaperArchive?.getPapers) {
+    if (window.PaperArchive?.getPapers) {
       papers = window.PaperArchive.getPapers();
     }
     const idx = papers.findIndex(p => p.id === id);
@@ -505,9 +482,10 @@ const ResearchGallery = (function () {
       detailIndex = nextIdx;
       const paper = papers[nextIdx];
       detailFront.innerHTML = `<img src="${escapeHtml(paper.image)}" alt="${escapeHtml(paper.methodName || paper.title)}" />`;
-      renderDetailBackFace(paper, nextIdx);
-      returnFocus = recordEls[nextIdx].querySelector('.research-record__cover');
+      renderDetailBackFace(paper, nextIdx, detailBack, { archive: true });
+      returnFocus = recordEls[nextIdx]?.querySelector('.research-record__cover') || document.getElementById('archive-preview-stage');
       flipToBack();
+      window.PaperArchive?.setActive(nextIdx, true);
     }, flipDuration());
   }
 

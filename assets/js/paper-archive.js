@@ -24,6 +24,7 @@ window.PaperArchive = (function () {
     "semantic-aware-path-planning"
   ];
 
+  let currentCategory = 'embodied-perception';
   let allPapers = [];
   let filteredPapers = [];
   let activeIndex = 0;
@@ -51,22 +52,30 @@ window.PaperArchive = (function () {
     }[c]));
   }
 
-  function initData() {
-    const rawData = window.PERCEPTION_ARCHIVE_DATA || [];
-    
-    // Sort according to PREFERRED_ORDER (newest 2026 to 2021)
-    allPapers = [];
-    PREFERRED_ORDER.forEach(id => {
-      const found = rawData.find(p => p.id === id);
-      if (found) allPapers.push(found);
-    });
+  function initData(categorySlug) {
+    const slug = categorySlug || currentCategory || 'embodied-perception';
+    currentCategory = slug;
 
-    // Include any remaining perception papers
-    rawData.forEach(p => {
-      if (!allPapers.some(item => item.id === p.id)) {
-        allPapers.push(p);
-      }
-    });
+    if (slug === 'embodied-perception') {
+      const rawData = window.PERCEPTION_ARCHIVE_DATA || [];
+      
+      // Sort according to PREFERRED_ORDER (newest 2026 to 2021)
+      allPapers = [];
+      PREFERRED_ORDER.forEach(id => {
+        const found = rawData.find(p => p.id === id);
+        if (found) allPapers.push(found);
+      });
+
+      // Include any remaining perception papers
+      rawData.forEach(p => {
+        if (!allPapers.some(item => item.id === p.id)) {
+          allPapers.push(p);
+        }
+      });
+    } else {
+      // For other categories, maintain their exact original order from PAPERS_DATA
+      allPapers = (window.PAPERS_DATA || []).filter(p => p.category === slug);
+    }
 
     filteredPapers = [...allPapers];
   }
@@ -148,11 +157,11 @@ window.PaperArchive = (function () {
       btn.className = 'archive-item-btn' + (idx === activeIndex ? ' is-active' : '');
       btn.setAttribute('data-index', idx);
       btn.setAttribute('data-id', paper.id);
-      btn.setAttribute('aria-label', `${paper.methodName || paper.title}, ${paper.venue} ${paper.year}`);
+      btn.setAttribute('aria-label', `${paper.methodName || paper.title}, ${paper.venue || ''} ${paper.year || ''}`.trim());
 
       const numStr = String(idx + 1).padStart(3, '0');
       const venueYearStr = `${paper.venue || ''} ${paper.year || ''}`.trim();
-      const typeStr = paper.type || (paper.methodTags && paper.methodTags[0]) || 'Perception';
+      const typeStr = paper.type || (paper.methodTags && paper.methodTags[0]) || (paper.taskTags && paper.taskTags[0]) || '';
 
       const mName = (paper.methodName || '').trim();
       const pTitle = (paper.title || '').trim();
@@ -302,38 +311,51 @@ window.PaperArchive = (function () {
   function getPapers() {
     if (filteredPapers && filteredPapers.length > 0) return filteredPapers;
     if (allPapers && allPapers.length > 0) return allPapers;
-    initData();
+    initData(currentCategory);
     return allPapers;
   }
 
   function load(categorySlug) {
     mountDOM();
-    initData();
+    currentCategory = categorySlug || 'embodied-perception';
 
-    const isPerception = categorySlug === 'embodied-perception';
+    // Reset search input upon loading a category
+    if (searchInput) {
+      searchInput.value = '';
+      try { searchInput.blur(); } catch (e) {}
+    }
+
+    initData(currentCategory);
+
     if (!archiveContainer) return;
 
     const counterEl = document.getElementById('gallery-counter');
+    if (counterEl) counterEl.style.display = 'none';
 
-    if (isPerception) {
-      if (counterEl) counterEl.style.display = 'none';
-      archiveContainer.style.display = 'block';
-      archiveContainer.hidden = false;
-      renderList();
-      setActive(activeIndex, false);
+    archiveContainer.style.display = 'block';
+    archiveContainer.hidden = false;
 
+    if (directoryEl) {
+      const catNames = {
+        'embodied-perception': 'Embodied Perception',
+        'embodied-navigation': 'Embodied Navigation',
+        'embodied-planning': 'Embodied Planning',
+        'embodied-manipulation': 'Embodied Manipulation',
+        'embodied-collaboration': 'Embodied Collaboration'
+      };
+      directoryEl.setAttribute('aria-label', `${catNames[currentCategory] || 'Paper'} Directory`);
+    }
+
+    renderList();
+    setActive(0, false);
+
+    if (!webglScene) {
       initWebGL();
-      if (webglScene) {
-        webglScene.setActive(true);
-        setTimeout(() => webglScene.onResize(), 60);
-      }
     } else {
-      if (counterEl) counterEl.style.display = '';
-      archiveContainer.style.display = 'none';
-      archiveContainer.hidden = true;
-      if (webglScene) {
-        webglScene.setActive(false);
-      }
+      webglScene.setItems(filteredPapers);
+      webglScene.setActive(true);
+      webglScene.scrollToIndex(0, true);
+      setTimeout(() => webglScene.onResize(), 60);
     }
   }
 
@@ -345,6 +367,11 @@ window.PaperArchive = (function () {
     }
     if (archiveContainer) {
       archiveContainer.style.display = 'none';
+      archiveContainer.hidden = true;
+    }
+    if (searchInput) {
+      searchInput.value = '';
+      try { searchInput.blur(); } catch (e) {}
     }
   }
 
