@@ -185,6 +185,7 @@
 .category-windows-group.stagger-in .category-panel:nth-child(3) { transition-delay: 140ms; }
 .category-windows-group.stagger-in .category-panel:nth-child(4) { transition-delay: 210ms; }
 .category-windows-group.stagger-in .category-panel:nth-child(5) { transition-delay: 280ms; }
+.category-windows-group.stagger-in .category-panel:nth-child(6) { transition-delay: 350ms; }
 
 /* Enhanced Hover: Lift, Brighten, and Subtle Scale (Section XXIX) */
 .category-panel:hover,
@@ -337,5 +338,16 @@
     grid-column: 1 / -1;
     max-width: calc(50% - 6px);
     justify-self: center;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .category-windows-group {
+    gap: clamp(10px, 1.2vw, 16px);
+  }
+  .category-panel,
+  .category-strip {
+    width: clamp(118px, 9.2vw, 145px);
+    height: clamp(360px, 28vw, 420px);
   }
 }
