@@ -638,5 +638,146 @@
         "imageSupplement": null
       }
     ]
+  },
+  {
+    "category": "embodied-world-model",
+    "source": "世界模型/世界模型_元数据最终校对版.xlsx",
+    "sha256": "abfa2a56fdb1f25b956fe67c7702e5fff28c94f639e005ba13f82c7150389441",
+    "sheet": "世界模型文献汇总表",
+    "rawRows": 13,
+    "includedRows": 13,
+    "excludedRows": [],
+    "papers": [
+      {
+        "id": "world-model-002",
+        "row": 2,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-002.png",
+        "imageSource": "世界模型/世界模型文献图片/ANWM.png",
+        "imageSha256": "f8cf67829ef9f1e277ef74142b40822865320f48ba06c0f1cb53723d8c73d908",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-003",
+        "row": 3,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-003.png",
+        "imageSource": "世界模型/世界模型文献图片/Dream to Fly.png",
+        "imageSha256": "8178edb452130b2da1d825ca13a057431e50fb75911a21773cdd9c144ec65671",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-004",
+        "row": 4,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-004.png",
+        "imageSource": "世界模型/世界模型文献图片/NA.png",
+        "imageSha256": "3c63859f4a186416e97772c129211e64c43f6624c1302c664ee026c64ebbfbc8",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-005",
+        "row": 5,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-005.png",
+        "imageSource": "世界模型/世界模型文献图片/MAD (Mapping-Aware Dreamer).png",
+        "imageSha256": "a274f9a7a647fe9a8d0d344e69e95536193ce55e6a0c488d086ddb20d9be2a93",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-006",
+        "row": 6,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-006.png",
+        "imageSource": "世界模型/世界模型文献图片/WorldFly.png",
+        "imageSha256": "a816462058257df806ba65b77b2ed786fd98949b63f7f4a8581104acfdd4bc10",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-007",
+        "row": 7,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-007.png",
+        "imageSource": "世界模型/世界模型文献图片/ImagineUAV.png",
+        "imageSha256": "2aaaef4fba06f6d655edf33ad9aef73787cc52f67b302f3da31b8fcd6cf13049",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-008",
+        "row": 8,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-008.png",
+        "imageSource": "世界模型/世界模型文献图片/FlyMirage.png",
+        "imageSha256": "39c5717460171a69b130e5c4a17af26ed7a4f8beecaca1ec4dea2da7a6fdfdeb",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-009",
+        "row": 9,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-009.png",
+        "imageSource": "世界模型/世界模型文献图片/AirDreamer.png",
+        "imageSha256": "25a8841759bbcd6264fa8ca8f467bd292c6c9c4059490b63bcc5e356be584ec1",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-010",
+        "row": 10,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-010.png",
+        "imageSource": "世界模型/世界模型文献图片/WorldVLN.png",
+        "imageSha256": "261285c32de0bdc1f6be38c46347ed73f4045533ed4cf1b78718bdf8a6c1f058",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-011",
+        "row": 11,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-011.png",
+        "imageSource": "世界模型/世界模型文献图片/Self in Space.png",
+        "imageSha256": "6750e4df9440867c7f4141842c76429bc936f6dfc04d2a566e7b9fbc743e72b1",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-012",
+        "row": 12,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-012.png",
+        "imageSource": "世界模型/世界模型文献图片/AirZoo.png",
+        "imageSha256": "8e403f5aa07477e519aa9d77b07be246bb76efecd9fbc189b6e13fd8c9213c9a",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-013",
+        "row": 13,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-013.png",
+        "imageSource": "世界模型/世界模型文献图片/UAVBench (Benchmark) & UAVIT-1M (Dataset).png",
+        "imageSha256": "c2ed9b9801c058e7986795511d5aeb1c3b63c07ab658c3123d2d90bc9b7eebb6",
+        "imageRetained": false,
+        "imageSupplement": null
+      },
+      {
+        "id": "world-model-014",
+        "row": 14,
+        "inclusion": "Yes",
+        "image": "assets/papers/world-model/world-model-014.png",
+        "imageSource": "世界模型/世界模型文献图片/AeroVerse.png",
+        "imageSha256": "40c80424bb9182bca6f2616f81fc1b3d0fbf5f5d1724edd6b136c03edd543ae3",
+        "imageRetained": false,
+        "imageSupplement": null
+      }
+    ]
   }
 ]

@@ -341,7 +341,8 @@ window.PaperArchive = (function () {
         'embodied-navigation': 'Embodied Navigation',
         'embodied-planning': 'Embodied Planning',
         'embodied-manipulation': 'Embodied Manipulation',
-        'embodied-collaboration': 'Embodied Collaboration'
+        'embodied-collaboration': 'Embodied Collaboration',
+        'embodied-world-model': 'Embodied World Model'
       };
       directoryEl.setAttribute('aria-label', `${catNames[currentCategory] || 'Paper'} Directory`);
     }
